@@ -1,0 +1,56 @@
+.sidenav {
+  height: 100%;
+  width: 200px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #eaedf1;
+
+  overflow-x: hidden;
+  //padding-top: 20px;
+}
+.sidenav a {
+  &:first-child {
+    text-align: left;
+    //border-bottom: 5px solid #656565;
+    color: white;
+    font-size: 30px;
+    padding: 0 0 0 16px;
+    box-shadow: 0 0 .5rem #818181;
+    letter-spacing: 5px;
+    background-color: #2c1d4a;
+  }
+  &:not(.admin-options) {
+    text-transform: uppercase;
+  }
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 13px;
+  color: #464C5C;
+  font-weight: bold;
+  display: block;
+  width: 200px !important
+  em {
+  margin-right: 10px
+  }
+}
+
+.sideNavActive {
+background-color: rgba(0,0,0,.05)
+color: black
+}
+
+.sidenav a:hover:not(a:first-child) {
+  color: #2c1d4a;
+}
+
+.main {
+  margin: 16px 16px 16px 216px; /* Same as the width of the sidenav */
+  //margin-top: 0px
+}
+
+@media screen and (max-height: 450px) {
+  //.sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}

@@ -1,0 +1,15 @@
+{
+  "port": 8000,
+  "interval": 500,
+  "delay": 0,
+  "bind": "localhost",
+  "serve": "public",
+  "watchexps": [
+    "src/**/*.js # npm run build",
+    "src/**/*.styl # # reloadcss"
+  ],
+  "quiet": false,
+  "open": true,
+  "historyindex": "/index.html",
+  "http2": false
+}
