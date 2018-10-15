@@ -22,6 +22,10 @@ import AdminUserVerification from '../routes/admin/userVerification';
 import AdminResetPassword from '../routes/admin/resetpassword';
 import Home from '../routes/home';
 import AdminPanel from '../routes/adminPanel';
+import Branches from '../routes/branch';
+import Users from '../routes/users';
+import Role from '../routes/roles';
+import Client from '../routes/clients';
 
 export default class App extends Component {
   checkAdminConditions(path) {
@@ -60,6 +64,11 @@ export default class App extends Component {
         <AdminForgotPassword path="/admin/forgotpassword"/>
         <AdminSetPassword path="/admin/setpassword" />
         <AdminResetPassword path="/admin/resetpassword" />
+        <Branches path="/branches" />
+        <Users path="/users" />
+        <Role path="/roles" />
+        <Client path="/clients" />
+
       </Router>
     </div>);
   }
