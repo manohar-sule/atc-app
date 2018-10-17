@@ -11,12 +11,12 @@ import SideBar from '../../components/sideBar';
 
 export default class Clients extends Component {
 
-  toggleAddRole() {
+  toggleAddClient() {
     this.setState({
-      isRoleAddModal: !this.state.isRoleAddModal,
+      isClientAddModal: !this.state.isClientAddModal,
       name: '',
       displayName: '',
-      modalTitle: 'Create Role'
+      modalTitle: 'Add Client'
     });
   }
 
@@ -40,19 +40,25 @@ export default class Clients extends Component {
 
   getRoleList() {
     let response=[{
-      name: 'Role 1',
-      displayName: 'Display Name 1'
+      name: 'Client Name',
+      displayName: 'Display Name 1',
+      address: {
+        line1: 'line1',
+        line2: 'line2',
+        city: 'city',
+        state: 'state'
+      },
     }];
-    this.setState({loadingRoleList: true});
+    this.setState({loadingClientList: true});
     startLoader();
-    this.setState({role: response, loadingRoleList: false});
+    this.setState({role: response, loadingClientList: false});
     stopLoader();
     // const params = this.getSearchParams();
     // params.pageSize = 10;
     // return http
     //   .get(`${CONSTANTS.API_URL}/api/role`, params)
     //   .then((resp) => {
-    //     this.setState({role: resp, loadingRoleList: false});
+    //     this.setState({role: resp, loadingClientList: false});
     //     if ( !resp.length && this.state.totalPages > 1 ) {
     //       let pageCount = params.pageNo - 1;
     //       if (pageCount === 0) pageCount = 1;
@@ -66,128 +72,39 @@ export default class Clients extends Component {
     //     stopLoader();
     //   })
     //   .catch((HTTPException) => {
-    //     this.setState({loadingRoleList: false});
+    //     this.setState({loadingClientList: false});
     //     console.error(HTTPException);
     //     stopLoader();
     //   });
   }
 
-  redirectToPreviousPage(pageCount) {
-    this.setState({
-      currentPageNo: pageCount
-    });
+  // redirectToPreviousPage(pageCount) {
+  //   this.setState({
+  //     currentPageNo: pageCount
+  //   });
+  //
+  //   route(location.pathname);
+  //   this.getRoleCount();
+  //   this.getRoleList();
+  // }
 
-    route(location.pathname);
-    this.getRoleCount();
-    this.getRoleList();
-  }
 
-  getSearchParams() {
-    let params = {};
-
-    if (this.state.status) {
-      params['status'] = this.state.status;
-    }
-    if (this.state.currentPageNo) {
-      if (this.state.currentPageNo === 0 || (!Number(this.state.currentPageNo))) {
-        this.state.currentPageNo = 1;
-      }
-      params['pageNo'] = this.state.currentPageNo;
-    }
-    return params;
-  }
-
-  createOrEditDepartment(e) {
+  createOrEditClient(e) {
     e.preventDefault();
     this.setState({isButtonLocked: true});
 
-    const role = {
-      name: e.target.name.value,
-      displayName: e.target.displayName.value
-    };
-    let url;
-    if (this.state.modalTitle === 'Create Role') {
-      url = `${CONSTANTS.API_URL}/api/role`;
-      this.toggleAddRole();
-      this.getRoleList();
+    if (this.state.modalTitle === 'Create Client') {
+      this.toggleAddClient();
       this.state.isButtonLocked = false;
-      new Toast('Role created successfully', Toast.TYPE_DONE, Toast.TIME_LONG);
-    } else if (this.state.modalTitle === 'Edit Role'){
+      new Toast('Client created successfully', Toast.TYPE_DONE, Toast.TIME_LONG);
+    } else if (this.state.modalTitle === 'Edit Client'){
 
-      this.toggleAddRole();
-      // this.getRoleCount();
-      this.getRoleList();
+      this.toggleAddClient();
       this.state.isButtonLocked = false;
-      new Toast('Role updated successfully', Toast.TYPE_DONE, Toast.TIME_LONG);
-      return;
-      // return http.put(`${CONSTANTS.API_URL}/api/role/${this.state.roleID}`, role)
-      //   .then(() => {
-      //     this.toggleAddRole();
-      //     this.getRoleCount();
-      //     this.getRoleList();
-      //     this.state.isButtonLocked = false;
-      //     new Toast('Role updated successfully', Toast.TYPE_DONE, Toast.TIME_LONG);
-      //   })
-      //   .catch((HTTPException) => {
-      //     console.error(HTTPException.message);
-      //     if (HTTPException.statusCode===400) {
-      //       new Toast('Empty Fields are not accepted.', Toast.TYPE_ERROR, Toast.TIME_LONG);
-      //     } else
-      //     if (HTTPException.statusCode===417) {
-      //       new Toast('Could not update Role, Role you are trying to create already exist.', Toast.TYPE_ERROR, Toast.TIME_LONG);
-      //     } else {
-      //       new Toast('Could not update Role', Toast.TYPE_ERROR, Toast.TIME_LONG);
-      //     }
-      //     this.setState({isButtonLocked: false});
-      //   });
+      new Toast('Client updated successfully', Toast.TYPE_DONE, Toast.TIME_LONG);
+
     }
 
-    return http
-      .post(url, role)
-      .then(() => {
-        this.toggleAddRole();
-        this.getRoleCount();
-        this.getRoleList();
-        this.state.isButtonLocked = false;
-        new Toast('Role created successfully', Toast.TYPE_DONE, Toast.TIME_LONG);
-      })
-      .catch((HTTPException) => {
-        console.error(HTTPException.message);
-        if (HTTPException.statusCode===400) {
-          new Toast('Empty Fields are not accepted.', Toast.TYPE_ERROR, Toast.TIME_LONG);
-        } else
-        if (HTTPException.statusCode===417) {
-          new Toast('Could not create Role, Role you are trying to create already exist.', Toast.TYPE_ERROR, Toast.TIME_LONG);
-        } else {
-          new Toast('Could not create Role', Toast.TYPE_ERROR, Toast.TIME_LONG);
-        }
-        this.setState({isButtonLocked: false});
-      });
-  }
-
-  deleteRole(row, action) {
-    return http.del(`${CONSTANTS.API_URL}/api/role/${row._id}/${action}`)
-      .then(() => {
-        new Toast('Role '+action+'d successfully', Toast.TYPE_DONE, Toast.TIME_LONG);
-        this.getRoleCount();
-        this.getRoleList();
-      }).catch((HTTPException) => {
-        console.error(HTTPException);
-        new Toast('Could not '+action+' Role', Toast.TYPE_DONE, Toast.TIME_LONG);
-      });
-  }
-
-  openDeleteRole(row) {
-    const action = row.deletedAt ? 'activate' : 'deactivate';
-    let confirmMsg = 'Are you sure you want to  ' + action + ' this Role?';
-    if (action === 'deactivate') {
-      confirmMsg =  `If Role is deactivated then you are not able to assign this `
-        + `Role to other objects, but privious association remain same. ${confirmMsg}`;
-    }
-    let confirmResponse = confirm(confirmMsg);
-    if (confirmResponse === true) {
-      this.deleteRole(row, action);
-    }
   }
 
   onChangePageClick(pageNo) {
@@ -199,14 +116,23 @@ export default class Clients extends Component {
     this.getRoleList();
   }
 
-  editDepartment(row) {
-    this.toggleAddRole();
+  editClient(row) {
+    this.toggleAddClient();
     this.setState({
-      modalTitle: 'Edit Role',
+      modalTitle: 'Edit Client',
       name: row.name,
       displayName: row.displayName,
-      roleID: row._id
+      roleID: row._id,
+      address:{
+        line1: row.address.line1,
+        line2: row.address.line2,
+        city: row.address.city,
+        state: row.address.state
+      },
     });
+  }
+  clientDetailClick(row) {
+    route('/client/2423');
   }
 
   componentWillMount() {
@@ -215,13 +141,19 @@ export default class Clients extends Component {
       currentPageNo: 1,
       role: [],
       status:'active',
-      isRoleAddModal: true,
+      isClientAddModal: true,
       isButtonLocked: false,
       name: '',
       displayName: '',
       modalTitle: 'Create Role',
       roleID: '',
-      loadingRoleList: false
+      loadingClientList: false,
+      address:{
+        line1: '',
+        line2: '',
+        city: '',
+        state: ''
+      },
     };
   }
 
@@ -230,13 +162,12 @@ export default class Clients extends Component {
     this.getRoleList();
   }
 
-  render({}, { role, isRoleAddModal, isButtonLocked, modalTitle, name, displayName, status }) {
+  render({}, { role, isClientAddModal, isButtonLocked, modalTitle, name, displayName, status, address }) {
 
-    const columns = ['Name', 'Display Name', 'Action'];
-    console.log(role);
+    const columns = ['Name', 'Display Name', 'City', 'State', 'Action'];
     return (
       <div>
-        <SideBar activeMenu="/roles" />
+        <SideBar activeMenu="/clients" />
         <div class="main">
           <section class="row" style="margin-bottom:5px">
             <div class="column">
@@ -253,7 +184,7 @@ export default class Clients extends Component {
                         name="search" value="" />
                     </div>
                   <div class="column has-text-right">
-                    <button type="button" onClick={this.toggleAddRole.bind(this)}>Add Client</button>
+                    <button type="button" onClick={this.toggleAddClient.bind(this)}>Add Client</button>
                   </div>
                 </div>
               </div>
@@ -272,25 +203,20 @@ export default class Clients extends Component {
                   (role.map((row) => (<tr>
                     <td>{row.name}</td>
                     <td>{row.displayName}</td>
+                    <td>{row.address.city}</td>
+                    <td>{row.address.state || '-'}</td>
                     <td>
-                      <button  onClick={this.editDepartment.bind(this, row)}>Edit</button>
-                      {
-                        !row.deletedAt &&
-                        <button  onClick={this.openDeleteRole.bind(this, row)}>Deactivate</button>
-                      }
-                      {
-                        row.deletedAt &&
-                        <button onClick={this.openDeleteRole.bind(this, row)}>Activate</button>
-                      }
+                      <button  onClick={this.editClient.bind(this, row)}>Edit</button>
+                      <button  onClick={this.clientDetailClick.bind(this, row)}>View Detail</button>
                     </td>
                   </tr>)))
                 }
                 {
-                  !role.length && this.state.loadingRoleList && (
+                  !role.length && this.state.loadingClientList && (
                     <span>Loading...</span>
                   )
                 }
-                {!role.length && !this.state.loadingRoleList && (<span>No Data Found</span>)}
+                {!role.length && !this.state.loadingClientList && (<span>No Data Found</span>)}
               </tbody>
             </table>
             <div class="has-text-right column no-padding pagination">
@@ -298,9 +224,9 @@ export default class Clients extends Component {
             </div>
           </div>
           {
-            !isRoleAddModal && (
-              <Modal title={modalTitle} modalSize="is-medium" onClose={this.toggleAddRole.bind(this)}>
-                <form name="Add Role" onSubmit={this.createOrEditDepartment.bind(this)}>
+            !isClientAddModal && (
+              <Modal title={modalTitle} modalSize="is-medium" onClose={this.toggleAddClient.bind(this)}>
+                <form name="Add Client" onSubmit={this.createOrEditClient.bind(this)}>
                   <ModalBody>
                     <div class="row">
                       <div class="column column-50">
@@ -313,9 +239,30 @@ export default class Clients extends Component {
                           onInput={LinkState(this, 'displayName')} required="required"/>
                       </div>
                     </div>
+                    <div class="row">
+                      <div class="column">
+                        <label>Address Line 1</label>
+                        <input type="text" placeholder="Line 1" name="line1" value={address.line1} onInput={LinkState(this, 'address.line1')} required/>
+                      </div>
+                      <div class="column">
+                        <label>Address Line 2</label>
+                        <input type="text" placeholder="Line 2" name="line2" value={address.line2} onInput={LinkState(this, 'address.line2')} required/>
+                      </div>
+                      </div>
+
+                    <div class="row">
+                      <div class="column">
+                        <label>City</label>
+                        <input type="text" placeholder="City" name="city" value={address.city} onInput={LinkState(this, 'address.city')} required/>
+                      </div>
+                      <div class="column">
+                        <label>State</label>
+                        <input type="text" placeholder="State" name="state" value={address.state} onInput={LinkState(this, 'address.state')} required/>
+                      </div>
+                      </div>
                   </ModalBody>
                   <ModalFooter>
-                    <button type="reset" class="button-clear" onClick={this.toggleAddRole.bind(this)}>Cancel</button>
+                    <button type="reset" class="button-clear" onClick={this.toggleAddClient.bind(this)}>Cancel</button>
                     <button disabled={isButtonLocked}>Save</button>
                   </ModalFooter>
                 </form>

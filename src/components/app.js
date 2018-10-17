@@ -26,6 +26,7 @@ import Branches from '../routes/branch';
 import Users from '../routes/users';
 import Role from '../routes/roles';
 import Client from '../routes/clients';
+import ClientDetails from '../routes/clientDetails';
 
 export default class App extends Component {
   checkAdminConditions(path) {
@@ -68,6 +69,7 @@ export default class App extends Component {
         <Users path="/users" />
         <Role path="/roles" />
         <Client path="/clients" />
+        <ClientDetails path="/client/:clientID" />
 
       </Router>
     </div>);

@@ -233,7 +233,6 @@ export default class Roles extends Component {
   render({}, { role, isRoleAddModal, isButtonLocked, modalTitle, name, displayName, status }) {
 
     const columns = ['Name', 'Display Name', 'Action'];
-    console.log(role);
     return (
       <div>
         <SideBar activeMenu="/roles" />

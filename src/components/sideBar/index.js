@@ -29,6 +29,9 @@ export default class Pagination extends Component {
         <a href="/roles" class={state.activeMenu === '/roles' ? 'sideNavActive' : ''}>
           <em class="icon icon-user is-large" /> Role
         </a>
+        <a href="/clients" class={state.activeMenu === '/clients' ? 'sideNavActive' : ''}>
+          <em class="icon icon-user is-large" /> Client
+        </a>
       </div>
     );
   }
