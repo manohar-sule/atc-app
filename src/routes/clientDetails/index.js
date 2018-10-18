@@ -135,28 +135,6 @@ export default class ClientDetails extends Component {
                 <label style="width:100%;">
                   <em class="icon icon-paper-plane-o is-small" /> Consignments
                 </label>
-                <div class="row" style="margin-bottom:10px">
-                  <div class="column no-padding">
-                    <div>
-                      <span>Total Number of Consignments - </span>
-                      <span><strong>4</strong></span>
-                    </div>
-                    <div>
-                      <span>Booked - </span>
-                      <span><strong>1</strong></span>
-                    </div>
-                  </div>
-                  <div class="column">
-                    <div>
-                      <span>In Transit - </span>
-                      <span><strong>2</strong></span>
-                    </div>
-                    <div>
-                      <span>Delivered - </span>
-                      <span><strong>1</strong></span>
-                    </div>
-                  </div>
-                </div>
               </div>
               <div class="column no-padding has-text-right">
                 <Link class="button button-margin-left" href="/data/dispatch/create">
@@ -170,24 +148,28 @@ export default class ClientDetails extends Component {
                   <table>
                     <thead>
                       <tr>
-                        <th>Consignment Number</th>
-                        <th>Reference Number</th>
-                        <th>Booked Date</th>
-                        <th>Delivered Date</th>
-                        <th>Destination</th>
-                        <th>Issue/Edition</th>
+                        <th>Client</th>
+                        <th>Source Branch</th>
+                        <th>Target Branch</th>
+                        <th>Pick Up Location</th>
+                        <th>Delivery Location</th>
+                        <th>Estimated Cost</th>
+                        <th>Advance Amount</th>
+                        <th>Actual Billing Cost</th>
                         <th>Status</th>
                         <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
-                        <td>P43582316</td>
-                        <td>10680</td>
-                        <td>18/08/2018</td>
-                        <td>20/08/2018</td>
+                        <td>Client Name</td>
                         <td>Pune</td>
-                        <td>August 2018</td>
+                        <td>Bangalore</td>
+                        <td>Kothrud, Pune</td>
+                        <td>Bangalore</td>
+                        <td>10,000</td>
+                        <td>5,000</td>
+                        <td>15,000</td>
                         <td><em class="icon icon-flag-checkered is-small" /> Delivered</td>
                         <td>
                           <button class="button-margin-left " onClick={this.toggleConsignmentDetails.bind(this)}>Track</button>
@@ -197,45 +179,51 @@ export default class ClientDetails extends Component {
                         </td>
                       </tr>
                       <tr>
-                        <td>P43582317</td>
-                        <td>9131</td>
-                        <td>19/09/2018</td>
-                        <td>-</td>
-                        <td>Mysore</td>
-                        <td>August 2018</td>
-                        <td><em class="icon icon-flag is-small" /> In Transit</td>
+                        <td>Client Name</td>
+                        <td>Pune</td>
+                        <td>Bangalore</td>
+                        <td>Kothrud, Pune</td>
+                        <td>Bangalore</td>
+                        <td>10,000</td>
+                        <td>5,000</td>
+                        <td>15,000</td>
+                        <td><em class="icon icon-flag-checkered is-small" /> Delivered</td>
                         <td>
-                          <button class="button-margin-left " onClick={this.toggleConsignmentDetails.bind(this)} >Track</button>
+                          <button class="button-margin-left " onClick={this.toggleConsignmentDetails.bind(this)}>Track</button>
                           <button class="button-margin-left ">
                             <em class="icon icon-refresh is-small" />
                           </button>
                         </td>
                       </tr>
                       <tr>
-                        <td>P43582318</td>
-                        <td>11004</td>
-                        <td>19/09/2018</td>
-                        <td>-</td>
-                        <td>Mysore</td>
-                        <td>August 2018</td>
-                        <td><em class="icon icon-flag is-small" /> In Transit</td>
+                        <td>Client Name</td>
+                        <td>Pune</td>
+                        <td>Bangalore</td>
+                        <td>Kothrud, Pune</td>
+                        <td>Bangalore</td>
+                        <td>10,000</td>
+                        <td>5,000</td>
+                        <td>15,000</td>
+                        <td><em class="icon icon-flag-checkered is-small" /> Delivered</td>
                         <td>
-                          <button class="button-margin-left " onClick={this.toggleConsignmentDetails.bind(this)} >Track</button>
+                          <button class="button-margin-left " onClick={this.toggleConsignmentDetails.bind(this)}>Track</button>
                           <button class="button-margin-left ">
                             <em class="icon icon-refresh is-small" />
                           </button>
                         </td>
                       </tr>
                       <tr>
-                        <td>P43582319</td>
-                        <td>9036</td>
-                        <td>21/08/2018</td>
-                        <td>-</td>
-                        <td>Mysore</td>
-                        <td>August 2018</td>
-                        <td><em class="icon icon-flag-o is-small" /> Booked</td>
+                        <td>Client Name</td>
+                        <td>Pune</td>
+                        <td>Bangalore</td>
+                        <td>Kothrud, Pune</td>
+                        <td>Bangalore</td>
+                        <td>10,000</td>
+                        <td>5,000</td>
+                        <td>15,000</td>
+                        <td><em class="icon icon-flag-checkered is-small" /> Delivered</td>
                         <td>
-                          <button class="button-margin-left " onClick={this.toggleConsignmentDetails.bind(this)} >Track</button>
+                          <button class="button-margin-left " onClick={this.toggleConsignmentDetails.bind(this)}>Track</button>
                           <button class="button-margin-left ">
                             <em class="icon icon-refresh is-small" />
                           </button>
