@@ -96,38 +96,59 @@ export default class Login extends Component {
 
   render() {
     return (
-      <section class="row row-center has-text-center auth-section">
-        <div class="column column-40 auth-center">
-          <form onSubmit={this.login.bind(this)}>
-            <div class="row">
-              <div class="column">
-                <h2 style="font-weight:bold;letter-spacing:5px;color:#2c1d4a">ATC</h2>
-              </div>
-            </div>
-            <div class="row box">
-              <div class="column auth-form">
-                <div class="field">
-                  <input value={this.state.email} id="email" type="email" autofocus name="email" maxlength="75" placeholder="Email"
-                    disabled={this.state.isResponseReceived} required />
-                  <label for="email" class="has-text-left" style="font-size:0.8em">Email</label>
-                </div>
-                <div class="field">
-                  <input value={this.state.password} id="password" type="password" placeholder="Password"
-                    disabled={this.state.isResponseReceived} required/>
-                  <label for="password" class="has-text-left" style="font-size:0.8em">Password</label>
-                </div>
-                <button type="submit" id="loginButton" class="is-fullwidth btn-margin auth-button" disabled={this.state.isButtonClicked}>Login</button>
-                <div style="margin-top:3px;">
-                  <p class="has-text-centered">
-                    {/*<input type="checkbox" checked={this.state.isRememberMe} id="is_remember_me" name="is_remember_me" /> Remember Me | */}
-                    <b> <Link class="hyperlink" href={`/forgotpassword`}>Forgot password?</Link> </b>
-                  </p>
-                </div>
-              </div>
-            </div>
 
-          </form>
+      <section>
+        <div class="limiter">
+          <div class="container-login100">
+            <div class="wrap-login100">
+              <div class="login100-pic js-tilt" data-tilt>
+                <img src="./assets/static/img-01.png" alt="IMG"/>
+              </div>
+
+              <form class="login100-form validate-form" onSubmit={this.login.bind(this)}>
+                <span class="login100-form-title">
+                  Member Login
+                </span>
+
+                <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+                  <input class="input100" value={this.state.email} id="email" type="email" autofocus name="email" maxlength="75" placeholder="Email"
+                    disabled={this.state.isResponseReceived} required />
+                  <span class="focus-input100"/>
+                  <span class="symbol-input100" style="position: absolute;left: 75%;">
+                    <i class="fa fa-envelope" aria-hidden="true"/>
+                  </span>
+                </div>
+
+                <div class="wrap-input100 validate-input" data-validate = "Password is required">
+                  <input class="input100" value={this.state.password} id="password" type="password" placeholder="Password"
+                    disabled={this.state.isResponseReceived} required/>
+                  <span class="focus-input100"/>
+                  <span class="symbol-input100" style="position: absolute;left: 75%;">
+                    <i class="fa fa-lock" aria-hidden="true"/>
+                  </span>
+                </div>
+
+                <div class="container-login100-form-btn">
+                  <button class="login100-form-btn">
+                    Login
+                  </button>
+                </div>
+
+                <div class="text-center p-t-12">
+                  <Link class="hyperlink" href={`/forgotpassword`}>Forgot password?</Link>
+                </div>
+
+                <div class="text-center p-t-136">
+                  <a class="txt2" href="#">
+                    Create your Account
+                    <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"/>
+                  </a>
+                </div>
+              </form>
+            </div>
+          </div>
         </div>
+
       </section>
     );
   }
