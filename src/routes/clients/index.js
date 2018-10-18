@@ -47,7 +47,7 @@ export default class Clients extends Component {
         line2: 'line2',
         city: 'city',
         state: 'state'
-      },
+      }
     }];
     this.setState({loadingClientList: true});
     startLoader();
@@ -128,10 +128,10 @@ export default class Clients extends Component {
         line2: row.address.line2,
         city: row.address.city,
         state: row.address.state
-      },
+      }
     });
   }
-  clientDetailClick(row) {
+  clientDetailClick() {
     route('/client/2423');
   }
 
@@ -153,7 +153,7 @@ export default class Clients extends Component {
         line2: '',
         city: '',
         state: ''
-      },
+      }
     };
   }
 
@@ -162,7 +162,7 @@ export default class Clients extends Component {
     this.getRoleList();
   }
 
-  render({}, { role, isClientAddModal, isButtonLocked, modalTitle, name, displayName, status, address }) {
+  render({}, { role, isClientAddModal, isButtonLocked, modalTitle, name, displayName, address }) {
 
     const columns = ['Name', 'Display Name', 'City', 'State', 'Action'];
     return (
@@ -178,11 +178,11 @@ export default class Clients extends Component {
             <div class="column no-padding">
               <div class="box">
                 <div class="row">
-                <div class="column column-20 float-right search-box">
-                      <em class="icon icon-search" />
-                      <input type="text" id="search" placeholder="Enter Client Name"
-                        name="search" value="" />
-                    </div>
+                  <div class="column column-20 float-right search-box">
+                    <em class="icon icon-search" />
+                    <input type="text" id="search" placeholder="Enter Client Name"
+                      name="search" value="" />
+                  </div>
                   <div class="column has-text-right">
                     <button type="button" onClick={this.toggleAddClient.bind(this)}>Add Client</button>
                   </div>
@@ -248,7 +248,7 @@ export default class Clients extends Component {
                         <label>Address Line 2</label>
                         <input type="text" placeholder="Line 2" name="line2" value={address.line2} onInput={LinkState(this, 'address.line2')} required/>
                       </div>
-                      </div>
+                    </div>
 
                     <div class="row">
                       <div class="column">
@@ -259,7 +259,7 @@ export default class Clients extends Component {
                         <label>State</label>
                         <input type="text" placeholder="State" name="state" value={address.state} onInput={LinkState(this, 'address.state')} required/>
                       </div>
-                      </div>
+                    </div>
                   </ModalBody>
                   <ModalFooter>
                     <button type="reset" class="button-clear" onClick={this.toggleAddClient.bind(this)}>Cancel</button>
