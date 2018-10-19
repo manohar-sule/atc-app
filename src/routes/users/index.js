@@ -125,28 +125,28 @@ export default class Users extends Component {
   getUsersList() {
     startLoader();
     let response = [{
-      name:'username 1',
-      displayName: 'Display Name',
-      mobile: '8765439987',
-      email: 'user@gmail.com',
+      name:'Manohar Sule',
+      displayName: 'Manohar',
+      mobile: '9876543210',
+      email: 'manohar@gmail.com',
       isAdmin: false,
-      branch: 'branch 1'
+      branch: 'Pune'
     },{
-      name:'username 1',
-      displayName: 'Display Name',
-      mobile: '8765439987',
-      email: 'user@gmail.com',
+      name:'Pallavi Kelgaonkar',
+      displayName: 'Pallavi K',
+      mobile: '9890710576',
+      email: 'pallavi@gmail.com',
       isAdmin: true,
-      branch: 'branch 2'
+      branch: 'Mumbai'
     },{
-      name:'username 1',
-      displayName: 'Display Name',
+      name:'Rutuja Dahatonde',
+      displayName: 'D Rutuja',
       mobile: '8765439987',
-      email: 'user@gmail.com',
+      email: 'rutuja@gmail.com',
       isAdmin: false,
-      branch: 'branch 2'
+      branch: 'Guwahati'
     }
-  ]
+    ]
     // this.setState({userList:[], loadingUserList:true});
     this.setState({userList:response, loadingUserList:false});
     stopLoader();
@@ -368,7 +368,9 @@ export default class Users extends Component {
                   <div class="column column-20">
                     <select name='city' >
                       <option value='' selected>Select Branch</option>
-                      <option value=''>Branch 1</option>
+                      <option value=''>Pune</option>
+                      <option value=''>Guwahati</option>
+                      <option value=''>Mumbai</option>
                     </select>
                   </div>
                   <div class="column has-text-right">

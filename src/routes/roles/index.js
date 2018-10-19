@@ -213,7 +213,15 @@ export default class Roles extends Component {
     this.state = {
       totalPages: 0,
       currentPageNo: 1,
-      role: [],
+      role: [{
+        name: 'Administrator',
+        displayName: 'Admin',
+        branch: 'Pune'
+      },{
+        name: 'Operator',
+        displayName: 'Operator',
+        branch: 'Pune'
+      }],
       status:'active',
       isRoleAddModal: true,
       isButtonLocked: false,
@@ -232,7 +240,7 @@ export default class Roles extends Component {
 
   render({}, { role, isRoleAddModal, isButtonLocked, modalTitle, name, displayName, status }) {
 
-    const columns = ['Name', 'Display Name', 'Action'];
+    const columns = ['Name', 'Display Name', 'Branch', 'Action'];
     return (
       <div>
         <SideBar activeMenu="/roles" />
@@ -274,6 +282,7 @@ export default class Roles extends Component {
                   (role.map((row) => (<tr>
                     <td>{row.name}</td>
                     <td>{row.displayName}</td>
+                    <td>{row.branch}</td>
                     <td>
                       <button  onClick={this.editDepartment.bind(this, row)}>Edit</button>
                       {

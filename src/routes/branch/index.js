@@ -26,7 +26,7 @@ export default class Branches extends Component {
       },
       branchID: '',
       isHeadOffice: false,
-      isWareHouse: false,
+      isWareHouse: false
     });
   }
 
@@ -63,7 +63,7 @@ export default class Branches extends Component {
     startLoader();
     let response = [{
       _id:'1234',
-      name: 'Branch Name 1',
+      name: 'Pune Head Office',
       displayName: 'Display Branch 1',
       address: {
         line1: 'Line one',
@@ -76,20 +76,20 @@ export default class Branches extends Component {
       createdAt: '14/10/2018'
     },{
       _id:'12345',
-      name: 'Branch Name 2',
+      name: 'Assam Head Office',
       displayName: 'Display Branch 2',
       address: {
         line1: 'Line one',
         line2: 'Line Two',
-        city: 'Pune',
-        state: 'Maharashtra'
+        city: 'Guwahati',
+        state: 'Assam'
       },
       isHeadOffice: false,
       isWareHouse: true,
       createdAt: '02/07/2018'
     },{
       _id:'123456',
-      name: 'Branch Name 3',
+      name: 'Andheri',
       displayName: 'Display Branch 3',
       address: {
         line1: 'Line one',
@@ -101,7 +101,7 @@ export default class Branches extends Component {
       isWareHouse: false,
       createdAt: '02/07/2018'
     }
-  ];
+    ];
     this.setState({userList:[], loadingBranchList:true});
     // const params = this.getSearchParams();
     this.setState({
