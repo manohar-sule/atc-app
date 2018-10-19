@@ -236,6 +236,13 @@ export default class Roles extends Component {
   componentDidMount() {
     this.getRoleCount();
     this.getRoleList();
+    if ( document.getElementById("gn-menu-nav").classList.contains('gn-open-all') ) {
+      document.getElementById("main-body").classList.remove('margin-left-76');
+      document.getElementById("main-body").classList.add('margin-left-266');
+    } else {
+      document.getElementById("main-body").classList.remove('margin-left-266');
+      document.getElementById("main-body").classList.add('margin-left-76');
+    }
   }
 
   render({}, { role, isRoleAddModal, isButtonLocked, modalTitle, name, displayName, status }) {
@@ -243,7 +250,7 @@ export default class Roles extends Component {
     const columns = ['Name', 'Display Name', 'Branch', 'Action'];
     return (
       <div>
-        <div class="main">
+        <div id="main-body" class=" main outer-most-div margin-left-76">
           <section class="row" style="margin-bottom:5px">
             <div class="column">
               <span style="font-size:20px"><em class="icon icon-user is-small"/> Roles</span>

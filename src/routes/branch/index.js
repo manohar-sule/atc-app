@@ -285,6 +285,13 @@ export default class Branches extends Component {
     // this.getUserCount();
     this.getUsersList();
     // this.getRoleList();
+    if ( document.getElementById("gn-menu-nav").classList.contains('gn-open-all') ) {
+      document.getElementById("main-body").classList.remove('margin-left-76');
+      document.getElementById("main-body").classList.add('margin-left-266');
+    } else {
+      document.getElementById("main-body").classList.remove('margin-left-266');
+      document.getElementById("main-body").classList.add('margin-left-76');
+    }
   }
 
   search(e) {
@@ -338,7 +345,7 @@ export default class Branches extends Component {
     const columns = ['Sr.No', 'Name', 'Display Name','City','State','Created At', 'Action'];
     return (
       <div>
-        <div class="main">
+        <div id="main-body" class=" main outer-most-div margin-left-76">
           <section class="row" style="margin-bottom:5px">
             <div class="column">
               <span style="font-size:20px"><em class="icon icon-plane is-small"/> Branches</span>

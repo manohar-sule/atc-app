@@ -21,11 +21,20 @@ export default class ClientDetails extends Component {
   toggleConsignmentDetails() {
     this.setState({isConsignmentDetailsModalOpen: !this.state.isConsignmentDetailsModalOpen});
   }
+  componentDidMount() {
+    if ( document.getElementById("gn-menu-nav").classList.contains('gn-open-all') ) {
+      document.getElementById("main-body").classList.remove('margin-left-76');
+      document.getElementById("main-body").classList.add('margin-left-266');
+    } else {
+      document.getElementById("main-body").classList.remove('margin-left-266');
+      document.getElementById("main-body").classList.add('margin-left-76');
+    }
+  }
 
   render({}) {
     return (
       <div>
-        <div class="main">
+        <div id="main-body" class=" main outer-most-div margin-left-76">
           <section class="box">
             <div class="row">
               <div class="column no-padding">
