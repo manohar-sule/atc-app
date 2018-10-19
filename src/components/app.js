@@ -44,37 +44,40 @@ export default class App extends Component {
              path !== '/resetpassword' && path !== '/verify' && path !== '/setpassword' && path !== '/notFound' && this.checkAdminConditions(path)) {
               return (<Header1/>);
             }
+            if (path !== '/setup' && !/\/forgotpassword/.test(path) &&
+             path !== '/resetpassword' && path !== '/verify' && path !== '/setpassword' && path !== '/notFound' && this.checkAdminConditions(path)) {
+              return (<Footer/>);
+            }
           }
         }
       </Match>
-      <Footer/>
-      <div id="main-body" class="outer-most-div margin-left-76" style="transition: margin-left .5s;">
-      <Router>
-        <NotFound path ='/notFound' type="404" default/>
-        <Login path="/"/>
-        <Home path="/home"/>
-        <AdminPanel path="adminPanel" />
-        <Admin path="/admin/:submodule?/:id?"/>
-        <UserVerification path="/verify"/>
-        <ForgotPassword path="/forgotpassword"/>
-        <ResetPassword path="/resetpassword"/>
-        <Profile path="/profile" />
-        <VerifyOldPassword path="/verifyOldPassword" />
-        <ChangePassword path="/changePassword" />
-        <SetPassword path="/setpassword" />
-        <AdminUserVerification path="/admin/verify"/>
-        <AdminVerifyOldPassword path="/admin/verifyOldPassword" />
-        <AdminChangePassword path="/admin/changePassword" />
-        <AdminForgotPassword path="/admin/forgotpassword"/>
-        <AdminSetPassword path="/admin/setpassword" />
-        <AdminResetPassword path="/admin/resetpassword" />
-        <Branches path="/branches" />
-        <Users path="/users" />
-        <Role path="/roles" />
-        <Client path="/clients" />
-        <ClientDetails path="/client/:clientID" />
 
-      </Router>
+      <div id="main-body" class="outer-most-div margin-left-76" style="transition: margin-left .5s;">
+        <Router>
+          <NotFound path ='/notFound' type="404" default/>
+          <Login path="/"/>
+          <Home path="/home"/>
+          <AdminPanel path="adminPanel" />
+          <Admin path="/admin/:submodule?/:id?"/>
+          <UserVerification path="/verify"/>
+          <ForgotPassword path="/forgotpassword"/>
+          <ResetPassword path="/resetpassword"/>
+          <Profile path="/profile" />
+          <VerifyOldPassword path="/verifyOldPassword" />
+          <ChangePassword path="/changePassword" />
+          <SetPassword path="/setpassword" />
+          <AdminUserVerification path="/admin/verify"/>
+          <AdminVerifyOldPassword path="/admin/verifyOldPassword" />
+          <AdminChangePassword path="/admin/changePassword" />
+          <AdminForgotPassword path="/admin/forgotpassword"/>
+          <AdminSetPassword path="/admin/setpassword" />
+          <AdminResetPassword path="/admin/resetpassword" />
+          <Branches path="/branches" />
+          <Users path="/users" />
+          <Role path="/roles" />
+          <Client path="/clients" />
+          <ClientDetails path="/client/:clientID" />
+        </Router>
       </div>
     </div>);
   }
