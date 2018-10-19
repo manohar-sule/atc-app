@@ -379,7 +379,7 @@ export default class Users extends Component {
               </div>
             </div>
           </section>
-          <section class="box">
+          <section class="box table-section">
             <table>
               <thead>
                 <tr>

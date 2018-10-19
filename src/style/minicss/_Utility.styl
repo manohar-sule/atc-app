@@ -111,3 +111,37 @@ input[type='number'].no-spinners
   border: .1rem solid #d1d1d1;
   padding: 6px 12px;
   font-size: 1rem;
+
+table {
+  border: .1rem solid #e1e1e1;
+}
+tbody {
+  display:block;
+  height:100px;
+  overflow:auto;
+}
+thead, tbody tr {
+  display:table;
+  width:100%;
+  table-layout:fixed;
+}
+thead {
+  width: calc( 100% - 1em )
+}
+table {
+  width:100%;
+}
+
+td {
+  word-break:break-all;
+}
+tr, thead {
+  border-bottom: .1rem solid #e1e1e1;
+  text-align: left;
+}
+
+@media (max-width: 768px) {
+  .table-section {
+    width: 768px;
+  }
+}
