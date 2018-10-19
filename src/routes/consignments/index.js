@@ -6,10 +6,10 @@ import { Toast } from '../../lib/toastr';
 import LinkState from 'linkstate';
 import { startLoader, stopLoader } from '../../lib/utils';
 import Pagination from '../../components/pagination';
-import { route } from 'preact-router';
+import { Link, route } from 'preact-router';
 // import SideBar from '../../components/sideBar';
 
-export default class Clients extends Component {
+export default class Consignments extends Component {
 
   toggleAddClient() {
     this.setState({
@@ -172,6 +172,7 @@ export default class Clients extends Component {
 
   componentWillMount() {
     this.state = {
+      isConsignmentDetailsModalOpen: false,
       totalPages: 0,
       currentPageNo: 1,
       clientList: [],
@@ -204,15 +205,17 @@ export default class Clients extends Component {
     }
   }
 
-  render({}, { clientList, isClientAddModal, isButtonLocked, modalTitle, name, displayName, address }) {
+  toggleConsignmentDetails() {
+    this.setState({isConsignmentDetailsModalOpen: !this.state.isConsignmentDetailsModalOpen});
+  }
 
-    const columns = ['Name', 'Display Name', 'Type', 'City', 'State', 'Rating', 'Action'];
+  render({}, { isClientAddModal, isButtonLocked, modalTitle, name, displayName, address }) {
     return (
       <div>
         <div id="main-body" class=" main outer-most-div margin-left-76">
           <section class="row" style="margin-bottom:5px">
             <div class="column">
-              <span style="font-size:20px"><em class="icon icon-user is-small"/> Clients</span>
+              <span style="font-size:20px"><em class="icon icon-paper-plane-o is-small" /> Consignments</span>
             </div>
           </section>
           <section class="row">
@@ -221,11 +224,11 @@ export default class Clients extends Component {
                 <div class="row">
                   <div class="column column-20 float-right search-box">
                     <em class="icon icon-search" />
-                    <input type="text" id="search" placeholder="Enter Client Name"
+                    <input type="text" id="search" placeholder="Enter Consignment ID"
                       name="search" value="" />
                   </div>
                   <div class="column has-text-right">
-                    <button type="button" onClick={this.toggleAddClient.bind(this)}>Add Client</button>
+                    <button type="button" onClick={this.toggleAddClient.bind(this)}>Add Consignment</button>
                   </div>
                 </div>
               </div>
@@ -236,30 +239,79 @@ export default class Clients extends Component {
             <table>
               <thead>
                 <tr>
-                  {columns.map((col) => (<th>{col}</th>))}
+                  <th>Consignment ID</th>
+                  <th>Source<br/>Branch</th>
+                  <th>Target<br/>Branch</th>
+                  <th>Vendor</th>
+                  <th>Vehicle<br/>Number</th>
+                  <th>LR<br/>Number</th>
+                  <th>Estimated<br/>Cost</th>
+                  <th>Advance<br/>Amount</th>
+                  <th>Actual<br/>Billing Cost</th>
+                  <th>Action</th>
                 </tr>
               </thead>
               <tbody>
-                {
-                  (clientList.map((row) => (<tr>
-                    <td>{row.name}</td>
-                    <td>{row.displayName}</td>
-                    <td>{row.type || '-'}</td>
-                    <td>{row.address.city}</td>
-                    <td>{row.address.state || '-'}</td>
-                    <td>{row.rating || '-'}</td>
-                    <td>
-                      <button  onClick={this.editClient.bind(this, row)}>Edit</button>
-                      <button  onClick={this.clientDetailClick.bind(this, row)}>View Detail</button>
-                    </td>
-                  </tr>)))
-                }
-                {
-                  !clientList.length && this.state.loadingClientList && (
-                    <span>Loading...</span>
-                  )
-                }
-                {!clientList.length && !this.state.loadingClientList && (<span>No Data Found</span>)}
+                <tr>
+                  <td>123455</td>
+                  <td>Pune</td>
+                  <td>Bangalore</td>
+                  <td>ABC Transport</td>
+                  <td>MH 14 AB 1234</td>
+                  <td><Link>View</Link></td>
+                  <td>10,000</td>
+                  <td>5,000</td>
+                  <td>15,000</td>
+                  <td>
+                    <button onClick={this.toggleConsignmentDetails.bind(this)}>Track</button>
+                    <button class="button-margin-left " onClick={this.toggleConsignmentDetails.bind(this)}>View Bill</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>122345</td>
+                  <td>Pune</td>
+                  <td>Bangalore</td>
+                  <td>ABC Transport</td>
+                  <td>MH 14 AB 1234</td>
+                  <td><Link>View</Link></td>
+                  <td>10,000</td>
+                  <td>5,000</td>
+                  <td>15,000</td>
+                  <td>
+                    <button onClick={this.toggleConsignmentDetails.bind(this)}>Track</button>
+                    <button class="button-margin-left " onClick={this.toggleConsignmentDetails.bind(this)}>View Bill</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>112345</td>
+                  <td>Pune</td>
+                  <td>Bangalore</td>
+                  <td>ABC Transport</td>
+                  <td>MH 14 AB 1234</td>
+                  <td><Link>View</Link></td>
+                  <td>10,000</td>
+                  <td>5,000</td>
+                  <td>15,000</td>
+                  <td>
+                    <button onClick={this.toggleConsignmentDetails.bind(this)}>Track</button>
+                    <button class="button-margin-left " onClick={this.toggleConsignmentDetails.bind(this)}>View Bill</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>123445</td>
+                  <td>Pune</td>
+                  <td>Bangalore</td>
+                  <td>ABC Transport</td>
+                  <td>MH 14 AB 1234</td>
+                  <td><Link>View</Link></td>
+                  <td>10,000</td>
+                  <td>5,000</td>
+                  <td>15,000</td>
+                  <td>
+                    <button onClick={this.toggleConsignmentDetails.bind(this)}>Track</button>
+                    <button class="button-margin-left " onClick={this.toggleConsignmentDetails.bind(this)}>View Bill</button>
+                  </td>
+                </tr>
               </tbody>
             </table>
             <div class="has-text-right column no-padding pagination">
@@ -269,7 +321,7 @@ export default class Clients extends Component {
           {
             !isClientAddModal && (
               <Modal title={modalTitle} modalSize="is-medium" onClose={this.toggleAddClient.bind(this)}>
-                <form name="Add Client" onSubmit={this.createOrEditClient.bind(this)}>
+                <form name="Add Consignment">
                   <ModalBody>
                     <div class="row">
                       <div class="column column-50">
@@ -312,6 +364,88 @@ export default class Clients extends Component {
               </Modal>)
           }
         </div>
+        {
+          this.state.isConsignmentDetailsModalOpen &&
+          <Modal title="Track Consignment" modalSize="is-large" onClose={this.toggleConsignmentDetails.bind(this)}>
+            <ModalBody>
+              <label style="font-size:1.1em;">Consignment Details</label>
+              <div class="row">
+                <div class="column no-padding">
+                  <div>
+                    <span>Consignment Number - </span>
+                    <span><strong>P123456</strong></span>
+                  </div>
+                  <div>
+                    <span>Current Status - </span>
+                    <span><strong>Not Available</strong></span>
+                  </div>
+                </div>
+                <div class="column">
+                  <div>
+                    <span>Booked Date - </span>
+                    <span><strong>18/08/2018</strong></span>
+                  </div>
+                  <div>
+                    <span>Delivered Date - </span>
+                    <span><strong>22/08/2018</strong></span>
+                  </div>
+                </div>
+              </div>
+              <hr/>
+              <label style="font-size:1.1em;margin:10px 0 5px">Shipment Details</label>
+              <div class="row">
+                <div class="column no-padding">
+                  <ul id="progress">
+                    <li>Booked & Dispatch</li>
+                    <li>In Transit</li>
+                    <li>At Destination</li>
+                    <li>Out for Delivery</li>
+                    <li class="active">Delivered</li>
+                  </ul>
+                </div>
+              </div>
+              <hr/>
+              <div class="row">
+                <div class="column no-padding">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Date</th>
+                        <th>Activity</th>
+                        <th>Location</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Thu,20th Sep-18|13:08 Hrs</td>
+                        <td>Successfully Delivered</td>
+                        <td>Viman Nagar, Pune</td>
+                      </tr>
+                      <tr>
+                        <td>Thu,20th Sep-18|02:48 Hrs</td>
+                        <td>Out for Delivery</td>
+                        <td>Viman Nagar, Pune (PUNE - WADGAON SHERI)</td>
+                      </tr>
+                      <tr>
+                        <td>Wed,19th Sep-18|19:00 Hrs</td>
+                        <td>In Transit</td>
+                        <td>Pune Hub</td>
+                      </tr>
+                      <tr>
+                        <td>Tue,18th Sep-18|14:12 Hrs</td>
+                        <td>Booked</td>
+                        <td>Pune Hub</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </ModalBody>
+            <ModalFooter>
+              <button type="button" onClick={this.toggleConsignmentDetails.bind(this)}>Close</button>
+            </ModalFooter>
+          </Modal>
+        }
       </div>
     );
   }

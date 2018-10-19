@@ -28,6 +28,7 @@ import Users from '../routes/users';
 import Role from '../routes/roles';
 import Client from '../routes/clients';
 import ClientDetails from '../routes/clientDetails';
+import Consignments from '../routes/consignments';
 
 export default class App extends Component {
   componentDidMount() {}
@@ -76,6 +77,7 @@ export default class App extends Component {
           <Role path="/roles" />
           <Client path="/clients" />
           <ClientDetails path="/client/:clientID" />
+          <Consignments path="/consignments" />
         </Router>
       </div>
     </div>);

@@ -100,9 +100,9 @@ export default class Header1 extends Component {
               <div class="gn-scroller">
                 <ul class="gn-menu">
                   <li>
-                    <a class="gn-icon icon-paper-plane-o">Consignments</a>
+                    <a class="gn-icon icon-paper-plane-o" href="/consignments">Consignments</a>
                   </li>
-                  <li><a href="/clients"class="gn-icon icon icon-user">Clients</a></li>
+                  <li><a href="/clients" class="gn-icon icon icon-user">Clients</a></li>
                   <li><a class="gn-icon gn-icon-help">Help</a></li>
                   <li>
                     <a class="gn-icon gn-icon-archive">Organization</a>
@@ -123,8 +123,10 @@ export default class Header1 extends Component {
             // </a></li>
           }
           <li style="float:right; border-left: 1px solid #c6d0da;"><a class="codrops-icon codrops-icon-prev" href="#"><span>Branch Name</span></a></li>
-          <li  class="codrops-icon codrops-icon-prev">
-            <input placeholder="Search" type="search" class="gn-search" style="padding-left:10px"/>
+          <li  class="codrops-icon codrops-icon-prev search-box">
+            <em class="icon icon-search" style="top:0"/>
+            <input type="text" id="search" placeholder="Search"
+              name="search" value="" style="border:none"/>
           </li>
         </ul>
       </div>

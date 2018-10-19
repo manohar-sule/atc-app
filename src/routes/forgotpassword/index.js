@@ -1,52 +1,62 @@
 import { h, Component } from 'preact';
+import { route } from 'preact-router';
 import CONSTANTS from '../../lib/constants';
 import { Toast } from '../../lib/toastr';
-import { route } from 'preact-router';
+import { AppStore } from '../../lib/store';
+import { stopLoader } from '../../lib/utils';
+import { Link } from 'preact-router';
 import http from 'fetch-bb';
 
 export default class ForgotPassword extends Component {
-
-  shouldComponentUpdate() {
-
-  }
-
-  send(e) {
+  login(e) {
     e.preventDefault();
     route('/');
     // this.setState({
+    //   isResponseReceived: true,
     //   email: e.target.email.value,
-    //   isResponseReceived:true,
-    //   errorMessage: '',
-    //   successMessage: '',
-    //   shortName: this.props.matches.shortName
+    //   password: e.target.password.value,
+    //   shortName: this.props.matches.shortName,
+    //   isButtonClicked: true
     // });
-    // http.post(`${CONSTANTS.API_URL}/api/forgotpassword`, {
-    //   email: this.state.email,
-    //   shortName: this.state.shortName
-    // })
-    //   .then(() => {
-    //     this.setState({successMessage: 'Please check your Inbox for further instructions'});
-    //     this.setState({errorMessage: ''});
-    //     this.state.isSendButtonDisabled = true;
-    //     this.setState({
-    //       isResponseReceived:false
-    //     });
+    // return http
+    //   .post(`${CONSTANTS.API_URL}/api/auth/local`, {
+    //     email: e.target.email.value,
+    //     password: e.target.password.value,
+    //     shortName: this.state.shortName
     //   })
-    //   .catch(() => {
-    //     this.setState({errorMessage: 'Registered user not found'});
-    //     this.setState({successMessage: ''});
-    //     this.setState({
-    //       isResponseReceived:false
+    //   .then((response) => {
+    //     AppStore.set('token', {
+    //       token: response.token
     //     });
-    //     return false;
+    //     this.setState({
+    //       isResponseReceived:false,
+    //       isButtonClicked: false
+    //     });
+    //     return http.get(`${CONSTANTS.API_URL}/api/user/me`)
+    //       .then((userinfo) => {
+    //         AppStore.set('userinfo', userinfo);
+    //         // console.log(userinfo);
+    //         if (userinfo.company.isConsumerVerificationStage) {
+    //           return route('consumerVerificationList/companyverificationpending?pageNo=1');
+    //         }
+    //         return route('/home');
+    //       });
+    //   })
+    //   .catch((HTTPException) => {
+    //     console.error(HTTPException);
+    //     this.setState({
+    //       isResponseReceived:false,
+    //       isButtonClicked: false
+    //     });
+    //     return new Toast(HTTPException.message, Toast.TYPE_ERROR, Toast.TIME_LONG);
     //   });
   }
 
-  checkForValidshortName() {
-    http
+  checkForValidshortName () {
+    return http
       .get(`${CONSTANTS.API_URL}/api/company/shortName/${this.state.shortName}`)
-      .then((resp) => {
-        console.log(resp);
+      .then(() => {
+      //  console.log(resp);
       })
       .catch((HTTPException) => {
         new Toast('Invalid Short Name', Toast.TYPE_ERROR, Toast.TIME_LONG);
@@ -55,48 +65,71 @@ export default class ForgotPassword extends Component {
       });
   }
 
-  componentWillMount() {
+  componentWillMount () {
     this.state = {
-      isSendButtonDisabled: false,
-      email: '',
-      errorMessage: '',
-      successMessage: '',
       shortName: '',
-      isResponseReceived: false
+      email: '',
+      password: '',
+      token: '',
+      isResponseReceived: false,
+      isButtonClicked: false
     };
-    this.setState({
-      shortName: this.props.matches.shortName
-    });
   }
 
   componentDidMount() {
-    // this.checkForValidshortName();
+    if (AppStore.get('token') && Object.keys(AppStore.get('token')).length){
+      return http
+        .get(`${CONSTANTS.API_URL}/api/validateSession/${AppStore.get('token').token}`)
+        .then(() => {
+          return route('/home');
+        })
+        .catch((HTTPException) => {
+          new Toast('Session Expired.', Toast.TYPE_ERROR, Toast.TIME_LONG);
+          console.error(HTTPException);
+          stopLoader();
+          AppStore.removeAll();
+          return route('/');
+        });
+    }
+    return;
   }
 
-  render () {
+  render() {
     return (
-      <section class="row row-center has-text-center auth-section">
-        <div class="column column-40 auth-center">
-          <form name="forgotpasswordform" onSubmit={this.send.bind(this)}>
-            <div class="row">
-              <div class="column">
-                <h2 style="font-weight:bold;letter-spacing:5px;color:#2c1d4a">ATC</h2>
-              </div>
-            </div>
-            <div class="row box">
-              <div class="column auth-form">
-                <div class="field">
-                  <input autofocus value={this.state.email} id="email" type="email" placeholder="Email" maxlength="75" name="email"
+      <section class="row-center main-login-section">
+        <div class="limiter auth-center">
+          <div class="container-login100">
+            <div class="wrap-login100">
+
+              <form class="login100-form validate-form" onSubmit={this.login.bind(this)}>
+                <img src="assets/static/atc.jpg" style="width:200px"/>
+                <br/>
+                <span style="display:inline-block;margin:10px 0;font-size:15px">
+                  Please enter your registered Email ID
+                </span>
+                <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+                  <input class="input100" value={this.state.email} id="email" type="email" autofocus name="email" maxlength="75" placeholder="Email"
                     disabled={this.state.isResponseReceived} required />
-                  <label for="email" class="has-text-left" style="font-size:0.8em">Enter your Registered Email</label>
+                  <span class="focus-input100"/>
+                  <span class="symbol-input100" style="position: absolute;left: 75%;">
+                    <i class="fa fa-envelope" aria-hidden="true"/>
+                  </span>
                 </div>
-                <div id="error" class="error-color">{this.state.errorMessage}</div>
-                <div id="error" class="success-color">{this.state.successMessage}</div>
-                <button type="submit" disabled={this.state.isSendButtonDisabled} class="button-margin is-fullwidth auth-button">Send</button>
-              </div>
+
+                <div class="container-login100-form-btn">
+                  <button class="login100-form-btn">
+                    SEND
+                  </button>
+                </div>
+
+                <div class="text-center p-t-12">
+                  <Link class="hyperlink" href={`/`} style="color:#ad0b0b!important">Go to Login</Link>
+                </div>
+              </form>
             </div>
-          </form>
+          </div>
         </div>
+
       </section>
     );
   }

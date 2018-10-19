@@ -102,6 +102,7 @@ export default class Login extends Component {
             <div class="wrap-login100">
 
               <form class="login100-form validate-form" onSubmit={this.login.bind(this)}>
+                <img src="assets/static/atc.jpg" style="width:200px"/>
                 <span class="login100-form-title">
                   Login
                 </span>
@@ -131,7 +132,7 @@ export default class Login extends Component {
                 </div>
 
                 <div class="text-center p-t-12">
-                  <Link class="hyperlink" href={`/forgotpassword`}>Forgot password?</Link>
+                  <Link class="hyperlink" href={`/forgotpassword`} style="color:#ad0b0b!important">Forgot password?</Link>
                 </div>
               </form>
             </div>
