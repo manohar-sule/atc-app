@@ -7,7 +7,7 @@ import Pagination from '../../components/pagination';
 import http from 'fetch-bb';
 // import { AppStore } from '../../lib/store';
 import { startLoader, stopLoader} from '../../lib/utils';
-import SideBar from '../../components/sideBar';
+// import SideBar from '../../components/sideBar';
 export default class Users extends Component {
 
   toggleAddUser() {
@@ -346,7 +346,6 @@ export default class Users extends Component {
     const columns = ['Name', 'Display Name','Department','Mobile','Email', 'Action'];
     return (
       <div>
-        <SideBar activeMenu="/users" />
         <div class="main">
           <section class="row" style="margin-bottom:5px">
             <div class="column">

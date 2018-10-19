@@ -1,5 +1,5 @@
 import { h, Component } from 'preact';
-import SideBar from '../../components/sideBar';
+// import SideBar from '../../components/sideBar';
 import { Modal, ModalBody, ModalFooter } from '../../components/modal';
 // import {  startLoader, stopLoader } from '../../lib/utils';
 // import CONSTANTS from '../../lib/constants';
@@ -25,7 +25,6 @@ export default class ClientDetails extends Component {
   render({}) {
     return (
       <div>
-        <SideBar activeMenu="/clients"/>
         <div class="main">
           <section class="box">
             <div class="row">

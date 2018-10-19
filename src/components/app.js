@@ -3,6 +3,7 @@ import { Router } from 'preact-router';
 import { Match } from 'preact-router/src/match';
 
 import Header from './header';
+import Header1 from './header1';
 import Login from '../routes/login';
 import Admin from '../routes/admin';
 import NotFound from '../components/error_pages/not_found';
@@ -29,6 +30,7 @@ import Client from '../routes/clients';
 import ClientDetails from '../routes/clientDetails';
 
 export default class App extends Component {
+  componentDidMount() {}
   checkAdminConditions(path) {
     return path !== '/admin/forgotpassword' && path !== '/admin/resetpassword' && path !== '/admin/verify' && path !== '/admin/setpassword' && path !== '/'
       && path !== '/admin/login';
@@ -40,12 +42,13 @@ export default class App extends Component {
           ({path}) => {
             if (path !== '/setup' && !/\/forgotpassword/.test(path) &&
              path !== '/resetpassword' && path !== '/verify' && path !== '/setpassword' && path !== '/notFound' && this.checkAdminConditions(path)) {
-              return (<Header/>);
+              return (<Header1/>);
             }
           }
         }
       </Match>
       <Footer/>
+      <div id="main-body" class="outer-most-div margin-left-76" style="transition: margin-left .5s;">
       <Router>
         <NotFound path ='/notFound' type="404" default/>
         <Login path="/"/>
@@ -72,6 +75,7 @@ export default class App extends Component {
         <ClientDetails path="/client/:clientID" />
 
       </Router>
+      </div>
     </div>);
   }
 }

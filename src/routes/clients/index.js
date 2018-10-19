@@ -7,7 +7,7 @@ import LinkState from 'linkstate';
 import { startLoader, stopLoader } from '../../lib/utils';
 import Pagination from '../../components/pagination';
 import { route } from 'preact-router';
-import SideBar from '../../components/sideBar';
+// import SideBar from '../../components/sideBar';
 
 export default class Clients extends Component {
 
@@ -169,7 +169,6 @@ export default class Clients extends Component {
     const columns = ['Name', 'Display Name', 'Type', 'City', 'State', 'Rating', 'Action'];
     return (
       <div>
-        <SideBar activeMenu="/clients" />
         <div class="main">
           <section class="row" style="margin-bottom:5px">
             <div class="column">
