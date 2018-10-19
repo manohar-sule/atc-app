@@ -64,7 +64,7 @@ export default class Branches extends Component {
     let response = [{
       _id:'1234',
       name: 'Pune Head Office',
-      displayName: 'Display Branch 1',
+      displayName: 'Pune Head Office',
       address: {
         line1: 'Line one',
         line2: 'Line Two',
@@ -77,7 +77,7 @@ export default class Branches extends Component {
     },{
       _id:'12345',
       name: 'Assam Head Office',
-      displayName: 'Display Branch 2',
+      displayName: 'Assam Head Office',
       address: {
         line1: 'Line one',
         line2: 'Line Two',
@@ -90,7 +90,7 @@ export default class Branches extends Component {
     },{
       _id:'123456',
       name: 'Andheri',
-      displayName: 'Display Branch 3',
+      displayName: 'Andheri',
       address: {
         line1: 'Line one',
         line2: 'Line Two',
