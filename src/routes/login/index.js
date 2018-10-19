@@ -96,18 +96,14 @@ export default class Login extends Component {
 
   render() {
     return (
-
-      <section>
-        <div class="limiter">
+      <section class="row-center " style="background-image: url('/assets/static/atc-login-bg.jpg'); background-position: center center; background-size: cover; position: relative; background-repeat: no-repeat; background-attachment: fixed;">
+        <div class="limiter auth-center">
           <div class="container-login100">
             <div class="wrap-login100">
-              <div class="login100-pic js-tilt" data-tilt>
-                <img src="./assets/static/atc_1.png" alt="IMG"/>
-              </div>
 
               <form class="login100-form validate-form" onSubmit={this.login.bind(this)}>
                 <span class="login100-form-title">
-                  Member Login
+                  Login
                 </span>
 
                 <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
@@ -136,13 +132,6 @@ export default class Login extends Component {
 
                 <div class="text-center p-t-12">
                   <Link class="hyperlink" href={`/forgotpassword`}>Forgot password?</Link>
-                </div>
-
-                <div class="text-center p-t-136">
-                  <a class="txt2" href="#">
-                    Create your Account
-                    <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"/>
-                  </a>
                 </div>
               </form>
             </div>

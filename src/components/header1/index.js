@@ -97,33 +97,35 @@ export default class Header1 extends Component {
           <li class="gn-trigger">
             <a id="gn-menu-a" class="gn-icon gn-icon-menu" onclick={this.openNav.bind(this)}><span>Menu</span></a>
             <nav id="gn-menu-nav" class="gn-menu-wrapper gn-open-part">
-						<div class="gn-scroller">
-							<ul class="gn-menu">
-								<li class="gn-search-item">
-									<input placeholder="Search" type="search" class="gn-search"/>
-									<a class="gn-icon gn-icon-search"><span>Search</span></a>
-								</li>
-								<li>
-									<a class="gn-icon icon-paper-plane-o">Consisnments</a>
-								</li>
-								<li><a href="/clients"class="gn-icon icon icon-user">Clients</a></li>
-								<li><a class="gn-icon gn-icon-help">Help</a></li>
-								<li>
-									<a class="gn-icon gn-icon-archive">Organization</a>
-									<ul class="gn-submenu">
-										<li><a href="/branches" class="gn-icon gn-icon-article">Branch</a></li>
-										<li><a href="/users" class="gn-icon icon icon-user">User</a></li>
-										<li><a href="/roles" class="gn-icon gn-icon-videos">Role</a></li>
-									</ul>
-								</li>
-							</ul>
-						</div>
-					</nav>
+              <div class="gn-scroller">
+                <ul class="gn-menu">
+                  <li>
+                    <a class="gn-icon icon-paper-plane-o">Consignments</a>
+                  </li>
+                  <li><a href="/clients"class="gn-icon icon icon-user">Clients</a></li>
+                  <li><a class="gn-icon gn-icon-help">Help</a></li>
+                  <li>
+                    <a class="gn-icon gn-icon-archive">Organization</a>
+                    <ul class="gn-submenu">
+                      <li><a href="/branches" class="gn-icon gn-icon-article">Branch</a></li>
+                      <li><a href="/users" class="gn-icon icon icon-user">User</a></li>
+                      <li><a href="/roles" class="gn-icon gn-icon-videos">Role</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </nav>
           </li>
-          <li><a href="/home">
-          <img src="./assets/static/atc.jpg" alt="IMG" style="width: 168px; height: 50px;"/>
-          </a></li>
-          <li><a class="codrops-icon codrops-icon-prev" href="#"><span>Branch Name</span></a></li>
+          {
+            //   <li><a href="/home">
+            //
+            //  <img src="./assets/static/atc.jpg" alt="IMG" style="width: 168px; height: 50px;"/>
+            // </a></li>
+          }
+          <li style="float:right; border-left: 1px solid #c6d0da;"><a class="codrops-icon codrops-icon-prev" href="#"><span>Branch Name</span></a></li>
+          <li  class="codrops-icon codrops-icon-prev">
+            <input placeholder="Search" type="search" class="gn-search" style="padding-left:10px"/>
+          </li>
         </ul>
       </div>
     );
