@@ -51,35 +51,7 @@ export default class App extends Component {
           }
         }
       </Match>
-      <Footer/>
       <div class="outer-most-div" style="transition: margin-left .5s;">
-      <Router>
-        <NotFound path ='/notFound' type="404" default/>
-        <Login path="/"/>
-        <Home path="/home"/>
-        <AdminPanel path="adminPanel" />
-        <Admin path="/admin/:submodule?/:id?"/>
-        <UserVerification path="/verify"/>
-        <ForgotPassword path="/forgotpassword"/>
-        <ResetPassword path="/resetpassword"/>
-        <Profile path="/profile" />
-        <VerifyOldPassword path="/verifyOldPassword" />
-        <ChangePassword path="/changePassword" />
-        <SetPassword path="/setpassword" />
-        <AdminUserVerification path="/admin/verify"/>
-        <AdminVerifyOldPassword path="/admin/verifyOldPassword" />
-        <AdminChangePassword path="/admin/changePassword" />
-        <AdminForgotPassword path="/admin/forgotpassword"/>
-        <AdminSetPassword path="/admin/setpassword" />
-        <AdminResetPassword path="/admin/resetpassword" />
-        <Branches path="/branches" />
-        <Users path="/users" />
-        <Role path="/roles" />
-        <Client path="/clients" />
-        <ClientDetails path="/client/:clientID" />
->>>>>>> 636d4edb4a0fbd80cc7f65749e3877529c94eb51
-
-      <div id="main-body" class="outer-most-div margin-left-76" style="transition: margin-left .5s;">
         <Router>
           <NotFound path ='/notFound' type="404" default/>
           <Login path="/"/>
