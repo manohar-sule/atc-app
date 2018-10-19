@@ -7,7 +7,7 @@ import LinkState from 'linkstate';
 import { startLoader, stopLoader } from '../../lib/utils';
 import Pagination from '../../components/pagination';
 import { route } from 'preact-router';
-import SideBar from '../../components/sideBar';
+// import SideBar from '../../components/sideBar';
 
 export default class Clients extends Component {
 
@@ -23,11 +23,11 @@ export default class Clients extends Component {
   search(e) {
     e.preventDefault();
     this.setState({status: e.target.value});
-    this.getRoleCount();
-    this.getRoleList();
+    // this.getClientCount();
+    this.getClientList();
   }
 
-  getRoleCount() {
+  getClientCount() {
     return http
       .get(`${CONSTANTS.API_URL}/api/roleCount`, {status:this.state.status})
       .then((count) => {
@@ -38,7 +38,7 @@ export default class Clients extends Component {
       });
   }
 
-  getRoleList() {
+  getClientList() {
     let response=[{
       name: 'Client Name',
       displayName: 'Display Name 1',
@@ -47,11 +47,13 @@ export default class Clients extends Component {
         line2: 'line2',
         city: 'city',
         state: 'state'
-      }
+      },
+      type: 'clientType',
+      rating:'3.5'
     }];
     this.setState({loadingClientList: true});
     startLoader();
-    this.setState({role: response, loadingClientList: false});
+    this.setState({clientList: response, loadingClientList: false});
     stopLoader();
     // const params = this.getSearchParams();
     // params.pageSize = 10;
@@ -84,8 +86,8 @@ export default class Clients extends Component {
   //   });
   //
   //   route(location.pathname);
-  //   this.getRoleCount();
-  //   this.getRoleList();
+  //   this.getClientCount();
+  //   this.getClientList();
   // }
 
 
@@ -93,7 +95,7 @@ export default class Clients extends Component {
     e.preventDefault();
     this.setState({isButtonLocked: true});
 
-    if (this.state.modalTitle === 'Create Client') {
+    if (this.state.modalTitle === 'Add Client') {
       this.toggleAddClient();
       this.state.isButtonLocked = false;
       new Toast('Client created successfully', Toast.TYPE_DONE, Toast.TIME_LONG);
@@ -112,8 +114,8 @@ export default class Clients extends Component {
     let url = location.pathname;
 
     route(url);
-    this.getRoleCount();
-    this.getRoleList();
+    // this.getClientCount();
+    this.getClientList();
   }
 
   editClient(row) {
@@ -122,7 +124,7 @@ export default class Clients extends Component {
       modalTitle: 'Edit Client',
       name: row.name,
       displayName: row.displayName,
-      roleID: row._id,
+      clientID: row._id,
       address:{
         line1: row.address.line1,
         line2: row.address.line2,
@@ -139,14 +141,14 @@ export default class Clients extends Component {
     this.state = {
       totalPages: 0,
       currentPageNo: 1,
-      role: [],
+      clientList: [],
       status:'active',
       isClientAddModal: true,
       isButtonLocked: false,
       name: '',
       displayName: '',
-      modalTitle: 'Create Role',
-      roleID: '',
+      modalTitle: 'Add Client',
+      clientID: '',
       loadingClientList: false,
       address:{
         line1: '',
@@ -158,16 +160,15 @@ export default class Clients extends Component {
   }
 
   componentDidMount() {
-    this.getRoleCount();
-    this.getRoleList();
+    // this.getClientCount();
+    this.getClientList();
   }
 
-  render({}, { role, isClientAddModal, isButtonLocked, modalTitle, name, displayName, address }) {
+  render({}, { clientList, isClientAddModal, isButtonLocked, modalTitle, name, displayName, address }) {
 
-    const columns = ['Name', 'Display Name', 'City', 'State', 'Action'];
+    const columns = ['Name', 'Display Name', 'Type', 'City', 'State', 'Rating', 'Action'];
     return (
       <div>
-        <SideBar activeMenu="/clients" />
         <div class="main">
           <section class="row" style="margin-bottom:5px">
             <div class="column">
@@ -200,11 +201,13 @@ export default class Clients extends Component {
               </thead>
               <tbody>
                 {
-                  (role.map((row) => (<tr>
+                  (clientList.map((row) => (<tr>
                     <td>{row.name}</td>
                     <td>{row.displayName}</td>
+                    <td>{row.type || '-'}</td>
                     <td>{row.address.city}</td>
                     <td>{row.address.state || '-'}</td>
+                    <td>{row.rating || '-'}</td>
                     <td>
                       <button  onClick={this.editClient.bind(this, row)}>Edit</button>
                       <button  onClick={this.clientDetailClick.bind(this, row)}>View Detail</button>
@@ -212,11 +215,11 @@ export default class Clients extends Component {
                   </tr>)))
                 }
                 {
-                  !role.length && this.state.loadingClientList && (
+                  !clientList.length && this.state.loadingClientList && (
                     <span>Loading...</span>
                   )
                 }
-                {!role.length && !this.state.loadingClientList && (<span>No Data Found</span>)}
+                {!clientList.length && !this.state.loadingClientList && (<span>No Data Found</span>)}
               </tbody>
             </table>
             <div class="has-text-right column no-padding pagination">

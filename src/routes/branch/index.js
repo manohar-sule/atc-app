@@ -247,7 +247,6 @@ export default class Branches extends Component {
     const columns = ['Sr.No', 'Name', 'Display Name','City','State','Created At', 'Action'];
     return (
       <div>
-        <SideBar activeMenu="/branches" />
         <div class="main">
           <section class="row" style="margin-bottom:5px">
             <div class="column">
