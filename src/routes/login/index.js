@@ -96,7 +96,7 @@ export default class Login extends Component {
 
   render() {
     return (
-      <section class="row-center " style="background-image: url('/assets/static/atc-login-bg.jpg'); background-position: center center; background-size: cover; position: relative; background-repeat: no-repeat; background-attachment: fixed;">
+      <section class="row-center " style="background-image: url('/assets/static/atc-login-bg.jpg'); background-position: center center; background-size: cover; background-repeat: no-repeat;">
         <div class="limiter auth-center">
           <div class="container-login100">
             <div class="wrap-login100">

@@ -162,6 +162,13 @@ export default class Clients extends Component {
   componentDidMount() {
     // this.getClientCount();
     this.getClientList();
+    if ( document.getElementById("gn-menu-nav").classList.contains('gn-open-all') ) {
+      document.getElementById("main-body").classList.remove('margin-left-76');
+      document.getElementById("main-body").classList.add('margin-left-266');
+    } else {
+      document.getElementById("main-body").classList.remove('margin-left-266');
+      document.getElementById("main-body").classList.add('margin-left-76');
+    }
   }
 
   render({}, { clientList, isClientAddModal, isButtonLocked, modalTitle, name, displayName, address }) {
@@ -169,7 +176,7 @@ export default class Clients extends Component {
     const columns = ['Name', 'Display Name', 'Type', 'City', 'State', 'Rating', 'Action'];
     return (
       <div>
-        <div class="main">
+        <div id="main-body" class=" main outer-most-div margin-left-76">
           <section class="row" style="margin-bottom:5px">
             <div class="column">
               <span style="font-size:20px"><em class="icon icon-user is-small"/> Clients</span>

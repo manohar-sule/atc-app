@@ -48,7 +48,7 @@ export default class App extends Component {
         }
       </Match>
       <Footer/>
-      <div id="main-body" class="outer-most-div margin-left-76" style="transition: margin-left .5s;">
+      <div class="outer-most-div" style="transition: margin-left .5s;">
       <Router>
         <NotFound path ='/notFound' type="404" default/>
         <Login path="/"/>
