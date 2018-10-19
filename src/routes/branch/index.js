@@ -71,7 +71,7 @@ export default class Branches extends Component {
         city: 'Pune',
         state: 'Maharashtra'
       },
-      isHeadOffice: true,
+      isHeadOffice: false,
       isWareHouse: true,
       createdAt: '14/10/2018'
     },{
@@ -98,7 +98,7 @@ export default class Branches extends Component {
         state: 'Maharashtra'
       },
       isHeadOffice: true,
-      isWareHouse: false,
+      isWareHouse: true,
       createdAt: '02/07/2018'
     },{
       _id:'123456',
@@ -110,8 +110,8 @@ export default class Branches extends Component {
         city: 'Mumbai',
         state: 'Maharashtra'
       },
-      isHeadOffice: true,
-      isWareHouse: false,
+      isHeadOffice: false,
+      isWareHouse: true,
       createdAt: '02/07/2018'
     },{
       _id:'123456',
@@ -123,8 +123,8 @@ export default class Branches extends Component {
         city: 'Mumbai',
         state: 'Maharashtra'
       },
-      isHeadOffice: true,
-      isWareHouse: false,
+      isHeadOffice: false,
+      isWareHouse: true,
       createdAt: '02/07/2018'
     },{
       _id:'123456',
@@ -136,8 +136,8 @@ export default class Branches extends Component {
         city: 'Mumbai',
         state: 'Maharashtra'
       },
-      isHeadOffice: true,
-      isWareHouse: false,
+      isHeadOffice: false,
+      isWareHouse: true,
       createdAt: '02/07/2018'
     },{
       _id:'123456',
@@ -149,8 +149,8 @@ export default class Branches extends Component {
         city: 'Mumbai',
         state: 'Maharashtra'
       },
-      isHeadOffice: true,
-      isWareHouse: false,
+      isHeadOffice: false,
+      isWareHouse: true,
       createdAt: '02/07/2018'
     },{
       _id:'123456',
@@ -162,8 +162,8 @@ export default class Branches extends Component {
         city: 'Mumbai',
         state: 'Maharashtra'
       },
-      isHeadOffice: true,
-      isWareHouse: false,
+      isHeadOffice: false,
+      isWareHouse: true,
       createdAt: '02/07/2018'
     },{
       _id:'123456',
@@ -175,8 +175,8 @@ export default class Branches extends Component {
         city: 'Mumbai',
         state: 'Maharashtra'
       },
-      isHeadOffice: true,
-      isWareHouse: false,
+      isHeadOffice: false,
+      isWareHouse: true,
       createdAt: '02/07/2018'
     },{
       _id:'123456',
@@ -188,8 +188,8 @@ export default class Branches extends Component {
         city: 'Mumbai',
         state: 'Maharashtra'
       },
-      isHeadOffice: true,
-      isWareHouse: false,
+      isHeadOffice: false,
+      isWareHouse: true,
       createdAt: '02/07/2018'
     }
     ];
@@ -309,7 +309,7 @@ export default class Branches extends Component {
         line1: row.address.line1,
         line2: row.address.line2,
         city: row.address.city,
-        state: row.address.state,
+        state: row.address.state
       },
       branchID: row._id,
       isHeadOffice: row.isHeadOffice,
@@ -355,21 +355,21 @@ export default class Branches extends Component {
             <div class="column no-padding">
               <div class="box">
                 <div class="row">
-                <div class="column column-20 float-right search-box">
-                      <em class="icon icon-search" />
-                      <input type="text" id="search" placeholder="Enter Branch Name"
-                        name="search" value="" />
-                    </div>
+                  <div class="column column-20 float-right search-box">
+                    <em class="icon icon-search" />
+                    <input type="text" id="search" placeholder="Enter Branch Name"
+                      name="search" value=""  style="margin-bottom: 0px !important;" />
+                  </div>
                   <div class="column column-20">
                     <select name='status' className={status ? 'active-option' : ''}
-                      value={status} onChange={this.search.bind(this)}>
+                      value={status} onChange={this.search.bind(this)} style="margin-bottom: 0px !important;">
                       <option value="all">All</option>
                       <option value='active'>Active</option>
                       <option value='inactive'>Inactive</option>
                     </select>
                   </div>
                   <div class="column column-20">
-                    <select name='city' >
+                    <select name='city' style="margin-bottom: 0px !important;">
                       <option value='' selected>Select Department</option>
                       <option value=''>Department 1</option>
                     </select>
@@ -396,16 +396,16 @@ export default class Branches extends Component {
                     <tr>
                       <td>{index + 1}</td>
                       <td>{row.name}
-                          {
-                              (row.isHeadOffice) && (
-                                <span class="tag is-warning is-small-tag">HO</span>
-                              )
-                            }
-                            {
-                              (row.isWareHouse) && (
-                                <span class="tag is-warning is-small-tag">WH</span>
-                              )
-                            }
+                        {
+                          (row.isHeadOffice) && (
+                            <span class="tag is-warning is-small-tag">HO</span>
+                          )
+                        }
+                        {
+                          (row.isWareHouse) && (
+                            <span class="tag is-warning is-small-tag">WH</span>
+                          )
+                        }
                       </td>
                       <td>{row.displayName}</td>
                       <td>{row.address.city}</td>

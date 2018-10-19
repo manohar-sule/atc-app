@@ -38,18 +38,19 @@ export default class ClientDetails extends Component {
           <section class="box">
             <div class="row">
               <div class="column no-padding">
-                <h6 class="header-color-blue" style="padding-left:0 !important">
-                  <em class="icon icon-user is-small" /> Client Name (DisplayName)
-                </h6>
-                <span class="tag is-normal" style="margin-top:8px;padding:3px 0.75rem">Type</span>
+                <span class="header-color-blue" style="padding-left:0 !important; font-size:1.5rem;">
+                  <em class="icon icon-user is-small" /> Nissin Noodles
+                </span>
+                <span class="tag is-normal" style="margin-top:8px;">Full Load</span>
+                <div style="margin-top:10px; padding-left:20px;">
+                  <span class="fa fa-star checked" style="font-size: 20px;padding: 2px;color: #ad0b0b;"/>
+                  <span class="fa fa-star checked" style="font-size: 20px;padding: 2px;color: #ad0b0b;"/>
+                  <span class="fa fa-star checked" style="font-size: 20px;padding: 2px;color: #ad0b0b;"/>
+                  <span class="fa fa-star" style="font-size: 20px;padding: 2px;"/>
+                  <span class="fa fa-star" style="font-size: 20px;padding: 2px;"/>
+                </div>
               </div>
-              <div class="column has-text-right">
-                <span class="fa fa-star checked" style="font-size: 20px;padding: 2px;color: orange;"/>
-                <span class="fa fa-star checked" style="font-size: 20px;padding: 2px;color: orange;"/>
-                <span class="fa fa-star checked" style="font-size: 20px;padding: 2px;color: orange;"/>
-                <span class="fa fa-star" style="font-size: 20px;padding: 2px;"/>
-                <span class="fa fa-star" style="font-size: 20px;padding: 2px;"/>
-              </div>
+
             </div>
           </section>
           <div class="row">
@@ -57,57 +58,32 @@ export default class ClientDetails extends Component {
               <section class="box" style="padding:0!important">
                 <div class="row details-heading">
                   <div class="column no-padding">
-                    <label style="width:100%;">Client Personal Information</label>
+                    <label style="width:100%;">Client Information</label>
                   </div>
                 </div>
                 <div class="row details-info">
                   <div class="column no-padding">
                     <div>
-                      <span>Name - </span>
-                      <span><strong>Client preson name</strong></span>
+                      <span>Company Name - </span>
+                      <span><strong>Nissin Noodles</strong></span>
                     </div>
                     <div>
-                      <span>Email -</span>
-                      <span><strong>Client@info.com</strong></span>
+                      <span>Display Name -</span>
+                      <span><strong>Nissin</strong></span>
                     </div>
                     <div>
                       <span>Type -</span>
-                      <span><strong>Client type</strong></span>
+                      <span><strong>Full Load</strong></span>
                     </div>
                     <div>
                       <span>Address -</span>
-                      <span><strong>Pune, Maharashtra</strong></span>
+                      <span><strong>N.C. Kelkar Road, Pune, Maharashtra</strong></span>
                     </div>
                   </div>
                 </div>
               </section>
             </div>
             <div class="column">
-              <section class="box" style="padding:0!important">
-                <div class="row details-heading">
-                  <div class="column no-padding">
-                    <label style="width:100%;">Contact Information</label>
-                  </div>
-                </div>
-                <div class="row details-info">
-                  <div class="column no-padding">
-                    <div>
-                      <span>PAN - </span>
-                      <span><strong>PAN No.</strong></span>
-                    </div>
-                    <div>
-                      <span>TIN No -</span>
-                      <span><strong>Khfsftv45c</strong></span>
-                    </div>
-                    <div>
-                      <span>GST No -</span>
-                      <span><strong>Khfsftv45c</strong></span>
-                    </div>
-                  </div>
-                </div>
-              </section>
-            </div>
-            <div class="column" style="padding-right: 0px;">
               <section class="box" style="padding:0!important">
                 <div class="row details-heading">
                   <div class="column no-padding">
@@ -136,6 +112,36 @@ export default class ClientDetails extends Component {
                 </div>
               </section>
             </div>
+            <div class="column">
+              <section class="box" style="padding:0!important">
+                <div class="row details-heading">
+                  <div class="column no-padding">
+                    <label style="width:100%;">Taxation Information</label>
+                  </div>
+                </div>
+                <div class="row details-info">
+                  <div class="column no-padding">
+                    <div>
+                      <span>PAN - </span>
+                      <span><strong>PAN No.</strong></span>
+                    </div>
+                    <div>
+                      <span>TIN No -</span>
+                      <span><strong>Khfsftv45c</strong></span>
+                    </div>
+                    <div>
+                      <span>GST No -</span>
+                      <span><strong>Khfsftv45c</strong></span>
+                    </div>
+                    <div>
+                      <span>Pending Invoices -</span>
+                      <span><strong>1,25,123 Rs.</strong></span>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+
           </div>
           <section class="box">
             <div class="row">
@@ -145,7 +151,7 @@ export default class ClientDetails extends Component {
                 </label>
               </div>
               <div class="column no-padding has-text-right">
-                <Link class="button button-margin-left" href="/data/dispatch/create">
+                <Link class="button button-margin-left" href="">
                   <em class="icon icon-plus is-small" /> Add Consignment</Link>
               </div>
             </div>
@@ -156,7 +162,7 @@ export default class ClientDetails extends Component {
                   <table>
                     <thead>
                       <tr>
-                        <th>Client</th>
+                        <th>Consignment ID</th>
                         <th>Source Branch</th>
                         <th>Target Branch</th>
                         <th>Pick Up Location</th>
@@ -170,7 +176,7 @@ export default class ClientDetails extends Component {
                     </thead>
                     <tbody>
                       <tr>
-                        <td>Client Name</td>
+                        <td>1234</td>
                         <td>Pune</td>
                         <td>Bangalore</td>
                         <td>Kothrud, Pune</td>
@@ -187,7 +193,7 @@ export default class ClientDetails extends Component {
                         </td>
                       </tr>
                       <tr>
-                        <td>Client Name</td>
+                        <td>1235</td>
                         <td>Pune</td>
                         <td>Bangalore</td>
                         <td>Kothrud, Pune</td>
@@ -204,7 +210,7 @@ export default class ClientDetails extends Component {
                         </td>
                       </tr>
                       <tr>
-                        <td>Client Name</td>
+                        <td>12145</td>
                         <td>Pune</td>
                         <td>Bangalore</td>
                         <td>Kothrud, Pune</td>
@@ -221,7 +227,7 @@ export default class ClientDetails extends Component {
                         </td>
                       </tr>
                       <tr>
-                        <td>Client Name</td>
+                        <td>1578</td>
                         <td>Pune</td>
                         <td>Bangalore</td>
                         <td>Kothrud, Pune</td>
@@ -255,23 +261,16 @@ export default class ClientDetails extends Component {
               <div class="row">
                 <div class="column no-padding">
                   <div>
-                    <span>Dispatch ID - </span>
-                    <span><strong>11223344</strong></span>
-                  </div>
-                  <div>
                     <span>Consignment Number - </span>
                     <span><strong>P123456</strong></span>
                   </div>
                   <div>
-                    <span>Reference Number - </span>
-                    <span><strong>654321</strong></span>
-                  </div>
-                </div>
-                <div class="column">
-                  <div>
                     <span>Current Status - </span>
                     <span><strong>Not Available</strong></span>
                   </div>
+                </div>
+                <div class="column">
+
                   <div>
                     <span>Booked Date - </span>
                     <span><strong>18/08/2018</strong></span>

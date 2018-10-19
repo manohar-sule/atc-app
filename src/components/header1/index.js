@@ -15,8 +15,12 @@ export default class Header1 extends Component {
       document.getElementById("gn-menu-nav").classList.toggle('gn-open-all');
     }
     if ( document.getElementById("gn-menu-nav").classList.contains('gn-open-all') ) {
-      document.getElementById("main-body").classList.remove('margin-left-76');
-      document.getElementById("main-body").classList.add('margin-left-266');
+      let contentDiv = Array.prototype.slice.call(document.querySelectorAll('.outer-most-div'), 0);
+      if (contentDiv.length > 0) {
+        let $target = document.getElementById('main-body');
+        $target.classList.remove('margin-left-76');
+        $target.classList.add('margin-left-266');
+      }
     } else {
       document.getElementById("main-body").classList.remove('margin-left-266');
       document.getElementById("main-body").classList.add('margin-left-76');
