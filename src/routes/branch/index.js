@@ -100,6 +100,97 @@ export default class Branches extends Component {
       isHeadOffice: true,
       isWareHouse: false,
       createdAt: '02/07/2018'
+    },{
+      _id:'123456',
+      name: 'Andheri',
+      displayName: 'Andheri',
+      address: {
+        line1: 'Line one',
+        line2: 'Line Two',
+        city: 'Mumbai',
+        state: 'Maharashtra'
+      },
+      isHeadOffice: true,
+      isWareHouse: false,
+      createdAt: '02/07/2018'
+    },{
+      _id:'123456',
+      name: 'Andheri',
+      displayName: 'Andheri',
+      address: {
+        line1: 'Line one',
+        line2: 'Line Two',
+        city: 'Mumbai',
+        state: 'Maharashtra'
+      },
+      isHeadOffice: true,
+      isWareHouse: false,
+      createdAt: '02/07/2018'
+    },{
+      _id:'123456',
+      name: 'Andheri',
+      displayName: 'Andheri',
+      address: {
+        line1: 'Line one',
+        line2: 'Line Two',
+        city: 'Mumbai',
+        state: 'Maharashtra'
+      },
+      isHeadOffice: true,
+      isWareHouse: false,
+      createdAt: '02/07/2018'
+    },{
+      _id:'123456',
+      name: 'Andheri',
+      displayName: 'Andheri',
+      address: {
+        line1: 'Line one',
+        line2: 'Line Two',
+        city: 'Mumbai',
+        state: 'Maharashtra'
+      },
+      isHeadOffice: true,
+      isWareHouse: false,
+      createdAt: '02/07/2018'
+    },{
+      _id:'123456',
+      name: 'Andheri',
+      displayName: 'Andheri',
+      address: {
+        line1: 'Line one',
+        line2: 'Line Two',
+        city: 'Mumbai',
+        state: 'Maharashtra'
+      },
+      isHeadOffice: true,
+      isWareHouse: false,
+      createdAt: '02/07/2018'
+    },{
+      _id:'123456',
+      name: 'Andheri',
+      displayName: 'Andheri',
+      address: {
+        line1: 'Line one',
+        line2: 'Line Two',
+        city: 'Mumbai',
+        state: 'Maharashtra'
+      },
+      isHeadOffice: true,
+      isWareHouse: false,
+      createdAt: '02/07/2018'
+    },{
+      _id:'123456',
+      name: 'Andheri',
+      displayName: 'Andheri',
+      address: {
+        line1: 'Line one',
+        line2: 'Line Two',
+        city: 'Mumbai',
+        state: 'Maharashtra'
+      },
+      isHeadOffice: true,
+      isWareHouse: false,
+      createdAt: '02/07/2018'
     }
     ];
     this.setState({userList:[], loadingBranchList:true});
