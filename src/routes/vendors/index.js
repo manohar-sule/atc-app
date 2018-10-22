@@ -9,14 +9,14 @@ import Pagination from '../../components/pagination';
 import { route } from 'preact-router';
 // import SideBar from '../../components/sideBar';
 
-export default class Clients extends Component {
+export default class Vendors extends Component {
 
   toggleAddClient() {
     this.setState({
       isClientAddModal: !this.state.isClientAddModal,
       name: '',
       displayName: '',
-      modalTitle: 'Add Client'
+      modalTitle: 'Add Vendor'
     });
   }
 
@@ -40,49 +40,37 @@ export default class Clients extends Component {
 
   getClientList() {
     let response=[{
-      name: 'Nissin Noodles',
-      displayName: 'Nissin Noodles',
-      address: {
-        line1: 'line1',
-        line2: 'line2',
-        city: 'Pune',
-        state: 'Maharashtra'
-      },
-      type: 'Full Load',
-      rating:'3.5'
+      name: 'Patil Transports',
+      type: 'Truck',
+      rating:'3.5',
+      numberOfVehicles: 100,
+      area: 'Pimpri',
+      city: 'Pune',
+      state: 'Maharashtra'
     },{
-      name: 'MRF Tyres',
-      displayName: 'MRF Tyres',
-      address: {
-        line1: 'line1',
-        line2: 'line2',
-        city: 'Pune',
-        state: 'Maharashtra'
-      },
-      type: 'Full Load',
-      rating:'5.0'
+      name: 'Khurana Transports',
+      type: 'Truck',
+      rating:'5.0',
+      numberOfVehicles: 400,
+      area: 'Kharadi',
+      city: 'Pune',
+      state: 'Maharashtra'
     },{
-      name: 'TATA Batteries',
-      displayName: 'TATA Batteries',
-      address: {
-        line1: 'line1',
-        line2: 'line2',
-        city: 'Pune',
-        state: 'Maharashtra'
-      },
-      type: 'Partial Load',
-      rating:'4.5'
+      name: 'SK Transports',
+      type: 'Truck',
+      rating:'4.5',
+      numberOfVehicles: 50,
+      area: 'Pimpri',
+      city: 'Pune',
+      state: 'Maharashtra'
     },{
-      name: 'Haldiraam',
-      displayName: 'Haldiraam',
-      address: {
-        line1: 'line1',
-        line2: 'line2',
-        city: 'Pune',
-        state: 'Maharashtra'
-      },
-      type: 'Full Load',
-      rating:'6.5'
+      name: 'Singh Brokers',
+      type: 'Truck',
+      rating:'6.5',
+      numberOfVehicles: 200,
+      area: 'Pashan',
+      city: 'Pune',
+      state: 'Maharashtra'
     }];
     this.setState({loadingClientList: true});
     startLoader();
@@ -128,11 +116,11 @@ export default class Clients extends Component {
     e.preventDefault();
     this.setState({isButtonLocked: true});
 
-    if (this.state.modalTitle === 'Add Client') {
+    if (this.state.modalTitle === 'Add Vendor') {
       this.toggleAddClient();
       this.state.isButtonLocked = false;
       new Toast('Client created successfully', Toast.TYPE_DONE, Toast.TIME_LONG);
-    } else if (this.state.modalTitle === 'Edit Client'){
+    } else if (this.state.modalTitle === 'Edit Vendor'){
 
       this.toggleAddClient();
       this.state.isButtonLocked = false;
@@ -152,22 +140,21 @@ export default class Clients extends Component {
   }
 
   editClient(row) {
-    this.toggleAddClient();
     this.setState({
-      modalTitle: 'Edit Client',
+      modalTitle: 'Edit Vendor',
       name: row.name,
-      displayName: row.displayName,
-      clientID: row._id,
-      address:{
-        line1: row.address.line1,
-        line2: row.address.line2,
-        city: row.address.city,
-        state: row.address.state
-      }
+      area: row.area,
+      city: row.city,
+      state: row.state,
+      contactName: row.contactName,
+      mobile: row.mobile,
+      email: row.email,
+      numberOfVehicles: row.numberOfVehicles
     });
+    this.toggleAddClient();
   }
   clientDetailClick() {
-    route('/client/2423');
+    route('/vendor/2423');
   }
 
   componentWillMount() {
@@ -180,7 +167,7 @@ export default class Clients extends Component {
       isButtonLocked: false,
       name: '',
       displayName: '',
-      modalTitle: 'Add Client',
+      modalTitle: 'Add Vendor',
       clientID: '',
       loadingClientList: false,
       address:{
@@ -206,7 +193,7 @@ export default class Clients extends Component {
 
   render({}, { clientList, isClientAddModal, isButtonLocked, modalTitle, name, displayName, address }) {
 
-    const columns = ['Name', 'Display Name', 'Type', 'City', 'State', 'Rating', 'Action'];
+    const columns = ['Name', 'Area', 'City', 'State', 'Rating', 'No. of Vehicles', 'Action'];
     return (
       <div>
         <div id="main-body" class=" main outer-most-div margin-left-76">
@@ -214,7 +201,7 @@ export default class Clients extends Component {
             <div class="column">
               <ul class="breadcrumbs">
                 <li><a href="/home">Home</a></li>
-                <li class="active">Clients</li>
+                <li class="active">Vendors</li>
               </ul>
             </div>
           </section>
@@ -222,13 +209,8 @@ export default class Clients extends Component {
             <div class="column no-padding">
               <div class="box">
                 <div class="row">
-                  <div class="column column-20 float-right search-box">
-                    <em class="icon icon-search" />
-                    <input type="text" id="search" placeholder="Enter Client Name"
-                      name="search" value="" style="margin-bottom:0 !important"/>
-                  </div>
                   <div class="column has-text-right">
-                    <button type="button" onClick={this.toggleAddClient.bind(this)}>Add Client</button>
+                    <button type="button" onClick={this.toggleAddClient.bind(this)}>Add Vendor</button>
                   </div>
                 </div>
               </div>
@@ -246,11 +228,12 @@ export default class Clients extends Component {
                 {
                   (clientList.map((row) => (<tr>
                     <td>{row.name}</td>
-                    <td>{row.displayName}</td>
-                    <td>{row.type || '-'}</td>
-                    <td>{row.address.city}</td>
-                    <td>{row.address.state || '-'}</td>
+                    <td>{row.type}</td>
+                    <td>{row.area || '-'}</td>
+                    <td>{row.city}</td>
+                    <td>{row.state || '-'}</td>
                     <td>{row.rating || '-'}</td>
+                    <td>{row.numberOfVehicles || '-'}</td>
                     <td>
                       <button  onClick={this.editClient.bind(this, row)}>Edit</button>
                       <button  onClick={this.clientDetailClick.bind(this, row)}>View Detail</button>
@@ -272,38 +255,106 @@ export default class Clients extends Component {
           {
             !isClientAddModal && (
               <Modal title={modalTitle} modalSize="is-medium" onClose={this.toggleAddClient.bind(this)}>
-                <form name="Add Client" onSubmit={this.createOrEditClient.bind(this)}>
+                <form name="Add Vendor" onSubmit={this.createOrEditClient.bind(this)}>
                   <ModalBody>
                     <div class="row">
-                      <div class="column column-50">
-                        <label>Name</label>
-                        <input type="text" placeholder="Enter Name" name="name" value={name} onInput={LinkState(this, 'name')} required="required"/>
+                      <div class="column">
+                        <label style="margin-bottom:5px">Vendor Information</label>
                       </div>
-                      <div class="column column-50">
-                        <label>Display name</label>
-                        <input type="text" placeholder="Enter Display Name" name="displayName" value={displayName}
+                    </div>
+                    <div class="row">
+                      <div class="column">
+                        <label>Name</label>
+                        <input type="text" name="name" value={name} onInput={LinkState(this, 'name')} required="required"/>
+                      </div>
+                      <div class="column">
+                        <label>Type</label>
+                        <input type="text" name="name" value={name} onInput={LinkState(this, 'name')} required="required"/>
+                      </div>
+                      <div class="column">
+                        <label>No. of Vehicles</label>
+                        <input type="text" name="displayName" value={displayName}
                           onInput={LinkState(this, 'displayName')} required="required"/>
+                      </div>
+                    </div>
+                    <hr/>
+                    <div class="row">
+                      <div class="column">
+                        <label style="margin-bottom:5px">Address Information</label>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="column">
+                        <label>Area</label>
+                        <input type="text" name="line1" value={address.line1} onInput={LinkState(this, 'address.line1')} required/>
+                      </div>
+                      <div class="column">
+                        <label>City</label>
+                        <input type="text" name="line2" value={address.line2} onInput={LinkState(this, 'address.line2')} required/>
+                      </div>
+                      <div class="column">
+                        <label>State</label>
+                        <input type="text" name="line2" value={address.line2} onInput={LinkState(this, 'address.line2')} required/>
+                      </div>
+                    </div>
+                    <hr/>
+                    <div class="row">
+                      <div class="column">
+                        <label style="margin-bottom:5px">Contact Person Information</label>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="column">
+                        <label>Name</label>
+                        <input type="text" name="city" value={address.city} onInput={LinkState(this, 'address.city')} required/>
+                      </div>
+                      <div class="column">
+                        <label>Mobile</label>
+                        <input type="text" name="state" value={address.state} onInput={LinkState(this, 'address.state')} required/>
+                      </div>
+                      <div class="column">
+                        <label>Email</label>
+                        <input type="text" name="state" value={address.state} onInput={LinkState(this, 'address.state')} required/>
                       </div>
                     </div>
                     <div class="row">
                       <div class="column">
                         <label>Address Line 1</label>
-                        <input type="text" placeholder="Line 1" name="line1" value={address.line1} onInput={LinkState(this, 'address.line1')} required/>
+                        <input type="text" name="city" value={address.city} onInput={LinkState(this, 'address.city')} required/>
                       </div>
                       <div class="column">
                         <label>Address Line 2</label>
-                        <input type="text" placeholder="Line 2" name="line2" value={address.line2} onInput={LinkState(this, 'address.line2')} required/>
+                        <input type="text" name="state" value={address.state} onInput={LinkState(this, 'address.state')} required/>
                       </div>
                     </div>
-
                     <div class="row">
                       <div class="column">
                         <label>City</label>
-                        <input type="text" placeholder="City" name="city" value={address.city} onInput={LinkState(this, 'address.city')} required/>
+                        <input type="text" name="state" value={address.state} onInput={LinkState(this, 'address.state')} required/>
                       </div>
                       <div class="column">
                         <label>State</label>
-                        <input type="text" placeholder="State" name="state" value={address.state} onInput={LinkState(this, 'address.state')} required/>
+                        <input type="text" name="state" value={address.state} onInput={LinkState(this, 'address.state')} required/>
+                      </div>
+                    </div>
+                    <hr/>
+                    <div class="row">
+                      <div class="column">
+                        <label style="margin-bottom:5px">Taxation Information</label>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="column">
+                        <label>PAN Number</label>
+                        <input type="text" name="city" value={address.city} onInput={LinkState(this, 'address.city')} required/>
+                      </div>
+                      <div class="column">
+                        <label>TIN Number</label>
+                        <input type="text" name="state" value={address.state} onInput={LinkState(this, 'address.state')} required/>
+                      </div>
+                      <div class="column">
+                        <label>GST Number</label>
+                        <input type="text" name="state" value={address.state} onInput={LinkState(this, 'address.state')} required/>
                       </div>
                     </div>
                   </ModalBody>

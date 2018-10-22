@@ -15,8 +15,12 @@ export default class Header1 extends Component {
       document.getElementById("gn-menu-nav").classList.toggle('gn-open-all');
     }
     if ( document.getElementById("gn-menu-nav").classList.contains('gn-open-all') ) {
-      document.getElementById("main-body").classList.remove('margin-left-76');
-      document.getElementById("main-body").classList.add('margin-left-266');
+      let contentDiv = Array.prototype.slice.call(document.querySelectorAll('.outer-most-div'), 0);
+      if (contentDiv.length > 0) {
+        let $target = document.getElementById('main-body');
+        $target.classList.remove('margin-left-76');
+        $target.classList.add('margin-left-266');
+      }
     } else {
       document.getElementById("main-body").classList.remove('margin-left-266');
       document.getElementById("main-body").classList.add('margin-left-76');
@@ -100,9 +104,13 @@ export default class Header1 extends Component {
               <div class="gn-scroller">
                 <ul class="gn-menu">
                   <li>
+                    <a class="gn-icon icon icon-home" href="/home">Home</a>
+                  </li>
+                  <li>
                     <a class="gn-icon icon-paper-plane-o" href="/consignments">Consignments</a>
                   </li>
                   <li><a href="/clients" class="gn-icon icon icon-user">Clients</a></li>
+                  <li><a href="/vendors" class="gn-icon icon icon-user">Vendors</a></li>
                   <li><a class="gn-icon gn-icon-help">Help</a></li>
                   <li>
                     <a class="gn-icon gn-icon-archive">Organization</a>
@@ -122,6 +130,11 @@ export default class Header1 extends Component {
             //  <img src="./assets/static/atc.jpg" alt="IMG" style="width: 168px; height: 50px;"/>
             // </a></li>
           }
+          <li style="float:right; border-left: 1px solid #c6d0da;">
+            <a class="codrops-icon codrops-icon-prev" href="/home" style="padding:6px 15px">
+              <img src="assets/static/atc.jpg" style="width:100px" />
+            </a>
+          </li>
           <li style="float:right; border-left: 1px solid #c6d0da;"><a class="codrops-icon codrops-icon-prev" href="#"><span>Branch Name</span></a></li>
           <li  class="codrops-icon codrops-icon-prev search-box">
             <em class="icon icon-search" style="top:0"/>

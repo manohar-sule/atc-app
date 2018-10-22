@@ -356,7 +356,11 @@ export default class Users extends Component {
         <div id="main-body" class=" main outer-most-div margin-left-76">
           <section class="row" style="margin-bottom:5px">
             <div class="column">
-              <span style="font-size:20px"><em class="icon icon-user is-small"/> Users</span>
+              <ul class="breadcrumbs">
+                <li><a href="/home">Home</a></li>
+                <li><a>Organization</a></li>
+                <li class="active">Users</li>
+              </ul>
             </div>
           </section>
           <section class="row">
@@ -365,15 +369,15 @@ export default class Users extends Component {
                 <div class="row">
                   <div class="column column-20">
                     <select name='status' className={status ? 'active-option' : ''}
-                      value={status} onChange={this.search.bind(this)}>
-                      <option value="all">All</option>
+                      value={status} onChange={this.search.bind(this)} style="margin-bottom: 0px !important;">
+                      <option value="all">All Users</option>
                       <option value='active'>Active</option>
                       <option value='inactive'>Inactive</option>
                     </select>
                   </div>
                   <div class="column column-20">
-                    <select name='city' >
-                      <option value='' selected>Select Branch</option>
+                    <select name='city' style="margin-bottom: 0px !important;">
+                      <option value='' selected>All Branches</option>
                       <option value=''>Pune</option>
                       <option value=''>Guwahati</option>
                       <option value=''>Mumbai</option>

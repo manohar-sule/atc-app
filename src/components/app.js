@@ -29,6 +29,9 @@ import Role from '../routes/roles';
 import Client from '../routes/clients';
 import ClientDetails from '../routes/clientDetails';
 import Consignments from '../routes/consignments';
+import Vendors from '../routes/vendors';
+import VendorDetails from '../routes/vendorDetails';
+import ConsignmentDetails from '../routes/consignmentDetails';
 
 export default class App extends Component {
   componentDidMount() {}
@@ -78,6 +81,9 @@ export default class App extends Component {
           <Client path="/clients" />
           <ClientDetails path="/client/:clientID" />
           <Consignments path="/consignments" />
+          <Vendors path="/vendors" />
+          <VendorDetails path="/vendor/:vendorID" />
+          <ConsignmentDetails path="/consignment/:consignmentID" />
         </Router>
       </div>
     </div>);

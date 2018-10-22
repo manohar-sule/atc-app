@@ -253,7 +253,11 @@ export default class Roles extends Component {
         <div id="main-body" class=" main outer-most-div margin-left-76">
           <section class="row" style="margin-bottom:5px">
             <div class="column">
-              <span style="font-size:20px"><em class="icon icon-user is-small"/> Roles</span>
+              <ul class="breadcrumbs">
+                <li><a href="/home">Home</a></li>
+                <li><a>Organization</a></li>
+                <li class="active">Roles</li>
+              </ul>
             </div>
           </section>
           <section class="row">
@@ -262,7 +266,9 @@ export default class Roles extends Component {
                 <div class="row">
                   <div class="column">
                     <div  style="width:auto!important">
-                      <select name='status' className={status ? 'active-option' : ''} style="width:auto" value={status} onChange={this.search.bind(this)}>
+                      <select name='status' className={status ? 'active-option' : ''} style="width:auto;margin-bottom: 0px !important;" value={status}
+                        onChange={this.search.bind(this)}>
+                        <option value='active'>All Roles</option>
                         <option value='active'>Active</option>
                         <option value='inactive'>Inactive</option>
                       </select>

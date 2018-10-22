@@ -13,7 +13,8 @@ export default class ClientDetails extends Component {
       tabActiveforEnroll:'',
       pincodeDetails: {},
       isCreateDispatchModalOpen: false,
-      isConsignmentDetailsModalOpen: false
+      isConsignmentDetailsModalOpen: false,
+      isLRViewModalOpen: false
     };
 
   }
@@ -31,25 +32,39 @@ export default class ClientDetails extends Component {
     }
   }
 
+  toggleLRView() {
+    this.setState({isLRViewModalOpen: !this.state.isLRViewModalOpen});
+  }
+
   render({}) {
     return (
       <div>
         <div id="main-body" class=" main outer-most-div margin-left-76">
+          <section class="row" style="margin-bottom:5px">
+            <div class="column">
+              <ul class="breadcrumbs">
+                <li><a href="/home">Home</a></li>
+                <li><a href="/clients">Clients</a></li>
+                <li class="active">Nissin Noodles</li>
+              </ul>
+            </div>
+          </section>
           <section class="box">
             <div class="row">
               <div class="column no-padding">
-                <h6 class="header-color-blue" style="padding-left:0 !important">
-                  <em class="icon icon-user is-small" /> Client Name (DisplayName)
-                </h6>
-                <span class="tag is-normal" style="margin-top:8px;padding:3px 0.75rem">Type</span>
+                <span class="header-color-blue" style="padding-left:0 !important; font-size:1.5rem;">
+                  <em class="icon icon-user is-small" /> Nissin Noodles
+                </span>
+                <span class="tag is-normal" style="margin-top:8px;">Full Load</span>
+                <div style="margin-top:10px; padding-left:20px;">
+                  <span class="fa fa-star checked" style="font-size: 20px;padding: 2px;color: #ad0b0b;"/>
+                  <span class="fa fa-star checked" style="font-size: 20px;padding: 2px;color: #ad0b0b;"/>
+                  <span class="fa fa-star checked" style="font-size: 20px;padding: 2px;color: #ad0b0b;"/>
+                  <span class="fa fa-star" style="font-size: 20px;padding: 2px;"/>
+                  <span class="fa fa-star" style="font-size: 20px;padding: 2px;"/>
+                </div>
               </div>
-              <div class="column has-text-right">
-                <span class="fa fa-star checked" style="font-size: 20px;padding: 2px;color: orange;"/>
-                <span class="fa fa-star checked" style="font-size: 20px;padding: 2px;color: orange;"/>
-                <span class="fa fa-star checked" style="font-size: 20px;padding: 2px;color: orange;"/>
-                <span class="fa fa-star" style="font-size: 20px;padding: 2px;"/>
-                <span class="fa fa-star" style="font-size: 20px;padding: 2px;"/>
-              </div>
+
             </div>
           </section>
           <div class="row">
@@ -57,26 +72,26 @@ export default class ClientDetails extends Component {
               <section class="box" style="padding:0!important">
                 <div class="row details-heading">
                   <div class="column no-padding">
-                    <label style="width:100%;">Client Personal Information</label>
+                    <label style="width:100%;">Client Information</label>
                   </div>
                 </div>
                 <div class="row details-info">
                   <div class="column no-padding">
                     <div>
-                      <span>Name - </span>
-                      <span><strong>Client preson name</strong></span>
+                      <span>Client Name - </span>
+                      <span><strong>Nissin Noodles</strong></span>
                     </div>
                     <div>
-                      <span>Email -</span>
-                      <span><strong>Client@info.com</strong></span>
+                      <span>Type of Material - </span>
+                      <span><strong>Eatables</strong></span>
                     </div>
                     <div>
-                      <span>Type -</span>
-                      <span><strong>Client type</strong></span>
+                      <span>Email ID -</span>
+                      <span><strong>nissinnoodles@gmail.com</strong></span>
                     </div>
                     <div>
-                      <span>Address -</span>
-                      <span><strong>Pune, Maharashtra</strong></span>
+                      <span>Address - </span>
+                      <span><strong>N.C. Kelkar Road, Narayan Peth, Pune, 431030, Maharashtra</strong></span>
                     </div>
                   </div>
                 </div>
@@ -92,50 +107,59 @@ export default class ClientDetails extends Component {
                 <div class="row details-info">
                   <div class="column no-padding">
                     <div>
-                      <span>PAN - </span>
-                      <span><strong>PAN No.</strong></span>
+                      <span>Name - </span>
+                      <span><strong>Pallavi Kelgaonkar</strong></span>
                     </div>
                     <div>
-                      <span>TIN No -</span>
-                      <span><strong>Khfsftv45c</strong></span>
+                      <span>Mobile No. - </span>
+                      <span><strong>9890710576, 9876543210</strong></span>
                     </div>
                     <div>
-                      <span>GST No -</span>
-                      <span><strong>Khfsftv45c</strong></span>
+                      <span>Email ID - </span>
+                      <span><strong>pallavi@gmail.com</strong></span>
+                    </div>
+                    <div>
+                      <span>Address - </span>
+                      <span><strong>Ramkunj Society, ICS colony, Ganesh Khind Road, Pune, 411007, Maharashtra</strong></span>
                     </div>
                   </div>
                 </div>
               </section>
             </div>
-            <div class="column" style="padding-right: 0px;">
+            <div class="column">
               <section class="box" style="padding:0!important">
                 <div class="row details-heading">
                   <div class="column no-padding">
-                    <label style="width:100%;">Contact Information</label>
+                    <label style="width:100%;">Taxation Information</label>
                   </div>
                 </div>
                 <div class="row details-info">
                   <div class="column no-padding">
                     <div>
-                      <span>Name - </span>
-                      <span><strong>Contact preson name</strong></span>
+                      <span>PAN - </span>
+                      <span><strong>PR0012AB12</strong></span>
                     </div>
                     <div>
-                      <span>Contat No -</span>
-                      <span><strong>022-25555</strong></span>
+                      <span>TIN No - </span>
+                      <span><strong>TIN000123</strong></span>
                     </div>
                     <div>
-                      <span>Contat No -</span>
-                      <span><strong>876895632</strong></span>
+                      <span>GST No - </span>
+                      <span><strong>GST1000234</strong></span>
                     </div>
                     <div>
-                      <span>Address -</span>
-                      <span><strong>Pune, Maharashtra</strong></span>
+                      <span>Billed Amount - </span>
+                      <span><strong><em class="icon icon-rupee" /> 1,25,123</strong></span>
+                    </div>
+                    <div>
+                      <span>Outstanding Amount - </span>
+                      <span><strong><em class="icon icon-rupee" /> 95,123</strong></span>
                     </div>
                   </div>
                 </div>
               </section>
             </div>
+
           </div>
           <section class="box">
             <div class="row">
@@ -145,7 +169,7 @@ export default class ClientDetails extends Component {
                 </label>
               </div>
               <div class="column no-padding has-text-right">
-                <Link class="button button-margin-left" href="/data/dispatch/create">
+                <Link class="button button-margin-left" href="">
                   <em class="icon icon-plus is-small" /> Add Consignment</Link>
               </div>
             </div>
@@ -156,91 +180,66 @@ export default class ClientDetails extends Component {
                   <table>
                     <thead>
                       <tr>
-                        <th>Client</th>
-                        <th>Source Branch</th>
-                        <th>Target Branch</th>
-                        <th>Pick Up Location</th>
-                        <th>Delivery Location</th>
-                        <th>Estimated Cost</th>
-                        <th>Advance Amount</th>
-                        <th>Actual Billing Cost</th>
-                        <th>Status</th>
+                        <th>Consignment Number</th>
+                        <th>Booking Date</th>
+                        <th>LR Number</th>
+                        <th>Client Name</th>
+                        <th>Special Number</th>
+                        <th>Current Location</th>
                         <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
-                        <td>Client Name</td>
-                        <td>Pune</td>
-                        <td>Bangalore</td>
-                        <td>Kothrud, Pune</td>
-                        <td>Bangalore</td>
-                        <td>10,000</td>
-                        <td>5,000</td>
-                        <td>15,000</td>
-                        <td><em class="icon icon-flag-checkered is-small" /> Delivered</td>
+                        <td>123456</td>
+                        <td>10/10/2018</td>
+                        <td><Link href="#" onClick={this.toggleLRView.bind(this)}>001234</Link></td>
+                        <td>Nissin Noodles</td>
+                        <td>S1234</td>
+                        <td>Banglore</td>
                         <td>
-                          <button class="button-margin-left " onClick={this.toggleConsignmentDetails.bind(this)}>Track</button>
                           <button class="button-margin-left ">
-                            <em class="icon icon-refresh is-small" />
+                            <em class="icon icon-edit-modify-streamline is-small" /> Edit
+                          </button>
+                          <button class="button-margin-left ">
+                            <Link href="#" onClick={this.toggleConsignmentDetails.bind(this)}>Track</Link>
                           </button>
                         </td>
                       </tr>
                       <tr>
-                        <td>Client Name</td>
-                        <td>Pune</td>
-                        <td>Bangalore</td>
-                        <td>Kothrud, Pune</td>
-                        <td>Bangalore</td>
-                        <td>10,000</td>
-                        <td>5,000</td>
-                        <td>15,000</td>
-                        <td><em class="icon icon-flag-checkered is-small" /> Delivered</td>
+                        <td>123456</td>
+                        <td>10/10/2018</td>
+                        <td><Link href="#" onClick={this.toggleLRView.bind(this)}>001234</Link></td>
+                        <td>Nissin Noodles</td>
+                        <td>S1234</td>
+                        <td>Banglore</td>
                         <td>
-                          <button class="button-margin-left " onClick={this.toggleConsignmentDetails.bind(this)}>Track</button>
                           <button class="button-margin-left ">
-                            <em class="icon icon-refresh is-small" />
+                            <em class="icon icon-edit-modify-streamline is-small" /> Edit
+                          </button>
+                          <button class="button-margin-left ">
+                            <Link href="#" onClick={this.toggleConsignmentDetails.bind(this)}>Track</Link>
                           </button>
                         </td>
                       </tr>
                       <tr>
-                        <td>Client Name</td>
-                        <td>Pune</td>
-                        <td>Bangalore</td>
-                        <td>Kothrud, Pune</td>
-                        <td>Bangalore</td>
-                        <td>10,000</td>
-                        <td>5,000</td>
-                        <td>15,000</td>
-                        <td><em class="icon icon-flag-checkered is-small" /> Delivered</td>
+                        <td>123456</td>
+                        <td>10/10/2018</td>
+                        <td><Link href="#" onClick={this.toggleLRView.bind(this)}>001234</Link></td>
+                        <td>Nissin Noodles</td>
+                        <td>S1234</td>
+                        <td>Banglore</td>
                         <td>
-                          <button class="button-margin-left " onClick={this.toggleConsignmentDetails.bind(this)}>Track</button>
                           <button class="button-margin-left ">
-                            <em class="icon icon-refresh is-small" />
+                            <em class="icon icon-edit-modify-streamline is-small" /> Edit
                           </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Client Name</td>
-                        <td>Pune</td>
-                        <td>Bangalore</td>
-                        <td>Kothrud, Pune</td>
-                        <td>Bangalore</td>
-                        <td>10,000</td>
-                        <td>5,000</td>
-                        <td>15,000</td>
-                        <td><em class="icon icon-flag-checkered is-small" /> Delivered</td>
-                        <td>
-                          <button class="button-margin-left " onClick={this.toggleConsignmentDetails.bind(this)}>Track</button>
                           <button class="button-margin-left ">
-                            <em class="icon icon-refresh is-small" />
+                            <Link href="#" onClick={this.toggleConsignmentDetails.bind(this)}>Track</Link>
                           </button>
                         </td>
                       </tr>
                     </tbody>
                   </table>
-
-
                 </div>
               </div>
             </div>
@@ -255,23 +254,16 @@ export default class ClientDetails extends Component {
               <div class="row">
                 <div class="column no-padding">
                   <div>
-                    <span>Dispatch ID - </span>
-                    <span><strong>11223344</strong></span>
-                  </div>
-                  <div>
                     <span>Consignment Number - </span>
                     <span><strong>P123456</strong></span>
                   </div>
                   <div>
-                    <span>Reference Number - </span>
-                    <span><strong>654321</strong></span>
-                  </div>
-                </div>
-                <div class="column">
-                  <div>
                     <span>Current Status - </span>
                     <span><strong>Not Available</strong></span>
                   </div>
+                </div>
+                <div class="column">
+
                   <div>
                     <span>Booked Date - </span>
                     <span><strong>18/08/2018</strong></span>
@@ -337,7 +329,21 @@ export default class ClientDetails extends Component {
             </ModalFooter>
           </Modal>
         }
-
+        {
+          this.state.isLRViewModalOpen &&
+          <Modal title="Lorry Receipt" modalSize="is-large" onClose={this.toggleLRView.bind(this)}>
+            <ModalBody>
+              <div class="row">
+                <div class="column no-padding">
+                  <img src="assets/static/lr.jpg" style="width:100%;height:600px"/>
+                </div>
+              </div>
+            </ModalBody>
+            <ModalFooter>
+              <button type="button" onClick={this.toggleLRView.bind(this)}>Close</button>
+            </ModalFooter>
+          </Modal>
+        }
       </div>
     );
   }

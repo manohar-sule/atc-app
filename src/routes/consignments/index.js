@@ -7,7 +7,7 @@ import LinkState from 'linkstate';
 import { startLoader, stopLoader } from '../../lib/utils';
 import Pagination from '../../components/pagination';
 import { Link, route } from 'preact-router';
-// import SideBar from '../../components/sideBar';
+// import Breadcrumbs from '../../components/breadcrumbs';
 
 export default class Consignments extends Component {
 
@@ -173,6 +173,10 @@ export default class Consignments extends Component {
   componentWillMount() {
     this.state = {
       isConsignmentDetailsModalOpen: false,
+      isLRViewModalOpen: false,
+      isBillViewModalOpen: false,
+      tabActiveforEnroll: 'step1',
+      isAddMaterialModalOpen: false,
       totalPages: 0,
       currentPageNo: 1,
       clientList: [],
@@ -209,13 +213,40 @@ export default class Consignments extends Component {
     this.setState({isConsignmentDetailsModalOpen: !this.state.isConsignmentDetailsModalOpen});
   }
 
+  toggleLRView() {
+    this.setState({isLRViewModalOpen: !this.state.isLRViewModalOpen});
+  }
+
+  toggleBillView() {
+    this.setState({isBillViewModalOpen: !this.state.isBillViewModalOpen});
+  }
+
+  goToDetails() {
+    route('/consignment/12345');
+  }
+
+  toggleAddConsignment() {
+    this.setState({isAddConsignmentModalOpen: !this.state.isAddConsignmentModalOpen});
+  }
+
+  openTabForEnrolling(tabName) {
+    this.setState({tabActiveforEnroll: tabName});
+  }
+
+  toggleAddMaterial() {
+    this.setState({isAddMaterialModalOpen: !this.state.isAddMaterialModalOpen});
+  }
+
   render({}, { isClientAddModal, isButtonLocked, modalTitle, name, displayName, address }) {
     return (
       <div>
         <div id="main-body" class=" main outer-most-div margin-left-76">
           <section class="row" style="margin-bottom:5px">
             <div class="column">
-              <span style="font-size:20px"><em class="icon icon-paper-plane-o is-small" /> Consignments</span>
+              <ul class="breadcrumbs">
+                <li><a href="/home">Home</a></li>
+                <li class="active">Consignments</li>
+              </ul>
             </div>
           </section>
           <section class="row">
@@ -225,10 +256,10 @@ export default class Consignments extends Component {
                   <div class="column column-20 float-right search-box">
                     <em class="icon icon-search" />
                     <input type="text" id="search" placeholder="Enter Consignment ID"
-                      name="search" value="" />
+                      name="search" value="" style="margin-bottom:0 !important" />
                   </div>
                   <div class="column has-text-right">
-                    <button type="button" onClick={this.toggleAddClient.bind(this)}>Add Consignment</button>
+                    <button type="button" onClick={this.toggleAddConsignment.bind(this)}>Add Consignment</button>
                   </div>
                 </div>
               </div>
@@ -239,77 +270,71 @@ export default class Consignments extends Component {
             <table>
               <thead>
                 <tr>
-                  <th>Consignment ID</th>
-                  <th>Source<br/>Branch</th>
-                  <th>Target<br/>Branch</th>
-                  <th>Vendor</th>
-                  <th>Vehicle<br/>Number</th>
-                  <th>LR<br/>Number</th>
-                  <th>Estimated<br/>Cost</th>
-                  <th>Advance<br/>Amount</th>
-                  <th>Actual<br/>Billing Cost</th>
+                  <th>Consignment<br/>Number</th>
+                  <th>Booking<br/>Date</th>
+                  <th>LR Number</th>
+                  <th>Client<br/>Name</th>
+                  <th>Special<br/>Number</th>
+                  <th>Current<br/>Location</th>
                   <th>Action</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>123455</td>
-                  <td>Pune</td>
-                  <td>Bangalore</td>
-                  <td>ABC Transport</td>
-                  <td>MH 14 AB 1234</td>
-                  <td><Link>View</Link></td>
-                  <td>10,000</td>
-                  <td>5,000</td>
-                  <td>15,000</td>
+                  <td>123456</td>
+                  <td>10/10/2018</td>
+                  <td><Link href="#" onClick={this.toggleLRView.bind(this)}>001234</Link></td>
+                  <td>Nissin Noodles</td>
+                  <td>S1234</td>
+                  <td>Banglore</td>
                   <td>
-                    <button onClick={this.toggleConsignmentDetails.bind(this)}>Track</button>
-                    <button class="button-margin-left " onClick={this.toggleConsignmentDetails.bind(this)}>View Bill</button>
+                    <button>
+                      <em class="icon icon-edit-modify-streamline is-small" /> Edit
+                    </button>
+                    <button class="button-margin-left ">
+                      <Link href="#" onClick={this.toggleConsignmentDetails.bind(this)}>Track</Link>
+                    </button>
+                    <button onClick={this.goToDetails.bind(this)}>
+                      View Details
+                    </button>
                   </td>
                 </tr>
                 <tr>
-                  <td>122345</td>
-                  <td>Pune</td>
-                  <td>Bangalore</td>
-                  <td>ABC Transport</td>
-                  <td>MH 14 AB 1234</td>
-                  <td><Link>View</Link></td>
-                  <td>10,000</td>
-                  <td>5,000</td>
-                  <td>15,000</td>
+                  <td>123456</td>
+                  <td>10/10/2018</td>
+                  <td><Link href="#" onClick={this.toggleLRView.bind(this)}>001234</Link></td>
+                  <td>Nissin Noodles</td>
+                  <td>S1234</td>
+                  <td>Banglore</td>
                   <td>
-                    <button onClick={this.toggleConsignmentDetails.bind(this)}>Track</button>
-                    <button class="button-margin-left " onClick={this.toggleConsignmentDetails.bind(this)}>View Bill</button>
+                    <button>
+                      <em class="icon icon-edit-modify-streamline is-small" /> Edit
+                    </button>
+                    <button class="button-margin-left ">
+                      <Link href="#" onClick={this.toggleConsignmentDetails.bind(this)}>Track</Link>
+                    </button>
+                    <button onClick={this.goToDetails.bind(this)}>
+                      View Details
+                    </button>
                   </td>
                 </tr>
                 <tr>
-                  <td>112345</td>
-                  <td>Pune</td>
-                  <td>Bangalore</td>
-                  <td>ABC Transport</td>
-                  <td>MH 14 AB 1234</td>
-                  <td><Link>View</Link></td>
-                  <td>10,000</td>
-                  <td>5,000</td>
-                  <td>15,000</td>
+                  <td>123456</td>
+                  <td>10/10/2018</td>
+                  <td><Link href="#" onClick={this.toggleLRView.bind(this)}>001234</Link></td>
+                  <td>Nissin Noodles</td>
+                  <td>S1234</td>
+                  <td>Banglore</td>
                   <td>
-                    <button onClick={this.toggleConsignmentDetails.bind(this)}>Track</button>
-                    <button class="button-margin-left " onClick={this.toggleConsignmentDetails.bind(this)}>View Bill</button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>123445</td>
-                  <td>Pune</td>
-                  <td>Bangalore</td>
-                  <td>ABC Transport</td>
-                  <td>MH 14 AB 1234</td>
-                  <td><Link>View</Link></td>
-                  <td>10,000</td>
-                  <td>5,000</td>
-                  <td>15,000</td>
-                  <td>
-                    <button onClick={this.toggleConsignmentDetails.bind(this)}>Track</button>
-                    <button class="button-margin-left " onClick={this.toggleConsignmentDetails.bind(this)}>View Bill</button>
+                    <button>
+                      <em class="icon icon-edit-modify-streamline is-small" /> Edit
+                    </button>
+                    <button class="button-margin-left ">
+                      <Link href="#" onClick={this.toggleConsignmentDetails.bind(this)}>Track</Link>
+                    </button>
+                    <button onClick={this.goToDetails.bind(this)}>
+                      View Details
+                    </button>
                   </td>
                 </tr>
               </tbody>
@@ -443,6 +468,387 @@ export default class Consignments extends Component {
             </ModalBody>
             <ModalFooter>
               <button type="button" onClick={this.toggleConsignmentDetails.bind(this)}>Close</button>
+            </ModalFooter>
+          </Modal>
+        }
+        {
+          this.state.isLRViewModalOpen &&
+          <Modal title="Lorry Receipt" modalSize="is-large" onClose={this.toggleLRView.bind(this)}>
+            <ModalBody>
+              <div class="row">
+                <div class="column no-padding">
+                  <img src="assets/static/lr.jpg" style="width:100%;height:600px"/>
+                </div>
+              </div>
+            </ModalBody>
+            <ModalFooter>
+              <button type="button" onClick={this.toggleLRView.bind(this)}>Close</button>
+            </ModalFooter>
+          </Modal>
+        }
+        {
+          this.state.isAddConsignmentModalOpen &&
+          <Modal title="Consignment #001234" modalSize="is-large" onClose={this.toggleAddConsignment.bind(this)}>
+            <ModalBody modalBodyHeight="modal-body-height">
+              <div>
+                <div class="column no-padding">
+                  <div class="tabs" style="margin:0 0 10px 0 !important">
+                    <ul>
+                      <li id="step1" className={this.state.tabActiveforEnroll === 'step1' ? 'is-active': ''}>
+                        <a>Client<br/>Info <em class="icon icon-checkmark" style="margin-left:17px;font-size:20px;color:green" /></a>
+                      </li>
+                      <li id="step2" className={this.state.tabActiveforEnroll === 'step2' ? 'is-active': ''}>
+                        <a>Material<br/>Info</a>
+                      </li>
+                      <li id="step3" className={this.state.tabActiveforEnroll === 'step3' ? 'is-active': ''}>
+                        <a>Vendor<br/>Info</a>
+                      </li>
+                      <li id="step4" className={this.state.tabActiveforEnroll === 'step4' ? 'is-active': ''}>
+                        <a>LR<br/>Info</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="display-inline-block">
+                  {
+                    this.state.tabActiveforEnroll === 'step1' && (
+                      <div  id="step1" class="tabcontent">
+                        <div class="row" style="margin: 1.2rem 0 ;">
+                          <div class="column has-text-right" style="margin:0 auto">
+                            <form>
+                              <div class="row">
+                                <div class="column column-50 float-left">
+                                  <div class="row">
+                                    <div class="column column-30">Client : </div>
+                                    <div class="column column-70">
+                                      <select name="locality">
+                                        <option value='' selected>Select Client</option>
+                                        <option value='' >Nissin Noodles</option>
+                                        <option value='' >MRF Tyres</option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="column">
+                                  <div class="row">
+                                    <div class="column column-30">From : </div>
+                                    <div class="column column-70">
+                                      <select name="locality">
+                                        <option value='' selected>Select Source</option>
+                                        <option value='' >Pune</option>
+                                        <option value='' >Goa</option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="column">
+                                  <div class="row">
+                                    <div class="column column-30">To : </div>
+                                    <div class="column column-70">
+                                      <select name="locality">
+                                        <option value='' selected>Select Destination</option>
+                                        <option value='' >Chennai</option>
+                                        <option value='' >Goa</option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="column">
+                                  <div class="row">
+                                    <div class="column column-30">Pickup From : </div>
+                                    <div class="column column-70">
+                                      <select name="locality">
+                                        <option value='' selected>Select Branch</option>
+                                        <option value='' >Pimpri, Pune</option>
+                                        <option value='' >Ranjangaon, Pune</option>
+                                        <option value='' >Wagholi, Pune</option>
+                                        <option value='' >Other</option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="column">
+                                  <div class="row">
+                                    <div class="column column-30">Drop At : </div>
+                                    <div class="column column-70">
+                                      <select name="locality">
+                                        <option value='' selected>Select Branch</option>
+                                        <option value='' >Pimpri, Pune</option>
+                                        <option value='' >Ranjangaon, Pune</option>
+                                        <option value='' >Wagholi, Pune</option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="row">
+                                <div class="column">
+                                  <div class="row">
+                                    <div class="column column-30" />
+                                    <div class="column column-70">
+                                      <div class="row">
+                                        <div class="column no-padding">
+                                          <input type="text" placeholder="Address Line 1" />
+                                        </div>
+                                      </div>
+                                      <div class="row">
+                                        <div class="column no-padding">
+                                          <input type="text" placeholder="Address Line 2" />
+                                        </div>
+                                      </div>
+                                      <div class="row">
+                                        <div class="column no-padding">
+                                          <input type="text" placeholder="Pinocde" />
+                                        </div>
+                                      </div>
+                                      <div class="row">
+                                        <div class="column no-padding">
+                                          <input type="text" placeholder="City" />
+                                        </div>
+                                      </div>
+                                      <div class="row">
+                                        <div class="column no-padding">
+                                          <input type="text" placeholder="State" />
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="column">
+                                  <div class="row">
+                                    <div class="column column-30" />
+                                    <div class="column column-70">
+                                      <div class="row">
+                                        <div class="column no-padding">
+                                          <input type="text" placeholder="Address Line 1" />
+                                        </div>
+                                      </div>
+                                      <div class="row">
+                                        <div class="column no-padding">
+                                          <input type="text" placeholder="Address Line 2" />
+                                        </div>
+                                      </div>
+                                      <div class="row">
+                                        <div class="column no-padding">
+                                          <input type="text" placeholder="Pincode" />
+                                        </div>
+                                      </div>
+                                      <div class="row">
+                                        <div class="column no-padding">
+                                          <input type="text" placeholder="City" />
+                                        </div>
+                                      </div>
+                                      <div class="row">
+                                        <div class="column no-padding">
+                                          <input type="text" placeholder="State" />
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </form>
+                          </div>
+                        </div>
+                        <div class="row" style="margin: 1.2rem 0 ;">
+                          <div class="column column-90 has-text-right" style="margin:0 auto">
+                            <button type="reset" onClick={this.toggleAddConsignment.bind(this)}>Close</button>
+                            <button type="button" onClick={this.openTabForEnrolling.bind(this, 'step2')}>Next</button>
+                          </div>
+                        </div>
+                      </div>
+                    )
+                  }
+                  {
+                    this.state.tabActiveforEnroll === 'step2' && (
+                      <div  id="step2" class="tabcontent">
+                        <div class="row">
+                          <div class="column no-padding">
+                            <table style="margin:5px 0">
+                              <thead>
+                                <tr>
+                                  <th>Description</th>
+                                  <th>No. of Packages</th>
+                                  <th>Weight</th>
+                                  <th>Material Type</th>
+                                </tr>
+                              </thead>
+                              <tbody style="height: auto">
+                                <tr>
+                                  <td>Battery</td>
+                                  <td>1000</td>
+                                  <td>5 tons</td>
+                                  <td>Chemical</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                            <button class="float-right"> <em class="icon icon-plus" onClick={this.toggleAddMaterial.bind(this)} /></button>
+                          </div>
+                        </div>
+                        <div class="row" style="margin: 1.2rem 0 ;">
+                          <div class="column column-90 has-text-right" style="margin:0 auto">
+                            <button type="reset" onClick={this.openTabForEnrolling.bind(this, 'step1')}>Previous</button>
+                            <button type="button" onClick={this.openTabForEnrolling.bind(this, 'step3')}>Next</button>
+                          </div>
+                        </div>
+                      </div>
+                    )
+                  }
+                  {
+                    this.state.tabActiveforEnroll === 'step3' && (
+                      <div  id="step3" class="tabcontent">
+                        <div class="row">
+                          <div class="column">
+                            <form>
+                              <div class="row">
+                                <div class="column column-50 float-left">
+                                  <div class="row">
+                                    <div class="column column-30">Vendor : </div>
+                                    <div class="column column-70">
+                                      <select name="locality">
+                                        <option value='' selected>Select Vendor</option>
+                                        <option value='' >Patil Transports</option>
+                                        <option value='' >SK Transports</option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="column">
+                                  <div class="row">
+                                    <div class="column column-30">From : </div>
+                                    <div class="column column-70">
+                                      <select name="locality">
+                                        <option value='' selected>Select Source</option>
+                                        <option value='' >Pune</option>
+                                        <option value='' >Goa</option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="column">
+                                  <div class="row">
+                                    <div class="column column-30">To : </div>
+                                    <div class="column column-70">
+                                      <select name="locality">
+                                        <option value='' selected>Select Destination</option>
+                                        <option value='' >Chennai</option>
+                                        <option value='' >Goa</option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="column column-50 float-left">
+                                  <div class="row">
+                                    <div class="column column-30">Vehicle Type : </div>
+                                    <div class="column column-70">
+                                      <select name="locality">
+                                        <option value='' selected>Select Vehicle Type</option>
+                                        <option value='' >TATA 407</option>
+                                        <option value='' >TATA Ace</option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="column">
+                                  <div class="row">
+                                    <div class="column column-30">Vehicle Load : </div>
+                                    <div class="column column-70 has-text-left">
+                                      <strong>5 Tons</strong>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="column">
+                                  <div class="row">
+                                    <div class="column column-30">Rate : </div>
+                                    <div class="column column-70 has-text-left">
+                                      <strong>Rs. 10,000 / ton <span style="font-weight:bold;color:#ff0000">( ! Old Rates )</span></strong>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </form>
+                          </div>
+                        </div>
+                        <div class="row" style="margin: 1.2rem 0 ;">
+                          <div class="column column-90 has-text-right" style="margin:0 auto">
+                            <button type="reset" onClick={this.toggleAddConsignment.bind(this, 'step2')}>Previous</button>
+                            <button type="button" onClick={this.openTabForEnrolling.bind(this, 'step4')}>Next</button>
+                          </div>
+                        </div>
+                      </div>
+                    )
+                  }
+                  {
+                    this.state.tabActiveforEnroll === 'step4' && (
+                      <div  id="step4" class="tabcontent">
+                        <div class="row">
+                          <div class="column no-padding">
+                            LR Information
+                          </div>
+                        </div>
+                        <div class="row" style="margin: 1.2rem 0 ;">
+                          <div class="column column-90 has-text-right" style="margin:0 auto">
+                            <button type="reset" onClick={this.openTabForEnrolling.bind(this, 'step3')}>Previous</button>
+                            <button type="button" onClick={this.toggleAddConsignment.bind(this)}>Add</button>
+                          </div>
+                        </div>
+                      </div>
+                    )
+                  }
+                </div>
+              </div>
+            </ModalBody>
+          </Modal>
+        }
+        {
+          this.state.isAddMaterialModalOpen &&
+          <Modal title="Add Material" modalSize="is-large" onClose={this.toggleAddMaterial.bind(this)}>
+            <ModalBody>
+              <div class="row">
+                <div class="column no-padding">
+                  <form>
+                    <div class="row">
+                      <div class="column column-50">
+                        <label>Description</label>
+                        <input type="text" placeholder="Enter Name" name="name" value={name} onInput={LinkState(this, 'name')} required="required"/>
+                      </div>
+                      <div class="column column-50">
+                        <label>No. of Packages</label>
+                        <input type="text" placeholder="Enter Display Name" name="displayName" value={displayName}
+                          onInput={LinkState(this, 'displayName')} required="required"/>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="column column-50">
+                        <label>Weight</label>
+                        <input type="text" placeholder="Enter Name" name="name" value={name} onInput={LinkState(this, 'name')} required="required"/>
+                      </div>
+                      <div class="column column-50">
+                        <label>Type</label>
+                        <input type="text" placeholder="Enter Display Name" name="displayName" value={displayName}
+                          onInput={LinkState(this, 'displayName')} required="required"/>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </ModalBody>
+            <ModalFooter>
+              <button type="button" onClick={this.toggleAddMaterial.bind(this)}>Close</button>
+              <button type="button" onClick={this.toggleAddMaterial.bind(this)}>Add</button>
             </ModalFooter>
           </Modal>
         }
