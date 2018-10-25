@@ -6,6 +6,7 @@ import { Modal, ModalBody, ModalFooter } from '../../components/modal';
 // import http from 'fetch-bb';
 // import { Toast } from '../../lib/toastr';
 import { Link } from 'preact-router';
+import SideBar1 from '../../components/sideBar1';
 
 export default class ConsignmentDetails extends Component {
   componentWillMount() {
@@ -32,7 +33,7 @@ export default class ConsignmentDetails extends Component {
       document.getElementById("main-body").classList.remove('margin-left-266');
       document.getElementById("main-body").classList.add('margin-left-76');
     }
-    this.opentab();
+    // this.opentab();
   }
 
   toggleLRView() {
@@ -59,6 +60,7 @@ export default class ConsignmentDetails extends Component {
   render({}) {
     return (
       <div>
+      <SideBar1 activeMenu={'/consignments'}/>
         <div id="main-body" class=" main outer-most-div margin-left-76">
           <section class="row" style="margin-bottom:5px">
             <div class="column">

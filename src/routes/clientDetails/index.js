@@ -6,6 +6,7 @@ import { Modal, ModalBody, ModalFooter } from '../../components/modal';
 // import http from 'fetch-bb';
 // import { Toast } from '../../lib/toastr';
 import { Link } from 'preact-router';
+import SideBar1 from '../../components/sideBar1';
 
 export default class ClientDetails extends Component {
   componentWillMount() {
@@ -39,8 +40,9 @@ export default class ClientDetails extends Component {
   render({}) {
     return (
       <div>
+      <SideBar1 activeMenu={'/clients'}/>
         <div id="main-body" class=" main outer-most-div margin-left-76">
-          <section class="row" style="margin-bottom:5px">
+          <section class="row" style="margin-bottom:7px">
             <div class="column">
               <ul class="breadcrumbs">
                 <li><a href="/home">Home</a></li>

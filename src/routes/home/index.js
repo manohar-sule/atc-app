@@ -1,5 +1,5 @@
 import { h, Component } from 'preact';
-// import SideBar1 from '../../components/sideBar';
+import SideBar1 from '../../components/sideBar1';
 
 export default class Home extends Component {
 
@@ -9,8 +9,9 @@ export default class Home extends Component {
   render() {
     return (
       <div>
-        <div id="main-body" class=" main outer-most-div margin-left-76">
-          <section class="row" style="margin-bottom:5px">
+      <SideBar1 activeMenu={'/home'}/>
+        <div id="main-body" class=" main outer-most-div margin-left-76" >
+          <section class="row" style="margin-bottom:7px">
             <div class="column">
               <ul class="breadcrumbs">
                 <li class="active">Home</li>

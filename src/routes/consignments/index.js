@@ -8,6 +8,7 @@ import { startLoader, stopLoader } from '../../lib/utils';
 import Pagination from '../../components/pagination';
 import { Link, route } from 'preact-router';
 // import Breadcrumbs from '../../components/breadcrumbs';
+import SideBar1 from '../../components/sideBar1';
 
 export default class Consignments extends Component {
 
@@ -198,8 +199,6 @@ export default class Consignments extends Component {
   }
 
   componentDidMount() {
-    // this.getClientCount();
-    this.getClientList();
     if ( document.getElementById("gn-menu-nav").classList.contains('gn-open-all') ) {
       document.getElementById("main-body").classList.remove('margin-left-76');
       document.getElementById("main-body").classList.add('margin-left-266');
@@ -207,6 +206,8 @@ export default class Consignments extends Component {
       document.getElementById("main-body").classList.remove('margin-left-266');
       document.getElementById("main-body").classList.add('margin-left-76');
     }
+    // this.getClientCount();
+    this.getClientList();
   }
 
   toggleConsignmentDetails() {
@@ -240,6 +241,7 @@ export default class Consignments extends Component {
   render({}, { isClientAddModal, isButtonLocked, modalTitle, name, displayName, address }) {
     return (
       <div>
+      <SideBar1 activeMenu={'/consignments'}/>
         <div id="main-body" class=" main outer-most-div margin-left-76">
           <section class="row" style="margin-bottom:5px">
             <div class="column">

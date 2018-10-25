@@ -7,7 +7,7 @@ import LinkState from 'linkstate';
 import { startLoader, stopLoader } from '../../lib/utils';
 import Pagination from '../../components/pagination';
 import { route } from 'preact-router';
-// import SideBar from '../../components/sideBar';
+import SideBar1 from '../../components/sideBar1';
 
 export default class Roles extends Component {
 
@@ -250,6 +250,7 @@ export default class Roles extends Component {
     const columns = ['Name', 'Display Name', 'Branch', 'Action'];
     return (
       <div>
+      <SideBar1 activeMenu={'/roles'} />
         <div id="main-body" class=" main outer-most-div margin-left-76">
           <section class="row" style="margin-bottom:5px">
             <div class="column">
