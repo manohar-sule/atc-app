@@ -8,6 +8,7 @@ import { startLoader, stopLoader } from '../../lib/utils';
 import Pagination from '../../components/pagination';
 import { Link, route } from 'preact-router';
 // import Breadcrumbs from '../../components/breadcrumbs';
+// import SideBar1 from '../../components/sideBar1';
 
 export default class Consignments extends Component {
 
@@ -199,8 +200,6 @@ export default class Consignments extends Component {
   }
 
   componentDidMount() {
-    // this.getClientCount();
-    this.getClientList();
     if ( document.getElementById("gn-menu-nav").classList.contains('gn-open-all') ) {
       document.getElementById("main-body").classList.remove('margin-left-76');
       document.getElementById("main-body").classList.add('margin-left-266');
@@ -209,6 +208,8 @@ export default class Consignments extends Component {
       document.getElementById("main-body").classList.add('margin-left-76');
     }
     this.openTab();
+    // this.getClientCount();
+    this.getClientList();
   }
 
   toggleConsignmentDetails() {
@@ -255,6 +256,7 @@ export default class Consignments extends Component {
   render({}, { isClientAddModal, isButtonLocked, modalTitle, name, displayName, address }) {
     return (
       <div>
+        {/*<SideBar1 activeMenu={'/consignments'}/>*/}
         <div id="main-body" class=" main outer-most-div margin-left-76">
           <section class="row" style="margin-bottom:5px">
             <div class="column">
@@ -544,7 +546,7 @@ export default class Consignments extends Component {
                           <div class="column has-text-right" style="margin:0 auto">
                             <form>
                               <div class="row">
-                                <div class="column column-50 float-left">
+                                <div class="column">
                                   <div class="row">
                                     <div class="column column-30">Client : </div>
                                     <div class="column column-70">
@@ -552,6 +554,18 @@ export default class Consignments extends Component {
                                         <option value='' selected>Select Client</option>
                                         <option value='' >Nissin Noodles</option>
                                         <option value='' >MRF Tyres</option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="column">
+                                  <div class="row">
+                                    <div class="column column-30">Client Contact : </div>
+                                    <div class="column column-70">
+                                      <select name="locality">
+                                        <option value='' selected>Select Contact</option>
+                                        <option value='' >Pallavi Kelgaonkar</option>
+                                        <option value='' >Rutuja Dahatonde</option>
                                       </select>
                                     </div>
                                   </div>

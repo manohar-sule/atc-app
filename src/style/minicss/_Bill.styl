@@ -1,0 +1,56 @@
+.invoice-bills {
+  @media abstract {
+    .billInvoice {
+      border: 0px !important;
+      page-break-after: avoid;
+    }
+  }
+
+  table,
+  th,
+  td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+  }
+
+  td {
+    padding: 0 5px;
+  }
+
+  .item-table td {
+    border: none;
+    border-right: 1px solid;
+    height: 30px;
+  }
+
+  .item-table .item-body tr:last-child {
+    height: 318px;
+    vertical-align: top !important;
+    border-bottom: 1px solid;
+  }
+
+  .heading {
+    text-align: center;
+  }
+
+  .container {
+    border: 2px solid;
+    height: 700px;
+  }
+
+  .companyInfo {
+    border-bottom: 2px solid;
+    border-right: 2px solid;
+    width: 40%;
+    height: 100px;
+    display: inline-block;
+  }
+
+  .clientInfo {
+    border-bottom: 2px solid;
+    width: 60%;
+    height: 100px;
+    display: inline-block;
+  }
+}

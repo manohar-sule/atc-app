@@ -1,7 +1,7 @@
 /* Icomoon.com */
 
-.gn-menu-main,
-.gn-menu-main ul {
+.gn-menu-main1,
+.gn-menu-main1 ul {
 		margin: 0;
 		padding: 0;
 		background: white;
@@ -13,17 +13,18 @@
 		line-height: 50px;
 }
 
-.gn-menu-main {
+.gn-menu-main1 {
 		position: fixed;
 		top: 0;
-		left: 0;
-		width: 100%;
+		left: 60px;
+		//width: 100%;
+		width: 94.6%;
 		height: 50px;
 		font-size: 13px;
     border-bottom: 0.5px solid #e2e2e2;
 }
 
-.gn-menu-main a {
+.gn-menu-main1 a {
 		display: block;
 		height: 100%;
 		color: #ad0b0b;
@@ -31,14 +32,14 @@
 		cursor: pointer;
 }
 
-.no-touch .gn-menu-main a:hover,
+.no-touch .gn-menu-main1 a:hover,
 .no-touch .gn-menu li.gn-search-item:hover,
 .no-touch .gn-menu li.gn-search-item:hover a {
 		background: #5f6f81;
 		color: white;
 }
 
-.gn-menu-main > li {
+.gn-menu-main1 > li {
 		display: block;
 		float: left;
 		height: 100%;
@@ -64,7 +65,7 @@
 
 /* icon-only trigger (menu item) */
 
-.gn-menu-main li.gn-trigger {
+.gn-menu-main1 li.gn-trigger {
 		position: relative;
 		width: 60px;
 		-webkit-touch-callout: none;
@@ -75,20 +76,20 @@
 		user-select: none;
 }
 
-.gn-menu-main > li:last-child {
+.gn-menu-main1 > li:last-child {
 		float: left;
 		border-left: none;
 		border-right: 1px solid #c6d0da;
 }
 
-.gn-menu-main > li > a {
+.gn-menu-main1 > li > a {
 		padding: 0 30px;
 		text-transform: uppercase;
 		letter-spacing: 1px;
 		font-weight: bold;
 }
 
-.gn-menu-main:after {
+.gn-menu-main1:after {
 		display: table;
 		clear: both;
 		content: "";
@@ -206,7 +207,7 @@ input.gn-search:focus {
 		color: white
 }
 
-.gn-menu-main a.gn-icon-search {
+.gn-menu-main1 a.gn-icon-search {
 		position: absolute;
 		top: 0;
 		left: 0;
@@ -317,6 +318,15 @@ input.gn-search:focus {
 
 .gn-menu-wrapper.gn-open-all .gn-submenu li {
 		height: 40px
+}
+
+.gn-menu-li-active {
+	border-left: 3px solid #ad0b0b;
+	transition: border-left .5s;
+}
+
+.gn-menu li {
+	margin-bottom: 0px !important;
 }
 
 @media screen and (max-width: 422px) {

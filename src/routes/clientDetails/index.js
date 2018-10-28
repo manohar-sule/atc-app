@@ -6,10 +6,11 @@ import { Modal, ModalBody, ModalFooter } from '../../components/modal';
 // import http from 'fetch-bb';
 // import { Toast } from '../../lib/toastr';
 import { Link } from 'preact-router';
+// import SideBar1 from '../../components/sideBar1';
 
 export default class ClientDetails extends Component {
   componentWillMount() {
-    this.state ={
+    this.state = {
       tabActiveforEnroll:'',
       pincodeDetails: {},
       isCreateDispatchModalOpen: false,
@@ -64,8 +65,9 @@ export default class ClientDetails extends Component {
   render({}) {
     return (
       <div>
+        {/*<SideBar1 activeMenu={'/clients'}/>*/}
         <div id="main-body" class=" main outer-most-div margin-left-76">
-          <section class="row" style="margin-bottom:5px">
+          <section class="row" style="margin-bottom:7px">
             <div class="column">
               <ul class="breadcrumbs">
                 <li><a href="/home">Home</a></li>
@@ -454,6 +456,92 @@ export default class ClientDetails extends Component {
                     <label style="width:100%;">
                       <em class="icon icon-paper-plane-o is-small" /> Bills
                     </label>
+                  </div>
+                </div>
+                <div class="row invoice-bills" style="height:400px;overflow-y:auto">
+                  <div class="column no-padding">
+                    <div class="table-responsive container">
+                      <table style="width: 100%;">
+                        <tbody>
+                          <tr>
+                            <td style="width: 24%; border: none;"><img src="https://www.sparksuite.com/images/logo.png" style="width:80%; max-width:200px; height: 90px;" /></td>
+                            <td style="width: 22%; vertical-align: top; font-size: 18px; border: none;">AIR <br/> TRANSPORT <br/> CORPORATION <br/> (ASSAM Pvt. Ltd.,)</td>
+                            <td rowspan="2" style="border-bottom: 2px solid; border-left: 2px solid; vertical-align: top; padding: 20px;">
+                              <strong>MAA AMBAY VINCOM PVT LTD</strong>
+                              <br/> Infinity Square,
+                              <br/>2nd floor,
+                              <br/>Sllinguri-724001
+                            </td>
+                          </tr>
+                          <tr>
+                            <td colspan="2" style="border: none; border-bottom: 2px solid;font-size: 16px; padding: 5px;">1-D Laxmi Bhavan, No.609, Anna Salai, Chennai-60006,<br/> Phone: 28295006, Mail: chennai@atcindia.com</td>
+                          </tr>
+                          <tr style="height: 35px;">
+                            <td style="border: none;">
+                              Bill No.: 11424
+                            </td>
+                            <td style="border: none;">
+                              Bill Date: 03-10-2018
+                            </td>
+                            <td style="border: none;">
+                              From: MAHARASHTRA
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <div style="">
+                        <table class="item-table" style="width: 100%;">
+                          <thead>
+                            <th>CN NO.</th>
+                            <th>DATE</th>
+                            <th>TO</th>
+                            <th>PKG</th>
+                            <th>WT</th>
+                            <th>RATE</th>
+                            <th>CHARGES TYPE</th>
+                            <th>AMOUNT <br/> In Rs.</th>
+                          </thead>
+                          <tbody class="item-body">
+                            <tr>
+                              <td>54545</td>
+                              <td>31-05-2018</td>
+                              <td>PUNE</td>
+                              <td>16</td>
+                              <td>40-FT</td>
+                              <td />
+                              <td>ADVANCED RECEIVED</td>
+                              <td>12454568</td>
+                            </tr>
+                            <tr>
+                              <td>54545</td>
+                              <td>31-05-2018</td>
+                              <td>PUNE</td>
+                              <td>16</td>
+                              <td>40-FT</td>
+                              <td />
+                              <td>ADVANCED RECEIVED</td>
+                              <td>12454568</td>
+                            </tr>
+                          </tbody>
+                          <tbody>
+                            <tr style="border-bottom: 1px solid;">
+                              <td colspan="8" style="font-size:17px; padding:5px; height: 40px;">
+                                <span>Rupees Thirty Thousand Five Hundred Only</span>
+                                <span style="float:right">30500</span>
+                              </td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid;">
+                              <td colspan="5" style="font-size:17px; padding:5px; height: 100px; vertical-align: top;">
+                                <span>For <strong>Air Transport Corporation (Assam) Pvt.Ltd.</strong></span>
+                              </td>
+                              <td colspan="5" style="text-align:center;">
+                                <strong>PAN : DFFGJ454D</strong>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>

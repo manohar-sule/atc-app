@@ -6,6 +6,7 @@ import { Modal, ModalBody, ModalFooter } from '../../components/modal';
 // import http from 'fetch-bb';
 // import { Toast } from '../../lib/toastr';
 import { Link } from 'preact-router';
+// import SideBar1 from '../../components/sideBar1';
 
 export default class ConsignmentDetails extends Component {
   componentWillMount() {
@@ -33,7 +34,7 @@ export default class ConsignmentDetails extends Component {
       document.getElementById("main-body").classList.remove('margin-left-266');
       document.getElementById("main-body").classList.add('margin-left-76');
     }
-    this.opentab();
+    // this.opentab();
   }
 
   toggleLRView() {
@@ -64,6 +65,7 @@ export default class ConsignmentDetails extends Component {
   render({}) {
     return (
       <div>
+        {/*<SideBar1 activeMenu={'/consignments'}/>*/}
         <div id="main-body" class=" main outer-most-div margin-left-76">
           <section class="row" style="margin-bottom:5px">
             <div class="column">
@@ -160,12 +162,18 @@ export default class ConsignmentDetails extends Component {
               </div>
             </div>
             <div class="row">
-              <div  id="LR" class="tabcontent" style="padding:10px">
+              <div id="LR" class="tabcontent" style="padding:10px">
                 <div class="row">
                   <div class="column no-padding">
                     <label style="width:100%;">
                       <em class="icon icon-paper-plane-o is-small" /> LR
                     </label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="column no-padding has-text-right">
+                    <label>LR No.: 0001104</label>
+                    <label>Date: 28-10-2018</label>
                   </div>
                 </div>
               </div>

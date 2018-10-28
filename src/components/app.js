@@ -35,7 +35,9 @@ import ConsignmentDetails from '../routes/consignmentDetails';
 import Rates from '../routes/rates';
 
 export default class App extends Component {
-  componentDidMount() {}
+  componentDidMount() {
+
+  }
   checkAdminConditions(path) {
     return path !== '/admin/forgotpassword' && path !== '/admin/resetpassword' && path !== '/admin/verify' && path !== '/admin/setpassword' && path !== '/'
       && path !== '/admin/login';
@@ -56,7 +58,7 @@ export default class App extends Component {
           }
         }
       </Match>
-      <div class="outer-most-div" style="transition: margin-left .5s;">
+      <div style="transition: margin-left .5s;">
         <Router>
           <NotFound path ='/notFound' type="404" default/>
           <Login path="/"/>

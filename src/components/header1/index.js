@@ -8,55 +8,9 @@ import { route } from 'preact-router';
 
 export default class Header1 extends Component {
 
-  openNav() {
-    let sideNavDiv = Array.prototype.slice.call(document.querySelectorAll('.gn-menu-main'), 0);
-    if (sideNavDiv.length > 0) {
-      document.getElementById("gn-menu-a").classList.toggle('gn-selected');
-      document.getElementById("gn-menu-nav").classList.toggle('gn-open-all');
-    }
-    if ( document.getElementById("gn-menu-nav").classList.contains('gn-open-all') ) {
-      let contentDiv = Array.prototype.slice.call(document.querySelectorAll('.outer-most-div'), 0);
-      if (contentDiv.length > 0) {
-        let $target = document.getElementById('main-body');
-        $target.classList.remove('margin-left-76');
-        $target.classList.add('margin-left-266');
-      }
-    } else {
-      document.getElementById("main-body").classList.remove('margin-left-266');
-      document.getElementById("main-body").classList.add('margin-left-76');
-    }
 
-
-    // let contentDiv = Array.prototype.slice.call(document.querySelectorAll('.outer-most-div'), 0);
-    // if (contentDiv.length > 0) {
-    //   let $target = document.getElementById('main-body');
-    //   $target.classList.toggle('margin-left-200');
-    // }
-  }
 
   componentDidMount() {
-    return http.get(`${CONSTANTS.API_URL}/api/user/me`)
-      .then((userinfo) => {
-        AppStore.set('userinfo', userinfo);
-        this.setState({
-          brand: userinfo.company.brand,
-          username: userinfo.name,
-          userDisplayName: userinfo.displayName,
-          email: userinfo.email,
-          isClientAdmin: userinfo.isClientAdmin,
-          shortName: userinfo.company.shortName,
-          companyName: userinfo.company.name,
-          isConsumerVerificationStage: userinfo.company.isConsumerVerificationStage
-        });
-        if (userinfo.department && userinfo.department.length) {
-          this.setState({
-            departmentName: userinfo.department[0].name
-          });
-        }
-      })
-      .catch((HTTPException) => {
-        console.error(HTTPException);
-      });
   }
 
   toggleMenu() {
@@ -94,10 +48,40 @@ export default class Header1 extends Component {
     };
   }
 
+  openNav() {
+    let sideNavDiv = Array.prototype.slice.call(document.querySelectorAll('.gn-menu-main'), 0);
+    if (sideNavDiv.length > 0) {
+      document.getElementById("gn-menu-a").classList.toggle('gn-selected');
+      document.getElementById("gn-menu-nav").classList.toggle('gn-open-all');
+    }
+    if ( document.getElementById("gn-menu-nav").classList.contains('gn-open-all') ) {
+      console.log('in if gn-open-all');
+      let contentDiv = Array.prototype.slice.call(document.querySelectorAll('.outer-most-div'), 0);
+      if (contentDiv.length > 0) {
+        console.log('in if contentDiv');
+        let $target = document.getElementById('main-body');
+        $target.classList.remove('margin-left-76');
+        $target.classList.add('margin-left-266');
+      }
+    } else {
+      console.log('in else');
+      document.getElementById("main-body").classList.remove('margin-left-266');
+      document.getElementById("main-body").classList.add('margin-left-76');
+    }
+
+
+    // let contentDiv = Array.prototype.slice.call(document.querySelectorAll('.outer-most-div'), 0);
+    // if (contentDiv.length > 0) {
+    //   let $target = document.getElementById('main-body');
+    //   $target.classList.toggle('margin-left-200');
+    // }
+  }
+
+
   render() {
     return (
       <div class="container">
-        <ul id="gn-menu" class="gn-menu-main gn-selected">
+        <ul id="gn-menu" class="gn-menu-main gn-selected" style="width:100%">
           <li class="gn-trigger">
             <a id="gn-menu-a" class="gn-icon gn-icon-menu" onclick={this.openNav.bind(this)}><span>Menu</span></a>
             <nav id="gn-menu-nav" class="gn-menu-wrapper gn-open-part">
@@ -119,6 +103,7 @@ export default class Header1 extends Component {
                       <li><a href="/branches" class="gn-icon gn-icon-article">Branch</a></li>
                       <li><a href="/users" class="gn-icon icon icon-user">User</a></li>
                       <li><a href="/roles" class="gn-icon gn-icon-videos">Role</a></li>
+                      <li><a href="/roles" class="gn-icon gn-icon-videos">Admins</a></li>
                     </ul>
                   </li>
                   <li>
@@ -138,6 +123,38 @@ export default class Header1 extends Component {
             //  <img src="./assets/static/atc.jpg" alt="IMG" style="width: 168px; height: 50px;"/>
             // </a></li>
           }
+          {/*
+      <div>
+        <ul class="gn-menu-main1">
+        {
+
+          // <li class="gn-trigger">
+          //   <a id="gn-menu-a" class="gn-icon gn-icon-menu" onclick={this.openNav.bind(this)}><span>Menu</span></a>
+          //   <nav id="gn-menu-nav" class="gn-menu-wrapper gn-open-part">
+          //     <div class="gn-scroller">
+          //       <ul class="gn-menu">
+          //         <li>
+          //           <a class="gn-icon icon icon-home" href="/home">Home</a>
+          //         </li>
+          //         <li>
+          //           <a class="gn-icon icon-paper-plane-o" href="/consignments">Consignments</a>
+          //         </li>
+          //         <li><a href="/clients" class="gn-icon icon icon-user">Clients</a></li>
+          //         <li><a href="/vendors" class="gn-icon icon icon-user">Vendors</a></li>
+          //         <li><a class="gn-icon gn-icon-help">Help</a></li>
+          //         <li>
+          //           <a class="gn-icon gn-icon-archive">Organization</a>
+          //           <ul class="gn-submenu">
+          //             <li><a href="/branches" class="gn-icon gn-icon-article">Branch</a></li>
+          //             <li><a href="/users" class="gn-icon icon icon-user">User</a></li>
+          //             <li><a href="/roles" class="gn-icon gn-icon-videos">Role</a></li>
+          //           </ul>
+          //         </li>
+          //       </ul>
+          //     </div>
+          //   </nav>
+          // </li>
+        */}
           <li style="float:right; border-left: 1px solid #c6d0da;">
             <a class="codrops-icon codrops-icon-prev" href="/home" style="padding:6px 15px">
               <img src="assets/static/atc.jpg" style="width:100px" />
