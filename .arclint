@@ -40,7 +40,7 @@
     },
     "text": {
       "type": "text",
-      "text.max-line-length": 160
+      "text.max-line-length": 180
     }
   }
 }

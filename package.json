@@ -1,25 +1,76 @@
 {
   "name": "atc-app",
   "version": "1.0.0",
+  "scripts": {
+    "start": "if-env NODE_ENV=production && npm run -s serve || npm run -s dev",
+    "build": "npm install && preact build --no-prerender",
+    "serve": "preact build --no-prerender && preact serve",
+    "dev": "preact watch",
+    "lint": "eslint src",
+    "test": "jest ./tests"
+  },
+  "eslintConfig": {
+    "extends": "eslint-config-synacor",
+    "rules": {
+      "indent": [
+        "2",
+        "tab",
+        {
+          "SwitchCase": "1"
+        }
+      ]
+    }
+  },
+  "eslintIgnore": [
+    "build/*"
+  ],
   "devDependencies": {
-    "rollup": "^0.53.3",
-    "rollup-plugin-buble": "^0.18.0",
-    "rollup-plugin-butternut": "^0.1.0",
-    "rollup-plugin-node-resolve": "^3.0.0",
-    "rollup-plugin-replace": "^2.0.0",
-    "stylus": "^0.54.5"
+    "butternut-webpack-plugin": "^0.1.0",
+    "eslint": "^4.15.0",
+    "eslint-config-synacor": "^2.0.2",
+    "identity-obj-proxy": "^3.0.0",
+    "if-env": "^1.0.0",
+    "jest": "^21.2.1",
+    "preact-cli": "^2.1.0",
+    "preact-render-spy": "^1.2.1",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.1",
+    "eslint-plugin-react": "^7.5.1"
   },
   "dependencies": {
-    "eslint": "^4.19.1",
-    "eslint-plugin-react": "^7.5.1",
     "fetch-bb": "^3.0.0",
-    "light-server": "^2.5.1",
     "linkstate": "^1.1.0",
     "preact": "^8.2.7",
-    "preact-router": "git+https://github.com/exp10r3r/preact-router.git"
+    "preact-compat": "^3.17.0",
+    "preact-router": "^2.5.7"
   },
-  "scripts": {
-    "build": "rollup -c && stylus -c src/style/index.styl -o public/styles.css",
-    "start": "npm run build && light-server -c .lightserverrc"
-  }
+  "jest": {
+    "verbose": true,
+    "setupFiles": [
+      "<rootDir>/src/tests/__mocks__/browserMocks.js"
+    ],
+    "testURL": "http://localhost:8080",
+    "moduleFileExtensions": [
+      "js",
+      "jsx"
+    ],
+    "moduleDirectories": [
+      "node_modules"
+    ],
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/src/tests/__mocks__/fileMock.js",
+      "\\.(css|less|scss)$": "identity-obj-proxy",
+      "^./style$": "identity-obj-proxy",
+      "^preact$": "<rootDir>/node_modules/preact/dist/preact.min.js",
+      "^react$": "preact-compat",
+      "^react-dom$": "preact-compat",
+      "^create-react-class$": "preact-compat/lib/create-react-class",
+      "^react-addons-css-transition-group$": "preact-css-transition-group"
+    }
+  },
+  "browserslist": [
+    "firefox 58",
+    "chrome 63"
+  ],
+  "author": "sahil <sahil.kulkarni95@gmail.com>"
 }

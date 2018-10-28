@@ -19,7 +19,7 @@ Things to do in order to begin contributing to this project:
 2. Make sure `npm` is installed in your system.
 3. Take a checkout and enter the directory
 4. Run `npm i`. This will install all the dependencies for this project from the public npm repository.
-5. Run `npm i -g eslint` and `npm i -g light-server`. This will install linter and light-server globally.
+5. Run `npm i -g eslint`. This will install linter globally.
 5. Run `npm start` to run your development server.
 
 All the best. Also remember,

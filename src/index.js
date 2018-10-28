@@ -1,8 +1,8 @@
-import { h, render } from 'preact';
 import { route } from 'preact-router';
 import App from './components/app';
 import { AppStore } from './lib/store';
 import http from 'fetch-bb';
+import 'style/index.styl';
 
 const HTTP_UNAUTHORIZED_CODE = 401;
 
@@ -26,5 +26,4 @@ http.requestInterceptor = (httpConfig) => {
   return Promise.resolve();
 };
 
-const root = document.getElementById('app');
-render(<App />, root, root.lastChild);
+export default App;
