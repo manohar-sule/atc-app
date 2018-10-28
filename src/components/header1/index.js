@@ -111,6 +111,7 @@ export default class Header1 extends Component {
                   </li>
                   <li><a href="/clients" class="gn-icon icon icon-user">Clients</a></li>
                   <li><a href="/vendors" class="gn-icon icon icon-user">Vendors</a></li>
+                  <li><a href="/rates" class="gn-icon icon icon-user">Rates</a></li>
                   <li><a class="gn-icon gn-icon-help">Help</a></li>
                   <li>
                     <a class="gn-icon gn-icon-archive">Organization</a>
@@ -118,6 +119,13 @@ export default class Header1 extends Component {
                       <li><a href="/branches" class="gn-icon gn-icon-article">Branch</a></li>
                       <li><a href="/users" class="gn-icon icon icon-user">User</a></li>
                       <li><a href="/roles" class="gn-icon gn-icon-videos">Role</a></li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a class="gn-icon gn-icon-archive">Attachments</a>
+                    <ul class="gn-submenu">
+                      <li><a class="gn-icon gn-icon-article">Bill</a></li>
+                      <li><a class="gn-icon icon icon-user">POD</a></li>
                     </ul>
                   </li>
                 </ul>

@@ -464,7 +464,6 @@ export default class Branches extends Component {
                       <input type="text" placeholder="Enter Display Name" name="displayName" maxlength="15" minlength="2"
                         value={displayName} onInput={LinkState(this, 'displayName')} required/>
                     </div>
-
                   </div>
                   <div class="row">
                     <div class="column">
@@ -475,18 +474,24 @@ export default class Branches extends Component {
                       <label>Address Line 2</label>
                       <input type="text" placeholder="Line 2" name="line2" value={address.line2} onInput={LinkState(this, 'address.line2')} required/>
                     </div>
-                    </div>
+                  </div>
 
                   <div class="row">
+                    <div class="column">
+                      <label>Pincode</label>
+                      <input type="text" placeholder="pincode" name="pincode" value={address.pincode} onInput={LinkState(this, 'address.pincode')} required/>
+                    </div>
                     <div class="column">
                       <label>City</label>
                       <input type="text" placeholder="City" name="city" value={address.city} onInput={LinkState(this, 'address.city')} required/>
                     </div>
-                    <div class="column">
+                  </div>
+                  <div class="row">
+                    <div class="column column-50 float-left">
                       <label>State</label>
                       <input type="text" placeholder="State" name="state" value={address.state} onInput={LinkState(this, 'address.state')} required/>
                     </div>
-                    </div>
+                  </div>
                 </ModalBody>
                 <ModalFooter>
                   <button type="reset" class="button-clear" onClick={this.toggleAddBranch.bind(this)}>Cancel</button>

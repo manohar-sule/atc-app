@@ -14,7 +14,10 @@ export default class ClientDetails extends Component {
       pincodeDetails: {},
       isCreateDispatchModalOpen: false,
       isConsignmentDetailsModalOpen: false,
-      isLRViewModalOpen: false
+      isLRViewModalOpen: false,
+      tabActive: 'Consignments',
+      isAddContactModalOpen: false,
+      isAddQuotationModalOpen: false
     };
 
   }
@@ -30,10 +33,32 @@ export default class ClientDetails extends Component {
       document.getElementById("main-body").classList.remove('margin-left-266');
       document.getElementById("main-body").classList.add('margin-left-76');
     }
+    this.openTab();
   }
 
   toggleLRView() {
     this.setState({isLRViewModalOpen: !this.state.isLRViewModalOpen});
+  }
+
+  openTab(tabName) {
+    console.log(tabName);
+    let i, x;
+    x = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < x.length; i++) {
+      x[i].style.display = "none";
+    }
+    // console.log(document);
+    document.getElementById(tabName).style.display = "block";
+
+    this.setState({ tabActive: tabName });
+  }
+
+  toggleAddContact() {
+    this.setState({isAddContactModalOpen: !this.state.isAddContactModalOpen});
+  }
+
+  toggleAddQuotation() {
+    this.setState({isAddQuotationModalOpen: !this.state.isAddQuotationModalOpen});
   }
 
   render({}) {
@@ -130,7 +155,7 @@ export default class ClientDetails extends Component {
               <section class="box" style="padding:0!important">
                 <div class="row details-heading">
                   <div class="column no-padding">
-                    <label style="width:100%;">Taxation Information</label>
+                    <label style="width:100%;">Billing Information</label>
                   </div>
                 </div>
                 <div class="row details-info">
@@ -161,91 +186,280 @@ export default class ClientDetails extends Component {
             </div>
 
           </div>
-          <section class="box">
+          <section class="box no-padding">
             <div class="row">
               <div class="column no-padding">
-                <label style="width:100%;">
-                  <em class="icon icon-paper-plane-o is-small" /> Consignments
-                </label>
-              </div>
-              <div class="column no-padding has-text-right">
-                <Link class="button button-margin-left" href="">
-                  <em class="icon icon-plus is-small" /> Add Consignment</Link>
+                <div class="tabs" style="margin-bottom:0">
+                  <ul>
+                    <li id="Tab1" className={this.state.tabActive === 'Consignments' ? 'is-active': ''}>
+                      <a onClick={this.openTab.bind(this, 'Consignments')}>Consignments </a>
+                    </li>
+                    <li id="Tab2" className={this.state.tabActive === 'Contacts' ? 'is-active': ''}>
+                      <a onClick={this.openTab.bind(this, 'Contacts')}>Contacts</a>
+                    </li>
+                    <li id="Tab3" className={this.state.tabActive === 'Quotations' ? 'is-active': ''}>
+                      <a onClick={this.openTab.bind(this, 'Quotations')}>Quotations</a>
+                    </li>
+                    <li id="Tab4" className={this.state.tabActive === 'Bills' ? 'is-active': ''}>
+                      <a onClick={this.openTab.bind(this, 'Bills')}>Bills</a>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
-
             <div class="row">
-              <div class="column no-padding">
-                <div class="table-responsive">
-                  <table>
-                    <thead>
-                      <tr>
-                        <th>Consignment Number</th>
-                        <th>Booking Date</th>
-                        <th>LR Number</th>
-                        <th>Client Name</th>
-                        <th>Special Number</th>
-                        <th>Current Location</th>
-                        <th>Action</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>123456</td>
-                        <td>10/10/2018</td>
-                        <td><Link href="#" onClick={this.toggleLRView.bind(this)}>001234</Link></td>
-                        <td>Nissin Noodles</td>
-                        <td>S1234</td>
-                        <td>Banglore</td>
-                        <td>
-                          <button class="button-margin-left ">
-                            <em class="icon icon-edit-modify-streamline is-small" /> Edit
-                          </button>
-                          <button class="button-margin-left ">
-                            <Link href="#" onClick={this.toggleConsignmentDetails.bind(this)}>Track</Link>
-                          </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>123456</td>
-                        <td>10/10/2018</td>
-                        <td><Link href="#" onClick={this.toggleLRView.bind(this)}>001234</Link></td>
-                        <td>Nissin Noodles</td>
-                        <td>S1234</td>
-                        <td>Banglore</td>
-                        <td>
-                          <button class="button-margin-left ">
-                            <em class="icon icon-edit-modify-streamline is-small" /> Edit
-                          </button>
-                          <button class="button-margin-left ">
-                            <Link href="#" onClick={this.toggleConsignmentDetails.bind(this)}>Track</Link>
-                          </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>123456</td>
-                        <td>10/10/2018</td>
-                        <td><Link href="#" onClick={this.toggleLRView.bind(this)}>001234</Link></td>
-                        <td>Nissin Noodles</td>
-                        <td>S1234</td>
-                        <td>Banglore</td>
-                        <td>
-                          <button class="button-margin-left ">
-                            <em class="icon icon-edit-modify-streamline is-small" /> Edit
-                          </button>
-                          <button class="button-margin-left ">
-                            <Link href="#" onClick={this.toggleConsignmentDetails.bind(this)}>Track</Link>
-                          </button>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
+              <div  id="Consignments" class="tabcontent" style="padding:10px">
+                <div class="row">
+                  <div class="column no-padding">
+                    <label style="width:100%;">
+                      <em class="icon icon-paper-plane-o is-small" /> Consignments
+                    </label>
+                  </div>
+                  <div class="column no-padding has-text-right">
+                    <Link class="button button-margin-left" href="">
+                      <em class="icon icon-plus is-small" /> Add Consignment</Link>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="column no-padding">
+                    <div class="table-responsive">
+                      <table>
+                        <thead>
+                          <tr>
+                            <th>Consignment Number</th>
+                            <th>Booking Date</th>
+                            <th>LR Number</th>
+                            <th>Client Name</th>
+                            <th>Special Number</th>
+                            <th>Current Location</th>
+                            <th>Action</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>123456</td>
+                            <td>10/10/2018</td>
+                            <td><Link href="#" onClick={this.toggleLRView.bind(this)}>001234</Link></td>
+                            <td>Nissin Noodles</td>
+                            <td>S1234</td>
+                            <td>Banglore</td>
+                            <td>
+                              <button class="button-margin-left ">
+                                <em class="icon icon-edit-modify-streamline is-small" /> Edit
+                              </button>
+                              <button class="button-margin-left ">
+                                <Link href="#" onClick={this.toggleConsignmentDetails.bind(this)}>Track</Link>
+                              </button>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>123456</td>
+                            <td>10/10/2018</td>
+                            <td><Link href="#" onClick={this.toggleLRView.bind(this)}>001234</Link></td>
+                            <td>Nissin Noodles</td>
+                            <td>S1234</td>
+                            <td>Banglore</td>
+                            <td>
+                              <button class="button-margin-left ">
+                                <em class="icon icon-edit-modify-streamline is-small" /> Edit
+                              </button>
+                              <button class="button-margin-left ">
+                                <Link href="#" onClick={this.toggleConsignmentDetails.bind(this)}>Track</Link>
+                              </button>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>123456</td>
+                            <td>10/10/2018</td>
+                            <td><Link href="#" onClick={this.toggleLRView.bind(this)}>001234</Link></td>
+                            <td>Nissin Noodles</td>
+                            <td>S1234</td>
+                            <td>Banglore</td>
+                            <td>
+                              <button class="button-margin-left ">
+                                <em class="icon icon-edit-modify-streamline is-small" /> Edit
+                              </button>
+                              <button class="button-margin-left ">
+                                <Link href="#" onClick={this.toggleConsignmentDetails.bind(this)}>Track</Link>
+                              </button>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div  id="Contacts" class="tabcontent" style="padding:10px">
+                <div class="row">
+                  <div class="column no-padding">
+                    <label style="width:100%;">
+                      <em class="icon icon-paper-plane-o is-small" /> Contacts
+                    </label>
+                  </div>
+                  <div class="column no-padding has-text-right">
+                    <Link class="button button-margin-left" onClick={this.toggleAddContact.bind(this)}>
+                      <em class="icon icon-plus is-small" /> Add Contact</Link>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="column no-padding">
+                    <div class="table-responsive">
+                      <table>
+                        <thead>
+                          <tr>
+                            <th>Name</th>
+                            <th>Mobile</th>
+                            <th>Email</th>
+                            <th>Address</th>
+                            <th>Action</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Shrutika Khot</td>
+                            <td>9876543210</td>
+                            <td>shrutika@gmail.com</td>
+                            <td>Narayan Peth, Pune, 411030, Maharashtra</td>
+                            <td>
+                              <button class="button-margin-left " onClick={this.toggleAddContact.bind(this)}>
+                                <em class="icon icon-edit-modify-streamline is-small" /> Edit
+                              </button>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Neha Thakre</td>
+                            <td>9876543210</td>
+                            <td>neha@gmail.com</td>
+                            <td>Narayan Peth, Pune, 411030, Maharashtra</td>
+                            <td>
+                              <button class="button-margin-left " onClick={this.toggleAddContact.bind(this)}>
+                                <em class="icon icon-edit-modify-streamline is-small" /> Edit
+                              </button>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div  id="Quotations" class="tabcontent" style="padding:10px">
+                <div class="row">
+                  <div class="column no-padding">
+                    <label style="width:100%;">
+                      <em class="icon icon-paper-plane-o is-small" /> Quotation
+                    </label>
+                  </div>
+                  <div class="column no-padding has-text-right">
+                    <Link class="button button-margin-left" onClick={this.toggleAddQuotation.bind(this)}>
+                      <em class="icon icon-plus is-small" /> Add Quotation</Link>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="column no-padding">
+                    <div class="table-responsive">
+                      <table>
+                        <thead>
+                          <tr>
+                            <th>From</th>
+                            <th>To</th>
+                            <th>Vendor</th>
+                            <th>Charges</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Belgaon</td>
+                            <td>Banglore</td>
+                            <td>Tail Transports</td>
+                            <td>10,000</td>
+                            <td>Draft</td>
+                            <td>
+                              <button class="button-margin-left " onClick={this.toggleAddQuotation.bind(this)}>
+                                <em class="icon icon-edit-modify-streamline is-small" /> Edit
+                              </button>
+                              <button class="button-margin-left ">
+                                Send
+                              </button>
+                              <button class="button-margin-left ">
+                                Change Status
+                              </button>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Belgaon</td>
+                            <td>Banglore</td>
+                            <td>Tail Transports</td>
+                            <td>10,000</td>
+                            <td>Rejected</td>
+                            <td>
+                              <button class="button-margin-left " onClick={this.toggleAddQuotation.bind(this)}>
+                                <em class="icon icon-edit-modify-streamline is-small" /> Edit
+                              </button>
+                              <button class="button-margin-left ">
+                                Change Status
+                              </button>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Belgaon</td>
+                            <td>Banglore</td>
+                            <td>Tail Transports</td>
+                            <td>10,000</td>
+                            <td>Sent</td>
+                            <td>
+                              <button class="button-margin-left " onClick={this.toggleAddQuotation.bind(this)}>
+                                <em class="icon icon-edit-modify-streamline is-small" /> Edit
+                              </button>
+                              <button class="button-margin-left ">
+                                Change Status
+                              </button>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Belgaon</td>
+                            <td>Banglore</td>
+                            <td>Tail Transports</td>
+                            <td>10,000</td>
+                            <td>Finalised</td>
+                            <td>
+                              <button class="button-margin-left " onClick={this.toggleAddQuotation.bind(this)}>
+                                <em class="icon icon-edit-modify-streamline is-small" /> Edit
+                              </button>
+                              <button class="button-margin-left ">
+                                Change Status
+                              </button>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div  id="Bills" class="tabcontent" style="padding:10px">
+                <div class="row">
+                  <div class="column no-padding">
+                    <label style="width:100%;">
+                      <em class="icon icon-paper-plane-o is-small" /> Bills
+                    </label>
+                  </div>
                 </div>
               </div>
             </div>
           </section>
         </div>
-
         {
           this.state.isConsignmentDetailsModalOpen &&
           <Modal title="Track Consignment" modalSize="is-large" onClose={this.toggleConsignmentDetails.bind(this)}>
@@ -342,6 +556,95 @@ export default class ClientDetails extends Component {
             <ModalFooter>
               <button type="button" onClick={this.toggleLRView.bind(this)}>Close</button>
             </ModalFooter>
+          </Modal>
+        }
+        {
+          this.state.isAddContactModalOpen &&
+          <Modal title="Add Contact" modalSize="is-small" onClose={this.toggleAddContact.bind(this)}>
+            <form>
+              <ModalBody>
+                <div class="row">
+                  <div class="column">
+                    <label>Name</label>
+                    <input type="text" placeholder="Enter Name" />
+                  </div>
+                  <div class="column">
+                    <label>Mobile</label>
+                    <input type="text" placeholder="Enter Mobile" />
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="column column-50 float-left">
+                    <label>Email ID</label>
+                    <input type="text" placeholder="Enter Email ID" />
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="column">
+                    <label>Address Line 1</label>
+                    <input type="text" placeholder="Line 1" name="line1" />
+                  </div>
+                  <div class="column">
+                    <label>Address Line 2</label>
+                    <input type="text" placeholder="Line 2" name="line2" />
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="column">
+                    <label>Pincode</label>
+                    <input type="text" placeholder="pincode" name="pincode" />
+                  </div>
+                  <div class="column">
+                    <label>City</label>
+                    <input type="text" placeholder="City" name="city" />
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="column column-50 float-left">
+                    <label>State</label>
+                    <input type="text" placeholder="State" name="state" />
+                  </div>
+                </div>
+              </ModalBody>
+              <ModalFooter>
+                <button type="button" onClick={this.toggleAddContact.bind(this)}>Close</button>
+                <button type="button" onClick={this.toggleAddContact.bind(this)}>Add</button>
+              </ModalFooter>
+            </form>
+          </Modal>
+        }
+        {
+          this.state.isAddQuotationModalOpen &&
+          <Modal title="Add Quotation" modalSize="is-small" onClose={this.toggleAddQuotation.bind(this)}>
+            <form>
+              <ModalBody>
+                <div class="row">
+                  <div class="column">
+                    <label>From</label>
+                    <input type="text" placeholder="Enter Place" />
+                  </div>
+                  <div class="column">
+                    <label>To</label>
+                    <input type="text" placeholder="Enter Place" />
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="column column-50 float-left">
+                    <label>Vendor</label>
+                    <input type="text" placeholder="Enter Vendor" />
+                  </div>
+                  <div class="column">
+                    <label>Charges</label>
+                    <input type="text" placeholder="Charges" name="line1" />
+                  </div>
+                </div>
+              </ModalBody>
+              <ModalFooter>
+                <button type="button" onClick={this.toggleAddQuotation.bind(this)}>Close</button>
+                <button type="button" onClick={this.toggleAddQuotation.bind(this)}>Add</button>
+              </ModalFooter>
+            </form>
           </Modal>
         }
       </div>

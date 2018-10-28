@@ -32,6 +32,7 @@ import Consignments from '../routes/consignments';
 import Vendors from '../routes/vendors';
 import VendorDetails from '../routes/vendorDetails';
 import ConsignmentDetails from '../routes/consignmentDetails';
+import Rates from '../routes/rates';
 
 export default class App extends Component {
   componentDidMount() {}
@@ -84,6 +85,7 @@ export default class App extends Component {
           <Vendors path="/vendors" />
           <VendorDetails path="/vendor/:vendorID" />
           <ConsignmentDetails path="/consignment/:consignmentID" />
+          <Rates path="/rates" />
         </Router>
       </div>
     </div>);

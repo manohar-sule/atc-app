@@ -15,7 +15,9 @@ export default class VendorDetails extends Component {
       isCreateDispatchModalOpen: false,
       isConsignmentDetailsModalOpen: false,
       tabActive: 'Vehicles',
-      isLRViewModalOpen: false
+      isLRViewModalOpen: false,
+      isAddVehicleModalOpen: false,
+      isAddDriverModalOpen: false
     };
 
   }
@@ -49,6 +51,14 @@ export default class VendorDetails extends Component {
 
   toggleLRView() {
     this.setState({isLRViewModalOpen: !this.state.isLRViewModalOpen});
+  }
+
+  toggleAddVehicle() {
+    this.setState({isAddVehicleModalOpen: !this.state.isAddVehicleModalOpen});
+  }
+
+  toggleAddDriver() {
+    this.setState({isAddDriverModalOpen: !this.state.isAddDriverModalOpen});
   }
 
   render({}) {
@@ -181,9 +191,11 @@ export default class VendorDetails extends Component {
                     <li id="Tab3" className={this.state.tabActive === 'Consignments' ? 'is-active': ''}>
                       <a onClick={this.openTab.bind(this, 'Consignments')}>Consignments</a>
                     </li>
+                    {/*
                     <li id="Tab4" className={this.state.tabActive === 'Rates' ? 'is-active': ''}>
                       <a onClick={this.openTab.bind(this, 'Rates')}>Rates</a>
                     </li>
+                    */}
                   </ul>
                 </div>
               </div>
@@ -197,7 +209,7 @@ export default class VendorDetails extends Component {
                     </label>
                   </div>
                   <div class="column no-padding has-text-right">
-                    <button class="button-margin-left" title="Add Vehicle">
+                    <button class="button-margin-left" title="Add Vehicle" onClick={this.toggleAddVehicle.bind(this)}>
                       <em class="icon icon-plus is-small tooltip" /> Add Vehicle
                     </button>
                   </div>
@@ -220,7 +232,7 @@ export default class VendorDetails extends Component {
                             <td>Truck</td>
                             <td>2012</td>
                             <td>
-                              <button class="button-margin-left ">
+                              <button class="button-margin-left " onClick={this.toggleAddVehicle.bind(this)}>
                                 <em class="icon icon-edit-modify-streamline is-small" /> Edit
                               </button>
                             </td>
@@ -230,7 +242,7 @@ export default class VendorDetails extends Component {
                             <td>Truck</td>
                             <td>2012</td>
                             <td>
-                              <button class="button-margin-left ">
+                              <button class="button-margin-left " onClick={this.toggleAddVehicle.bind(this)}>
                                 <em class="icon icon-edit-modify-streamline is-small" /> Edit
                               </button>
                             </td>
@@ -240,7 +252,7 @@ export default class VendorDetails extends Component {
                             <td>Truck</td>
                             <td>2012</td>
                             <td>
-                              <button class="button-margin-left ">
+                              <button class="button-margin-left " onClick={this.toggleAddVehicle.bind(this)}>
                                 <em class="icon icon-edit-modify-streamline is-small" /> Edit
                               </button>
                             </td>
@@ -250,7 +262,7 @@ export default class VendorDetails extends Component {
                             <td>Truck</td>
                             <td>2012</td>
                             <td>
-                              <button class="button-margin-left ">
+                              <button class="button-margin-left " onClick={this.toggleAddVehicle.bind(this)}>
                                 <em class="icon icon-edit-modify-streamline is-small" /> Edit
                               </button>
                             </td>
@@ -271,7 +283,7 @@ export default class VendorDetails extends Component {
                     </label>
                   </div>
                   <div class="column no-padding has-text-right">
-                    <button class="button-margin-left" title="Add Vehicle">
+                    <button class="button-margin-left" title="Add Vehicle" onClick={this.toggleAddDriver.bind(this)}>
                       <em class="icon icon-plus is-small tooltip" /> Add Driver
                     </button>
                   </div>
@@ -300,7 +312,7 @@ export default class VendorDetails extends Component {
                             <td>00112233</td>
                             <td>4</td>
                             <td>
-                              <button class="button-margin-left ">
+                              <button class="button-margin-left " onClick={this.toggleAddDriver.bind(this)}>
                                 <em class="icon icon-edit-modify-streamline is-small" /> Edit
                               </button>
                             </td>
@@ -313,7 +325,7 @@ export default class VendorDetails extends Component {
                             <td>00112233</td>
                             <td>4</td>
                             <td>
-                              <button class="button-margin-left ">
+                              <button class="button-margin-left " onClick={this.toggleAddDriver.bind(this)}>
                                 <em class="icon icon-edit-modify-streamline is-small" /> Edit
                               </button>
                             </td>
@@ -326,7 +338,7 @@ export default class VendorDetails extends Component {
                             <td>00112233</td>
                             <td>4</td>
                             <td>
-                              <button class="button-margin-left ">
+                              <button class="button-margin-left " onClick={this.toggleAddDriver.bind(this)}>
                                 <em class="icon icon-edit-modify-streamline is-small" /> Edit
                               </button>
                             </td>
@@ -339,7 +351,7 @@ export default class VendorDetails extends Component {
                             <td>00112233</td>
                             <td>4</td>
                             <td>
-                              <button class="button-margin-left ">
+                              <button class="button-margin-left " onClick={this.toggleAddDriver.bind(this)}>
                                 <em class="icon icon-edit-modify-streamline is-small" /> Edit
                               </button>
                             </td>
@@ -454,60 +466,60 @@ export default class VendorDetails extends Component {
                 <div class="row">
                   <div class="column no-padding">
                     <div class="table-responsive">
-                    <table>
-                      <thead>
-                        <tr>
-                          <th>To</th>
-                          <th>From</th>
-                          <th>Vehicle Type</th>
-                          <th>Rate</th>
-                          <th>Last Updated On</th>
-                          <th>Last Updated By</th>
-                          <th>Action</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>Pune</td>
-                          <td>Banglore</td>
-                          <td>TATA 407</td>
-                          <td>20,000</td>
-                          <td>11/10/1993</td>
-                          <td>Samruddhi Gandhi</td>
-                          <td>
-                            <button class="button-margin-left ">
-                              <em class="icon icon-edit-modify-streamline is-small" /> Edit
-                            </button>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>Pune</td>
-                          <td>Banglore</td>
-                          <td>TATA 407</td>
-                          <td>20,000</td>
-                          <td>11/10/1993</td>
-                          <td>Samruddhi Gandhi</td>
-                          <td>
-                            <button class="button-margin-left ">
-                              <em class="icon icon-edit-modify-streamline is-small" /> Edit
-                            </button>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>Pune</td>
-                          <td>Banglore</td>
-                          <td>TATA 407</td>
-                          <td>20,000</td>
-                          <td>11/10/1993</td>
-                          <td>Samruddhi Gandhi</td>
-                          <td>
-                            <button class="button-margin-left ">
-                              <em class="icon icon-edit-modify-streamline is-small" /> Edit
-                            </button>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
+                      <table>
+                        <thead>
+                          <tr>
+                            <th>To</th>
+                            <th>From</th>
+                            <th>Vehicle Type</th>
+                            <th>Rate</th>
+                            <th>Last Updated On</th>
+                            <th>Last Updated By</th>
+                            <th>Action</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Pune</td>
+                            <td>Banglore</td>
+                            <td>TATA 407</td>
+                            <td>20,000</td>
+                            <td>11/10/1993</td>
+                            <td>Samruddhi Gandhi</td>
+                            <td>
+                              <button class="button-margin-left ">
+                                <em class="icon icon-edit-modify-streamline is-small" /> Edit
+                              </button>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Pune</td>
+                            <td>Banglore</td>
+                            <td>TATA 407</td>
+                            <td>20,000</td>
+                            <td>11/10/1993</td>
+                            <td>Samruddhi Gandhi</td>
+                            <td>
+                              <button class="button-margin-left ">
+                                <em class="icon icon-edit-modify-streamline is-small" /> Edit
+                              </button>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Pune</td>
+                            <td>Banglore</td>
+                            <td>TATA 407</td>
+                            <td>20,000</td>
+                            <td>11/10/1993</td>
+                            <td>Samruddhi Gandhi</td>
+                            <td>
+                              <button class="button-margin-left ">
+                                <em class="icon icon-edit-modify-streamline is-small" /> Edit
+                              </button>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
                     </div>
                   </div>
                 </div><div class="row">
@@ -671,6 +683,101 @@ export default class VendorDetails extends Component {
             <ModalFooter>
               <button type="button" onClick={this.toggleLRView.bind(this)}>Close</button>
             </ModalFooter>
+          </Modal>
+        }
+        {
+          this.state.isAddVehicleModalOpen &&
+          <Modal title="Add Vehicle" modalSize="is-small" onClose={this.toggleAddVehicle.bind(this)}>
+            <form>
+              <ModalBody>
+                <div class="row">
+                  <div class="column">
+                    <label>Vehicle Number</label>
+                    <input type="text" placeholder="Enter Place" />
+                  </div>
+                  <div class="column">
+                    <label>Type</label>
+                    <input type="text" placeholder="Enter Place" />
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="column column-50 float-left">
+                    <label>Year of Passing</label>
+                    <input type="text" placeholder="Enter Vendor" />
+                  </div>
+                </div>
+              </ModalBody>
+              <ModalFooter>
+                <button type="button" onClick={this.toggleAddVehicle.bind(this)}>Close</button>
+                <button type="button" onClick={this.toggleAddVehicle.bind(this)}>Add</button>
+              </ModalFooter>
+            </form>
+          </Modal>
+        }
+        {
+          this.state.isAddDriverModalOpen &&
+          <Modal title="Add Driver" modalSize="is-small" onClose={this.toggleAddDriver.bind(this)}>
+            <form>
+              <ModalBody>
+                <div class="row">
+                  <div class="column">
+                    <label>Name</label>
+                    <input type="text" placeholder="Enter Name" />
+                  </div>
+                  <div class="column">
+                    <label>Mobile</label>
+                    <input type="text" placeholder="Enter Mobile" />
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="column column-50 float-left">
+                    <label>Email ID</label>
+                    <input type="text" placeholder="Enter Email ID" />
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="column">
+                    <label>Licence Number</label>
+                    <input type="text" placeholder="Enter Licence Number" />
+                  </div>
+                  <div class="column">
+                    <label>Rating</label>
+                    <input type="text" placeholder="Enter Rating" />
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="column">
+                    <label>Address Line 1</label>
+                    <input type="text" placeholder="Line 1" name="line1" />
+                  </div>
+                  <div class="column">
+                    <label>Address Line 2</label>
+                    <input type="text" placeholder="Line 2" name="line2" />
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="column">
+                    <label>Pincode</label>
+                    <input type="text" placeholder="pincode" name="pincode" />
+                  </div>
+                  <div class="column">
+                    <label>City</label>
+                    <input type="text" placeholder="City" name="city" />
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="column column-50 float-left">
+                    <label>State</label>
+                    <input type="text" placeholder="State" name="state" />
+                  </div>
+                </div>
+              </ModalBody>
+              <ModalFooter>
+                <button type="button" onClick={this.toggleAddDriver.bind(this)}>Close</button>
+                <button type="button" onClick={this.toggleAddDriver.bind(this)}>Add</button>
+              </ModalFooter>
+            </form>
           </Modal>
         }
       </div>

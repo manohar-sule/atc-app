@@ -505,6 +505,16 @@ export default class Users extends Component {
 
                     </div>
                   </div>
+                  <div class="row">
+                    <div class="column column-50 float-left">
+                      <label>Branch</label>
+                      <select>
+                        <option value="">Select Branch</option>
+                        <option value="">Pimpri, Pune</option>
+                        <option value="">Andheri, Mumbai</option>
+                      </select>
+                    </div>
+                  </div>
                   {
                     !isAdmin && (organizationCreationMethod === 'zonewise') &&
                       <div class="row">

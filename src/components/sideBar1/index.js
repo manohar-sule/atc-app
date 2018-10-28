@@ -23,7 +23,7 @@ export default class Sidebar1 extends Component {
 						<div class="gn-scroller">
 							<ul class="gn-menu">
 								<li class="gn-search-item">
-									<input placeholder="Search" type="search" class="gn-search">
+									<input placeholder="Search" type="search" class="gn-search" >
 									<a class="gn-icon gn-icon-search"><span>Search</span></a>
 								</li>
 								<li>

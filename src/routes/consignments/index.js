@@ -188,6 +188,7 @@ export default class Consignments extends Component {
       modalTitle: 'Add Client',
       clientID: '',
       loadingClientList: false,
+      tabActive: 'In Transit',
       address:{
         line1: '',
         line2: '',
@@ -207,6 +208,7 @@ export default class Consignments extends Component {
       document.getElementById("main-body").classList.remove('margin-left-266');
       document.getElementById("main-body").classList.add('margin-left-76');
     }
+    this.openTab();
   }
 
   toggleConsignmentDetails() {
@@ -237,6 +239,19 @@ export default class Consignments extends Component {
     this.setState({isAddMaterialModalOpen: !this.state.isAddMaterialModalOpen});
   }
 
+  openTab(tabName) {
+    // console.log(tabName);
+    // let i, x;
+    // x = document.getElementsByClassName("tabcontent");
+    // for (i = 0; i < x.length; i++) {
+    //   x[i].style.display = "none";
+    // }
+    // console.log(document);
+    // document.getElementById(tabName).style.display = "block";
+
+    this.setState({ tabActive: tabName });
+  }
+
   render({}, { isClientAddModal, isButtonLocked, modalTitle, name, displayName, address }) {
     return (
       <div>
@@ -253,11 +268,6 @@ export default class Consignments extends Component {
             <div class="column no-padding">
               <div class="box">
                 <div class="row">
-                  <div class="column column-20 float-right search-box">
-                    <em class="icon icon-search" />
-                    <input type="text" id="search" placeholder="Enter Consignment ID"
-                      name="search" value="" style="margin-bottom:0 !important" />
-                  </div>
                   <div class="column has-text-right">
                     <button type="button" onClick={this.toggleAddConsignment.bind(this)}>Add Consignment</button>
                   </div>
@@ -266,8 +276,25 @@ export default class Consignments extends Component {
             </div>
           </section>
 
-          <div class="box">
-            <table>
+          <div class="box no-padding">
+            <div class="row">
+              <div class="column no-padding">
+                <div class="tabs" style="margin-bottom:0">
+                  <ul>
+                    <li id="Tab1" className={this.state.tabActive === 'In Transit' ? 'is-active': ''}>
+                      <a onClick={this.openTab.bind(this, 'In Transit')}>In Transit </a>
+                    </li>
+                    <li id="Tab2" className={this.state.tabActive === 'Unbilled' ? 'is-active': ''}>
+                      <a onClick={this.openTab.bind(this, 'Unbilled')}>Unbilled</a>
+                    </li>
+                    <li id="Tab2" className={this.state.tabActive === 'Billed' ? 'is-active': ''}>
+                      <a onClick={this.openTab.bind(this, 'Billed')}>Billed</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <table style="padding:10px">
               <thead>
                 <tr>
                   <th>Consignment<br/>Number</th>
@@ -535,11 +562,7 @@ export default class Consignments extends Component {
                                   <div class="row">
                                     <div class="column column-30">From : </div>
                                     <div class="column column-70">
-                                      <select name="locality">
-                                        <option value='' selected>Select Source</option>
-                                        <option value='' >Pune</option>
-                                        <option value='' >Goa</option>
-                                      </select>
+                                      <input type="text" placeholder="Enter Place" />
                                     </div>
                                   </div>
                                 </div>
@@ -547,11 +570,7 @@ export default class Consignments extends Component {
                                   <div class="row">
                                     <div class="column column-30">To : </div>
                                     <div class="column column-70">
-                                      <select name="locality">
-                                        <option value='' selected>Select Destination</option>
-                                        <option value='' >Chennai</option>
-                                        <option value='' >Goa</option>
-                                      </select>
+                                      <input type="text" placeholder="Enter Place" />
                                     </div>
                                   </div>
                                 </div>
@@ -560,7 +579,7 @@ export default class Consignments extends Component {
                                 <div class="column">
                                   <div class="row">
                                     <div class="column column-30">Pickup From : </div>
-                                    <div class="column column-70">
+                                    <div class="column column-70 has-text-center">
                                       <select name="locality">
                                         <option value='' selected>Select Branch</option>
                                         <option value='' >Pimpri, Pune</option>
@@ -568,18 +587,30 @@ export default class Consignments extends Component {
                                         <option value='' >Wagholi, Pune</option>
                                         <option value='' >Other</option>
                                       </select>
+                                      OR<br/>
+                                      <select name="locality">
+                                        <option value='' selected>Select Client</option>
+                                        <option value='' >Nissin Noodles</option>
+                                        <option value='' >MRF Tyres</option>
+                                      </select>
                                     </div>
                                   </div>
                                 </div>
                                 <div class="column">
                                   <div class="row">
                                     <div class="column column-30">Drop At : </div>
-                                    <div class="column column-70">
+                                    <div class="column column-70 has-text-center">
                                       <select name="locality">
                                         <option value='' selected>Select Branch</option>
                                         <option value='' >Pimpri, Pune</option>
                                         <option value='' >Ranjangaon, Pune</option>
                                         <option value='' >Wagholi, Pune</option>
+                                      </select>
+                                      OR<br/>
+                                      <select name="locality">
+                                        <option value='' selected>Select Client</option>
+                                        <option value='' >Nissin Noodles</option>
+                                        <option value='' >MRF Tyres</option>
                                       </select>
                                     </div>
                                   </div>
@@ -672,6 +703,7 @@ export default class Consignments extends Component {
                             <table style="margin:5px 0">
                               <thead>
                                 <tr>
+                                  <th>Dimensions</th>
                                   <th>Description</th>
                                   <th>No. of Packages</th>
                                   <th>Weight</th>
@@ -680,10 +712,18 @@ export default class Consignments extends Component {
                               </thead>
                               <tbody style="height: auto">
                                 <tr>
+                                  <td>200mm X 300mm</td>
                                   <td>Battery</td>
                                   <td>1000</td>
                                   <td>5 tons</td>
                                   <td>Chemical</td>
+                                </tr>
+                                <tr>
+                                  <td>500mm X 500mm</td>
+                                  <td>Packed Noodles</td>
+                                  <td>2000</td>
+                                  <td>1 ton</td>
+                                  <td>Eatable</td>
                                 </tr>
                               </tbody>
                             </table>
@@ -706,6 +746,24 @@ export default class Consignments extends Component {
                           <div class="column">
                             <form>
                               <div class="row">
+                                <div class="column">
+                                  <div class="row">
+                                    <div class="column column-30">From : </div>
+                                    <div class="column column-70">
+                                      <input type="text" placeholder="Enter Place" />
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="column">
+                                  <div class="row">
+                                    <div class="column column-30">To : </div>
+                                    <div class="column column-70">
+                                      <input type="text" placeholder="Enter Place" />
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row">
                                 <div class="column column-50 float-left">
                                   <div class="row">
                                     <div class="column column-30">Vendor : </div>
@@ -722,25 +780,17 @@ export default class Consignments extends Component {
                               <div class="row">
                                 <div class="column">
                                   <div class="row">
-                                    <div class="column column-30">From : </div>
+                                    <div class="column column-30">Vehicle Type : </div>
                                     <div class="column column-70">
-                                      <select name="locality">
-                                        <option value='' selected>Select Source</option>
-                                        <option value='' >Pune</option>
-                                        <option value='' >Goa</option>
-                                      </select>
+                                      <input type="text" placeholder="Enter Vehicle Type" />
                                     </div>
                                   </div>
                                 </div>
                                 <div class="column">
                                   <div class="row">
-                                    <div class="column column-30">To : </div>
+                                    <div class="column column-30">Vehicle Load : </div>
                                     <div class="column column-70">
-                                      <select name="locality">
-                                        <option value='' selected>Select Destination</option>
-                                        <option value='' >Chennai</option>
-                                        <option value='' >Goa</option>
-                                      </select>
+                                      <input type="text" placeholder="Enter Load" />
                                     </div>
                                   </div>
                                 </div>
@@ -748,33 +798,10 @@ export default class Consignments extends Component {
                               <div class="row">
                                 <div class="column column-50 float-left">
                                   <div class="row">
-                                    <div class="column column-30">Vehicle Type : </div>
-                                    <div class="column column-70">
-                                      <select name="locality">
-                                        <option value='' selected>Select Vehicle Type</option>
-                                        <option value='' >TATA 407</option>
-                                        <option value='' >TATA Ace</option>
-                                      </select>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="row">
-                                <div class="column">
-                                  <div class="row">
-                                    <div class="column column-30">Vehicle Load : </div>
-                                    <div class="column column-70 has-text-left">
-                                      <strong>5 Tons</strong>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="row">
-                                <div class="column">
-                                  <div class="row">
                                     <div class="column column-30">Rate : </div>
                                     <div class="column column-70 has-text-left">
-                                      <strong>Rs. 10,000 / ton <span style="font-weight:bold;color:#ff0000">( ! Old Rates )</span></strong>
+                                      <input type="text" placeholder="Enter Rate" />
+                                      <strong><span style="font-weight:bold;color:#ff0000">( ! Old Rates )</span></strong>
                                     </div>
                                   </div>
                                 </div>
@@ -820,6 +847,17 @@ export default class Consignments extends Component {
               <div class="row">
                 <div class="column no-padding">
                   <form>
+                    <div class="row">
+                      <div class="column column-50">
+                        <label>Width</label>
+                        <input type="text" placeholder="Enter Width" name="name" value={name} onInput={LinkState(this, 'name')} required="required"/>
+                      </div>
+                      <div class="column column-50">
+                        <label>Height</label>
+                        <input type="text" placeholder="Enter Height" name="displayName" value={displayName}
+                          onInput={LinkState(this, 'displayName')} required="required"/>
+                      </div>
+                    </div>
                     <div class="row">
                       <div class="column column-50">
                         <label>Description</label>

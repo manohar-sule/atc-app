@@ -222,11 +222,6 @@ export default class Clients extends Component {
             <div class="column no-padding">
               <div class="box">
                 <div class="row">
-                  <div class="column column-20 float-right search-box">
-                    <em class="icon icon-search" />
-                    <input type="text" id="search" placeholder="Enter Client Name"
-                      name="search" value="" style="margin-bottom:0 !important"/>
-                  </div>
                   <div class="column has-text-right">
                     <button type="button" onClick={this.toggleAddClient.bind(this)}>Add Client</button>
                   </div>
@@ -275,14 +270,36 @@ export default class Clients extends Component {
                 <form name="Add Client" onSubmit={this.createOrEditClient.bind(this)}>
                   <ModalBody>
                     <div class="row">
-                      <div class="column column-50">
+                      <div class="column">
+                        <label style="margin-bottom:5px">Client Information</label>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="column">
                         <label>Name</label>
                         <input type="text" placeholder="Enter Name" name="name" value={name} onInput={LinkState(this, 'name')} required="required"/>
                       </div>
-                      <div class="column column-50">
+                      <div class="column">
                         <label>Display name</label>
                         <input type="text" placeholder="Enter Display Name" name="displayName" value={displayName}
                           onInput={LinkState(this, 'displayName')} required="required"/>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="column">
+                        <label>Type</label>
+                        <input type="text" placeholder="Enter Type" name="type" onInput={LinkState(this, 'type')} required="required"/>
+                      </div>
+                      <div class="column">
+                        <label>Material Type</label>
+                        <input type="text" placeholder="Enter Display Name" name="displayName" value={displayName}
+                          onInput={LinkState(this, 'displayName')} required="required"/>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="column column-50 float-left">
+                        <label>Email</label>
+                        <input type="text" placeholder="Enter Email ID" name="email" value={name} onInput={LinkState(this, 'email')} required="required"/>
                       </div>
                     </div>
                     <div class="row">
@@ -298,12 +315,89 @@ export default class Clients extends Component {
 
                     <div class="row">
                       <div class="column">
+                        <label>Pincode</label>
+                        <input type="text" placeholder="pincode" name="pincode" value={address.pincode} onInput={LinkState(this, 'address.pincode')} required/>
+                      </div>
+                      <div class="column">
                         <label>City</label>
                         <input type="text" placeholder="City" name="city" value={address.city} onInput={LinkState(this, 'address.city')} required/>
                       </div>
-                      <div class="column">
+                    </div>
+                    <div class="row">
+                      <div class="column column-50 float-left">
                         <label>State</label>
                         <input type="text" placeholder="State" name="state" value={address.state} onInput={LinkState(this, 'address.state')} required/>
+                      </div>
+                    </div>
+                    <hr/>
+                    <div class="row">
+                      <div class="column">
+                        <label style="margin-bottom:5px">Conatct Information</label>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="column">
+                        <label>Name</label>
+                        <input type="text" placeholder="Enter Name" name="contactName" onInput={LinkState(this, 'contactName')} required="required"/>
+                      </div>
+                      <div class="column">
+                        <label>Mobile</label>
+                        <input type="text" placeholder="Enter Mobile" name="contactMobile" onInput={LinkState(this, 'contactMobile')} required="required"/>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="column column-50 float-left">
+                        <label>Email</label>
+                        <input type="text" placeholder="Enter Email" name="contactEmail" onInput={LinkState(this, 'contactEmail')} required="required"/>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="column">
+                        <label>Address Line 1</label>
+                        <input type="text" placeholder="Line 1" name="contactLine1" value={address.contactLine1} onInput={LinkState(this, 'address.contactLine1')} required/>
+                      </div>
+                      <div class="column">
+                        <label>Address Line 2</label>
+                        <input type="text" placeholder="Line 2" name="contactLine2" value={address.contactLine2} onInput={LinkState(this, 'address.contactLine2')} required/>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="column">
+                        <label>Pincode</label>
+                        <input type="text" placeholder="pincode" name="contactPincode" value={address.contactPincode} onInput={LinkState(this, 'address.contactPincode')} required/>
+                      </div>
+                      <div class="column">
+                        <label>City</label>
+                        <input type="text" placeholder="City" name="conatctCity" value={address.conatctCity} onInput={LinkState(this, 'address.conatctCity')} required/>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="column column-50 float-left">
+                        <label>State</label>
+                        <input type="text" placeholder="State" name="contactState" value={address.contactState} onInput={LinkState(this, 'address.contactState')} required/>
+                      </div>
+                    </div>
+                    <hr/>
+                    <div class="row">
+                      <div class="column">
+                        <label style="margin-bottom:5px">Billing Information</label>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="column">
+                        <label>PAN No.</label>
+                        <input type="text" placeholder="State" name="contactPAN" value={address.contactPAN} onInput={LinkState(this, 'address.contactPAN')} required/>
+                      </div>
+                      <div class="column">
+                        <label>TIN No.</label>
+                        <input type="text" placeholder="State" name="contactTIN" value={address.contactTIN} onInput={LinkState(this, 'address.contactTIN')} required/>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="column column-50 float-left">
+                        <label>GST No.</label>
+                        <input type="text" placeholder="State" name="contactGST" value={address.contactGST} onInput={LinkState(this, 'address.contactGST')} required/>
                       </div>
                     </div>
                   </ModalBody>

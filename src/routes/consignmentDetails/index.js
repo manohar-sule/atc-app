@@ -16,7 +16,8 @@ export default class ConsignmentDetails extends Component {
       isConsignmentDetailsModalOpen: false,
       isLRViewModalOpen: false,
       isBillViewModalOpen: false,
-      tabActive: 'Tracking Details'
+      tabActive: 'LR',
+      isAddTrackingDetailsModalOpen: false
     };
 
   }
@@ -44,7 +45,6 @@ export default class ConsignmentDetails extends Component {
   }
 
   openTab(tabName) {
-    console.log(tabName);
     let i, x;
     x = document.getElementsByClassName("tabcontent");
     for (i = 0; i < x.length; i++) {
@@ -54,6 +54,11 @@ export default class ConsignmentDetails extends Component {
     document.getElementById(tabName).style.display = "block";
 
     this.setState({ tabActive: tabName });
+  }
+
+  toggleAddTrackingDetails() {
+    console.log('in');
+    this.setState({isAddTrackingDetailsModalOpen: !this.state.isAddTrackingDetailsModalOpen});
   }
 
   render({}) {
@@ -84,26 +89,22 @@ export default class ConsignmentDetails extends Component {
               <section class="box" style="padding:0!important">
                 <div class="row details-heading">
                   <div class="column no-padding">
-                    <label style="width:100%;">Consignment Information</label>
+                    <label style="width:100%;">Billing Information</label>
                   </div>
                 </div>
                 <div class="row details-info">
                   <div class="column no-padding">
                     <div>
-                      <span>Client Name - </span>
-                      <span><strong>Nissin Noodles</strong></span>
+                      <span>Billing Amount - </span>
+                      <span><strong><em class="icon icon-rupee" /></strong>25,00,000</span>
                     </div>
                     <div>
-                      <span>From - </span>
-                      <span><strong>Pune</strong></span>
+                      <span>Advance Amount - </span>
+                      <span><strong><em class="icon icon-rupee" /></strong>5,00,000</span>
                     </div>
                     <div>
-                      <span>To - </span>
-                      <span><strong>Banglore</strong></span>
-                    </div>
-                    <div>
-                      <span>Weight of Material - </span>
-                      <span><strong>Eatables</strong></span>
+                      <span>Balance Amount - </span>
+                      <span><strong><em class="icon icon-rupee" /></strong>20,00,000</span>
                     </div>
                   </div>
                 </div>
@@ -113,14 +114,18 @@ export default class ConsignmentDetails extends Component {
               <section class="box" style="padding:0!important">
                 <div class="row details-heading">
                   <div class="column no-padding">
-                    <label style="width:100%;">Vendor Information</label>
+                    <label style="width:100%;">ATC Information</label>
                   </div>
                 </div>
                 <div class="row details-info">
                   <div class="column no-padding">
                     <div>
-                      <span>Name - </span>
-                      <span><strong>Patil Transports</strong></span>
+                      <span>ETD - </span>
+                      <span><strong>10:30 AM, 30th October 2018</strong></span>
+                    </div>
+                    <div>
+                      <span>ETA - </span>
+                      <span><strong>12:00 PM, 31st October 2018</strong></span>
                     </div>
                     <div>
                       <span>Vehicle Number - </span>
@@ -138,53 +143,30 @@ export default class ConsignmentDetails extends Component {
                 </div>
               </section>
             </div>
-            <div class="column">
-              <section class="box" style="padding:0!important">
-                <div class="row details-heading">
-                  <div class="column no-padding">
-                    <label style="width:100%;">ATC Information</label>
-                  </div>
-                </div>
-                <div class="row details-info">
-                  <div class="column no-padding">
-                    <div>
-                      <span>Current Location - </span>
-                      <span><strong>GST1000234</strong></span>
-                    </div>
-                    <div>
-                      <span>LR Number - </span>
-                      <span title="View LR">
-                        <Link href="#" onClick={this.toggleLRView.bind(this)}><strong>LR12345</strong></Link>
-                      </span>
-                    </div>
-                    <div>
-                      <span>Estimated Cost - </span>
-                      <span><strong><em class="icon icon-rupee" /> 10,00,000</strong>
-                        <Link href="#" onClick={this.toggleBillView.bind(this)}> (View Bill)</Link>
-                      </span>
-                    </div>
-                    <div>
-                      <span>Advance Amount - </span>
-                      <span><strong><strong><em class="icon icon-rupee" /> 2,00,000</strong></strong></span>
-                    </div>
-                  </div>
-                </div>
-              </section>
-            </div>
-
           </div>
           <section class="box no-padding">
             <div class="row">
               <div class="column no-padding">
                 <div class="tabs" style="margin-bottom:0">
                   <ul>
-                    <li id="Tab1" className={this.state.tabActive === 'Tracking Details' ? 'is-active': ''}>
-                      <a onClick={this.openTab.bind(this, 'Tracking Details')}>Tracking Details </a>
+                    <li id="Tab1" className={this.state.tabActive === 'LR' ? 'is-active': ''}>
+                      <a onClick={this.openTab.bind(this, 'LR')}>LR </a>
                     </li>
-                    <li id="Tab2" className={this.state.tabActive === 'Quotation' ? 'is-active': ''}>
-                      <a onClick={this.openTab.bind(this, 'Quotation')}>Quotation</a>
+                    <li id="Tab2" className={this.state.tabActive === 'Tracking Details' ? 'is-active': ''}>
+                      <a onClick={this.openTab.bind(this, 'Tracking Details')}>Tracking Details</a>
                     </li>
                   </ul>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div  id="LR" class="tabcontent" style="padding:10px">
+                <div class="row">
+                  <div class="column no-padding">
+                    <label style="width:100%;">
+                      <em class="icon icon-paper-plane-o is-small" /> LR
+                    </label>
+                  </div>
                 </div>
               </div>
             </div>
@@ -197,8 +179,8 @@ export default class ConsignmentDetails extends Component {
                     </label>
                   </div>
                   <div class="column no-padding has-text-right">
-                    <Link class="button button-margin-left" href="">
-                      <em class="icon icon-plus is-small" /> Add Tracking Details</Link>
+                    <button class="button button-margin-left" onClick={this.toggleAddTrackingDetails.bind(this)} >
+                      <em class="icon icon-plus is-small" /> Add Tracking Details</button>
                   </div>
                 </div>
 
@@ -209,158 +191,50 @@ export default class ConsignmentDetails extends Component {
                         <thead>
                           <tr>
                             <th>Date</th>
-                            <th>Status</th>
-                            <th>Source<br/>Branch</th>
-                            <th>Destination<br/>Branch</th>
-                            <th>Location for<br/>ATC</th>
-                            <th>Location for<br/>Customer</th>
-                            <th>User<br/>Name</th>
-                            <th>Remarks</th>
-                            <th>Action</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>10/10/2018</td>
-                            <td>In Transit</td>
-                            <td>Belgaon</td>
-                            <td>Banglore</td>
-                            <td>Belgaon</td>
-                            <td>Belgaon</td>
-                            <td>manohar Sule</td>
-                            <td>-</td>
-                            <td>
-                              <button class="button-margin-left ">
-                                <em class="icon icon-edit-modify-streamline is-small" /> Edit
-                              </button>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>10/10/2018</td>
-                            <td>In Transit</td>
-                            <td>Belgaon</td>
-                            <td>Banglore</td>
-                            <td>Belgaon</td>
-                            <td>Belgaon</td>
-                            <td>manohar Sule</td>
-                            <td>-</td>
-                            <td>
-                              <button class="button-margin-left ">
-                                <em class="icon icon-edit-modify-streamline is-small" /> Edit
-                              </button>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>10/10/2018</td>
-                            <td>In Transit</td>
-                            <td>Belgaon</td>
-                            <td>Banglore</td>
-                            <td>Belgaon</td>
-                            <td>Belgaon</td>
-                            <td>manohar Sule</td>
-                            <td>-</td>
-                            <td>
-                              <button class="button-margin-left ">
-                                <em class="icon icon-edit-modify-streamline is-small" /> Edit
-                              </button>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="row">
-              <div  id="Quotation" class="tabcontent" style="padding:10px">
-                <div class="row">
-                  <div class="column no-padding">
-                    <label style="width:100%;">
-                      <em class="icon icon-paper-plane-o is-small" /> Quotation
-                    </label>
-                  </div>
-                  <div class="column no-padding has-text-right">
-                    <Link class="button button-margin-left" href="">
-                      <em class="icon icon-plus is-small" /> Add Quotation</Link>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="column no-padding">
-                    <div class="table-responsive">
-                      <table>
-                        <thead>
-                          <tr>
+                            <th>Current Location<br/>(ATC)</th>
+                            <th>Current Location<br/>(Customer)</th>
                             <th>From</th>
                             <th>To</th>
-                            <th>Vendor</th>
-                            <th>Charges</th>
+                            <th>Via</th>
+                            <th>Vehicle</th>
+                            <th>Driver Name</th>
+                            <th>Driver Contact</th>
                             <th>Status</th>
                             <th>Action</th>
                           </tr>
                         </thead>
                         <tbody>
                           <tr>
+                            <td>10/10/2018</td>
+                            <td>Belgaon</td>
+                            <td>Belgaon</td>
                             <td>Belgaon</td>
                             <td>Banglore</td>
-                            <td>Tail Transports</td>
-                            <td>10,000</td>
-                            <td>Draft</td>
+                            <td>-</td>
+                            <td>MH 12 AB 1234</td>
+                            <td>Manohar Sule</td>
+                            <td>9876543210</td>
+                            <td>In Transit</td>
                             <td>
-                              <button class="button-margin-left ">
+                              <button class="button-margin-left " onClick={this.toggleAddTrackingDetails.bind(this)} >
                                 <em class="icon icon-edit-modify-streamline is-small" /> Edit
-                              </button>
-                              <button class="button-margin-left ">
-                                Send
-                              </button>
-                              <button class="button-margin-left ">
-                                Change Status
                               </button>
                             </td>
                           </tr>
                           <tr>
+                            <td>10/10/2018</td>
+                            <td>Belgaon</td>
+                            <td>Belgaon</td>
                             <td>Belgaon</td>
                             <td>Banglore</td>
-                            <td>Tail Transports</td>
-                            <td>10,000</td>
-                            <td>Rejected</td>
+                            <td>-</td>
+                            <td>MH 12 AB 1234</td>
+                            <td>Manohar Sule</td>
+                            <td>9876543210</td>
+                            <td>In Transit</td>
                             <td>
-                              <button class="button-margin-left ">
+                              <button class="button-margin-left " onClick={this.toggleAddTrackingDetails.bind(this)} >
                                 <em class="icon icon-edit-modify-streamline is-small" /> Edit
-                              </button>
-                              <button class="button-margin-left ">
-                                Change Status
-                              </button>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>Belgaon</td>
-                            <td>Banglore</td>
-                            <td>Tail Transports</td>
-                            <td>10,000</td>
-                            <td>Sent</td>
-                            <td>
-                              <button class="button-margin-left ">
-                                <em class="icon icon-edit-modify-streamline is-small" /> Edit
-                              </button>
-                              <button class="button-margin-left ">
-                                Change Status
-                              </button>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>Belgaon</td>
-                            <td>Banglore</td>
-                            <td>Tail Transports</td>
-                            <td>10,000</td>
-                            <td>Finalised</td>
-                            <td>
-                              <button class="button-margin-left ">
-                                <em class="icon icon-edit-modify-streamline is-small" /> Edit
-                              </button>
-                              <button class="button-margin-left ">
-                                Change Status
                               </button>
                             </td>
                           </tr>
@@ -373,7 +247,6 @@ export default class ConsignmentDetails extends Component {
             </div>
           </section>
         </div>
-
         {
           this.state.isConsignmentDetailsModalOpen &&
           <Modal title="Track Consignment" modalSize="is-large" onClose={this.toggleConsignmentDetails.bind(this)}>
@@ -485,6 +358,71 @@ export default class ConsignmentDetails extends Component {
             <ModalFooter>
               <button type="button" onClick={this.toggleBillView.bind(this)}>Close</button>
             </ModalFooter>
+          </Modal>
+        }
+        {
+          this.state.isAddTrackingDetailsModalOpen &&
+          <Modal title="Add Tracking Details" modalSize="is-small" onClose={this.toggleAddTrackingDetails.bind(this)}>
+            <form>
+              <ModalBody>
+                <div class="row">
+                  <div class="column column-50 float-left">
+                    <label>Date</label>
+                    <input type="date" />
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="column">
+                    <label>Current Location (ATC)</label>
+                    <input type="text" />
+                  </div>
+                  <div class="column">
+                    <label>Current Location (Customer)</label>
+                    <input type="text" />
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="column">
+                    <label>To</label>
+                    <input type="text" />
+                  </div>
+                  <div class="column">
+                    <label>From</label>
+                    <input type="text" />
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="column column-50 float-left">
+                    <label>Via</label>
+                    <input type="text" />
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="column">
+                    <label>Vehicle Number</label>
+                    <input type="text" />
+                  </div>
+                  <div class="column">
+                    <label>Driver Name</label>
+                    <input type="text" />
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="column">
+                    <label>Driver Contact</label>
+                    <input type="text" />
+                  </div>
+                  <div class="column column-50 float-left">
+                    <label>Status</label>
+                    <input type="text" />
+                  </div>
+                </div>
+              </ModalBody>
+              <ModalFooter>
+                <button type="button" onClick={this.toggleAddTrackingDetails.bind(this)}>Close</button>
+                <button type="button" onClick={this.toggleAddTrackingDetails.bind(this)}>Add</button>
+              </ModalFooter>
+            </form>
           </Modal>
         }
       </div>
